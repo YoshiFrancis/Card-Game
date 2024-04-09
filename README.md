@@ -7,7 +7,7 @@ IGame should contain the
 2. IPlayerContainer to hold all the players in the game
 3. IDeck to keep track of the deck (and also be the dealer)
 
-Each IPLayer in the IPlayerContainer will be connected to a client
+Each IPlayer in the IPlayerContainer will be associated to a client
 IGame will be responsible for running the game
 A card will be drawn and all operatioins will be done locally in the IGame class
 Then all operations that happened will be forwarded to all clients
@@ -30,19 +30,18 @@ Higher Level (Networking Side):
 - Communication between client and host
 
 Classes:
-ICommunicator, IClient, IServer
+ICommunicator, IClient, IServer, IGame
 
 How players will join:
 Player will send request to join a game (using a given passcode or IP) via sending to ICommunicatorStorage
-ICommunicatorStorage will check all ICommunicator's IServer looking for right room to send new client to
+ICommunicatorStorage will check all IGame ICommunicator's IServer looking for right room to send new client to
 IClient class will be allocated for new client if successful
 IPlayer class created with IClient as member variagle and pushed into the IPlayerContainer
 
-Highest Layer - Lowest layer
+Highest Layer to Lowest layer
 ICommunicatorStorage (might as well be IGameStorage)
     - IGame
         - ICommunicator
-            - vector of IClient
             - IServer
         - IPlayerContainer
             - IPlayer

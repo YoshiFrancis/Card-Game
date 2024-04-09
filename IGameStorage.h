@@ -1,12 +1,12 @@
-#ifndef ICOMMUNICATORSTORAGE_H
-#define ICOMMUNICATORSTORAGE_H
+#ifndef IGAMESTORAGE_H
+#define IGAMESTORAGE_H
 
 #include <memory>
 #include <string_view>
 
 class IGame;
 
-class ICommunicatorStorage {
+class IGameStorage {
 
     virtual std::unique_ptr<IGame> findGame(std::string_view gameIdentifier) = 0;
     virtual void createGame() = 0;
