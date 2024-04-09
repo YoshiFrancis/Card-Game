@@ -3,8 +3,11 @@
 
 #include "IGame.h"
 
+#include <memory>
+
 class IDeck;
 class IPlayerContainer;
+class ICommunicator;
 
 class CardGame : public IGame {
 
@@ -16,8 +19,10 @@ public:
 
 private:
 
-    IDeck m_deck;
-    IPlayerContainer m_players;
+    std::unique_ptr<IDeck> m_deck{};
+    std::unique_ptr<IPlayerContainer> m_players{};
+    std::unique_ptr<ICommunicator> m_communicator{};
+
 
 };
 
