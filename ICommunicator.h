@@ -13,6 +13,7 @@ class ICommunicator {
     virtual void removeClient(std::string_view username) = 0;
     virtual const IServer* getServer() = 0;
     virtual IClient* findClient(std::string_view username) = 0;
+    virtual void sendMessage(const IClient& client, std::string_view message) = 0;
     
 
 };

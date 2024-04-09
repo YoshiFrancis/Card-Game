@@ -11,6 +11,7 @@ class IGame {
     virtual void runGame() = 0;
     virtual void endGame() = 0;
     virtual IServer* getServer() = 0;
+    virtual int getId();
     
 };
 
