@@ -5,7 +5,7 @@
 
 class IClient;
 
-class IHandler {
+class IServer {
 
 public:
     IServer() = default;

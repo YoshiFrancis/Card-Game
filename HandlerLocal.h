@@ -10,7 +10,7 @@ public:
 
     bool sendMessage(const IClient& client, std::string_view message) override;
     void handleMessage(const IClient& sender, std::string_view message) override;
-    std::string_view receiveMessage() override;
+    void receiveMessage(std::string_view message) override;
     void shutdown() override;
     void endConnection(const IClient& client) override;
 
