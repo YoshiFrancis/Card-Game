@@ -1,12 +1,12 @@
-#ifndef SERVERLOCAL_H
-#define SERVERLOCAL_H
+#ifndef HANDLERLOCAL_H
+#define HANDLERLOCAL_H
 
 #include "IServer.h"
 
-class ServerLocal : public IServer {
+class HandlerLocal : public IHandler {
 
 public:
-    ServerLocal() = default;
+    HandlerLocal() = default;
 
     bool sendMessage(const IClient& client, std::string_view message) override;
     void handleMessage(const IClient& sender, std::string_view message) override;

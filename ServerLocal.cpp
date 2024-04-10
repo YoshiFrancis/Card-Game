@@ -1,21 +1,21 @@
-#include "ServerLocal.h"
+#include "HandlerLocal.h"
 
-bool ServerLocal::sendMessage(const IClient& client, std::string_view message) {
+bool HandlerLocal::sendMessage(const IClient& client, std::string_view message) {
 
     return true;
 }
-void ServerLocal::handleMessage(const IClient& sender, std::string_view message) {
+void HandlerLocal::handleMessage(const IClient& sender, std::string_view message) {
 
 }
-std::string_view ServerLocal::receiveMessage() {
+std::string_view HandlerLocal::receiveMessage() {
 
     return "Hello";
 
 }
-void ServerLocal::shutdown() {
+void HandlerLocal::shutdown() {
 
 }
-void ServerLocal::endConnection(const IClient& client) {
+void HandlerLocal::endConnection(const IClient& client) {
 
 }
 

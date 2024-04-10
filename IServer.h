@@ -1,20 +1,16 @@
 #ifndef ISERVER_H
 #define ISERVER_H
 
+#include <memory>
 #include <string_view>
 
-class IClient;
+class IGame;
 
 class IServer {
 
-public:
-    IServer() = default;
-    virtual bool sendMessage(const IClient& client, std::string_view message) = 0;
-    virtual void handleMessage(const IClient& sender, std::string_view message) = 0;
-    virtual std::string_view receiveMessage() = 0;
-    virtual void shutdown() = 0;
-    virtual void endConnection(const IClient& client) = 0;
-    
+    virtual std::unique_ptr<IGame> findGame(std::string_view gameIdentifier) = 0;
+    virtual void createGame() = 0;
+    virtual void removeGame(int gameId) = 0;
 
 };
 
