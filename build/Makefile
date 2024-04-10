@@ -129,30 +129,6 @@ game/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/build
 .PHONY : game/fast
 
-HandLocal.o: HandLocal.cpp.o
-.PHONY : HandLocal.o
-
-# target to build an object file
-HandLocal.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/HandLocal.cpp.o
-.PHONY : HandLocal.cpp.o
-
-HandLocal.i: HandLocal.cpp.i
-.PHONY : HandLocal.i
-
-# target to preprocess a source file
-HandLocal.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/HandLocal.cpp.i
-.PHONY : HandLocal.cpp.i
-
-HandLocal.s: HandLocal.cpp.s
-.PHONY : HandLocal.s
-
-# target to generate assembly for a file
-HandLocal.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/HandLocal.cpp.s
-.PHONY : HandLocal.cpp.s
-
 HandlerLocal.o: HandlerLocal.cpp.o
 .PHONY : HandlerLocal.o
 
@@ -201,30 +177,6 @@ PlayerLocal.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/PlayerLocal.cpp.s
 .PHONY : PlayerLocal.cpp.s
 
-ServerLocal.o: ServerLocal.cpp.o
-.PHONY : ServerLocal.o
-
-# target to build an object file
-ServerLocal.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/ServerLocal.cpp.o
-.PHONY : ServerLocal.cpp.o
-
-ServerLocal.i: ServerLocal.cpp.i
-.PHONY : ServerLocal.i
-
-# target to preprocess a source file
-ServerLocal.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/ServerLocal.cpp.i
-.PHONY : ServerLocal.cpp.i
-
-ServerLocal.s: ServerLocal.cpp.s
-.PHONY : ServerLocal.s
-
-# target to generate assembly for a file
-ServerLocal.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/ServerLocal.cpp.s
-.PHONY : ServerLocal.cpp.s
-
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -258,18 +210,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... game"
-	@echo "... HandLocal.o"
-	@echo "... HandLocal.i"
-	@echo "... HandLocal.s"
 	@echo "... HandlerLocal.o"
 	@echo "... HandlerLocal.i"
 	@echo "... HandlerLocal.s"
 	@echo "... PlayerLocal.o"
 	@echo "... PlayerLocal.i"
 	@echo "... PlayerLocal.s"
-	@echo "... ServerLocal.o"
-	@echo "... ServerLocal.i"
-	@echo "... ServerLocal.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
