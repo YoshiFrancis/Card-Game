@@ -13,10 +13,10 @@ public:
     // do something
     }
 
-    virtual const ICard useCard(std::string_view name) = 0;
-    virtual const void addCard(const ICard card) = 0;
+    virtual const ICard* useCard(std::string_view name) = 0;
+    virtual const void addCard(const ICard* card) = 0;
     virtual const int getCount() = 0;
-    virtual const bool hasCard() const = 0;
+    virtual const bool hasCard(std::string_view name) const = 0;
     virtual ~IHand();
 
 };

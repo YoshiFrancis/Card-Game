@@ -129,6 +129,54 @@ game/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/build
 .PHONY : game/fast
 
+CardGame.o: CardGame.cpp.o
+.PHONY : CardGame.o
+
+# target to build an object file
+CardGame.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/CardGame.cpp.o
+.PHONY : CardGame.cpp.o
+
+CardGame.i: CardGame.cpp.i
+.PHONY : CardGame.i
+
+# target to preprocess a source file
+CardGame.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/CardGame.cpp.i
+.PHONY : CardGame.cpp.i
+
+CardGame.s: CardGame.cpp.s
+.PHONY : CardGame.s
+
+# target to generate assembly for a file
+CardGame.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/CardGame.cpp.s
+.PHONY : CardGame.cpp.s
+
+HandLocal.o: HandLocal.cpp.o
+.PHONY : HandLocal.o
+
+# target to build an object file
+HandLocal.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/HandLocal.cpp.o
+.PHONY : HandLocal.cpp.o
+
+HandLocal.i: HandLocal.cpp.i
+.PHONY : HandLocal.i
+
+# target to preprocess a source file
+HandLocal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/HandLocal.cpp.i
+.PHONY : HandLocal.cpp.i
+
+HandLocal.s: HandLocal.cpp.s
+.PHONY : HandLocal.s
+
+# target to generate assembly for a file
+HandLocal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/HandLocal.cpp.s
+.PHONY : HandLocal.cpp.s
+
 HandlerLocal.o: HandlerLocal.cpp.o
 .PHONY : HandlerLocal.o
 
@@ -210,6 +258,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... game"
+	@echo "... CardGame.o"
+	@echo "... CardGame.i"
+	@echo "... CardGame.s"
+	@echo "... HandLocal.o"
+	@echo "... HandLocal.i"
+	@echo "... HandLocal.s"
 	@echo "... HandlerLocal.o"
 	@echo "... HandlerLocal.i"
 	@echo "... HandlerLocal.s"

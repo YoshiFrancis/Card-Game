@@ -19,5 +19,9 @@ void HandlerLocal::endConnection(const IClient& client) {
     
 }
 
+void HandlerLocal::shutdown() {
+
+}
+
 
 

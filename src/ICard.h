@@ -5,7 +5,9 @@
 
 class ICard {
 
-    virtual std::string_view getType() = 0;
+public:
+    virtual std::string_view getType() const = 0;
+    virtual std::string_view getName() const = 0;
     virtual ~ICard();
     
 };

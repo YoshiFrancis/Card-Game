@@ -16,7 +16,7 @@ public:
     void shutdown() override;
     void endConnection(const IClient& client) override;
 
-
+    ~HandlerLocal() override { }
 };
 
 #endif

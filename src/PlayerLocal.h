@@ -22,6 +22,7 @@ public:
     const IHand* getHand() const;
     void discardHand();
  
+    ~PlayerLocal() override { }
 
 private:
     IClient* m_client;

@@ -13,7 +13,7 @@ add_executable(game
     HandlerLocal.cpp
     PlayerLocal.cpp
     HandLocal.cpp
-    ServerLocal.cpp
+    CardGame.cpp
 )
 
 target_include_directories(game PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")

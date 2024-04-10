@@ -1,4 +1,8 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/game.dir/CardGame.cpp.o"
+  "CMakeFiles/game.dir/CardGame.cpp.o.d"
+  "CMakeFiles/game.dir/HandLocal.cpp.o"
+  "CMakeFiles/game.dir/HandLocal.cpp.o.d"
   "CMakeFiles/game.dir/HandlerLocal.cpp.o"
   "CMakeFiles/game.dir/HandlerLocal.cpp.o.d"
   "CMakeFiles/game.dir/PlayerLocal.cpp.o"
