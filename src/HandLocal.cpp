@@ -14,21 +14,22 @@ const int HandLocal::getCount() override {
     return m_CardCount;
 }
 
-const bool hasCard(std::string_view name) const {
+const bool HandLocal::hasCard(std::string_view name) const {
     if (findCard(name) != nullptr)
         return true;
     else 
         return false;
 }
 
-ICard* HandLocal::findCard(std::string_view name) {
-    for (auto& card : m_cards) {
-        if (card.getName() == name) 
+const ICard* HandLocal::findCard(std::string_view name) {
+    for (const auto* card : m_cards) {
+        if (card->getName() == name) 
             return card;
+    }
     return nullptr;
 }
 
 void HandLocal::removeCard(std::string_view name) {
-    m_cards.erase(findCard(name));
+    m_cards.erase(HandLocal::findCard(name));
 }
 

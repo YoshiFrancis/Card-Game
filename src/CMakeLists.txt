@@ -1,7 +1,20 @@
-cmake_minimum_required(VERSION 3.10)
-project(CardGame)
-add_executable(Cardgame main.cpp)
+cmake_minimum_required(VERSION 3.29)
+project(CardGame
+        VERSION 3.29
+        LANGUAGES CXX
+)
+
+
 set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
-target_link_directories(CardGame PRIVATE ${CMAKE_SOURCE_DIR})
+set(CMAKE_BUILD_TYPE debug)
+
+add_executable(game 
+    main.cpp
+    HandlerLocal.cpp
+    PlayerLocal.cpp
+    HandLocal.cpp
+    ServerLocal.cpp
+)
+
+target_include_directories(game PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")
 

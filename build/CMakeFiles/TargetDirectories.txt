@@ -1,0 +1,3 @@
+/Users/fozua/Desktop/Cards/build/CMakeFiles/game.dir
+/Users/fozua/Desktop/Cards/build/CMakeFiles/edit_cache.dir
+/Users/fozua/Desktop/Cards/build/CMakeFiles/rebuild_cache.dir

@@ -5,7 +5,7 @@ class ICard;
 class IClient;
 
 class IPlayer {
-
+public:
     virtual ~IPlayer();
     virtual ICard playCard() = 0;
     virtual void drawCard(ICard card) = 0;

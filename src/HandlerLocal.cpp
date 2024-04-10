@@ -1,20 +1,21 @@
 #include "HandlerLocal.h"
+#include <iostream>
 
-bool sendMessage(const IClient& client, std::string_view message) override {
-    client.receiveMessage(message);
+bool HandlerLocal::sendMessage(const IClient& client, std::string_view message) {
+//  client.receiveMessage(message);
+    return true;
 }
 
-void handleMessage(std::string_view message) override {
-    
+void HandlerLocal::handleMessage(std::string_view message) {
+    std::cout << message << "\n";
     // do stuff with message
 }
 
-void receiveMessage(std::string_view message) override {
-
+void HandlerLocal::receiveMessage(std::string_view message) {
     handleMessage(message);
 }
 
-void endConnection(const IClient& client) override {
+void HandlerLocal::endConnection(const IClient& client) {
     
 }
 
