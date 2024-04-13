@@ -40,7 +40,7 @@ public:
 
 
     std::string_view getType() const override;
-    std::string_view getName() const override;
+    std::string getName() const override;
     
 private:
     std::vector<std::string_view> m_colorStrings = { "red", "blue", "green", "yellow", "all" };
@@ -52,6 +52,6 @@ private:
 
 
     void splitStringName(std::string_view);
-    void convertStringSymTypeToEnum();
+    bool convertStringSymTypeToEnum();
     void convertCardToString();
 };
