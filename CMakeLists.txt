@@ -17,3 +17,9 @@ add_executable(main
 )
 
 target_include_directories(main PRIVATE ${PROJECT_SOURCE_DIR}/include)
+
+
+include(CTest)
+add_executable(UnoCardTest tests/test_UnoCard.cpp)
+target_link_libraries(UnoCardTest 
+
