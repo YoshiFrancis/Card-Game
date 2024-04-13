@@ -1,11 +1,19 @@
 #include "ICard.h"
 #include <string_view>
+#include <string>
 #include <vector>
 #include <sstream>
 
 class UnoCard : public ICard {
 
 public:
+
+    UnoCard(std::string_view name="RED ONE") {
+        m_color_str = "red";
+        m_symbol_str = "one";
+    }
+
+    ~UnoCard() = default;
     
     enum COLOR {
         RED,
@@ -32,12 +40,6 @@ public:
         NINE,
         max_symbols
     };
-
-    UnoCard(std::string_view name) {
-
-
-    }
-
 
     std::string_view getType() const override;
     std::string getName() const override;

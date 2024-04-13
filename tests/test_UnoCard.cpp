@@ -1,13 +1,7 @@
+#include "UnoCard.h"
 #include <catch2/catch_test_macros.hpp>
 
-TEST_CASE( "Runs", "[UnoCard]" ) {
-    SECTION ("Checking if it succeeds") {
-        CHECK(1 + 1 == 2);
-    }
+TEST_CASE( "Can be default constructured", "[UnoCard]" ) {
+    UnoCard card;
 }
 
-TEST_CASE( "Fails", "[UNOCARD]" ) {
-    SECTION("CHECKING IF IT FAILS") {
-        CHECK( 1 + 1 == 3);
-    }
-}

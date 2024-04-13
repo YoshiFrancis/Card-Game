@@ -21,5 +21,4 @@ target_link_libraries(main PUBLIC local)
 enable_testing()
 
 add_test(NAME local_tests COMMAND test_local)
-add_test(NAME help_me COMMAND test_local)
 
