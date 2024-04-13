@@ -129,6 +129,19 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+#=============================================================================
+# Target rules for targets named local
+
+# Build rule for target.
+local: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 local
+.PHONY : local
+
+# fast build rule for target.
+local/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/local.dir/build.make src/CMakeFiles/local.dir/build
+.PHONY : local/fast
+
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -153,78 +166,6 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-src/HandLocal.o: src/HandLocal.cpp.o
-.PHONY : src/HandLocal.o
-
-# target to build an object file
-src/HandLocal.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HandLocal.cpp.o
-.PHONY : src/HandLocal.cpp.o
-
-src/HandLocal.i: src/HandLocal.cpp.i
-.PHONY : src/HandLocal.i
-
-# target to preprocess a source file
-src/HandLocal.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HandLocal.cpp.i
-.PHONY : src/HandLocal.cpp.i
-
-src/HandLocal.s: src/HandLocal.cpp.s
-.PHONY : src/HandLocal.s
-
-# target to generate assembly for a file
-src/HandLocal.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HandLocal.cpp.s
-.PHONY : src/HandLocal.cpp.s
-
-src/HandlerLocal.o: src/HandlerLocal.cpp.o
-.PHONY : src/HandlerLocal.o
-
-# target to build an object file
-src/HandlerLocal.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HandlerLocal.cpp.o
-.PHONY : src/HandlerLocal.cpp.o
-
-src/HandlerLocal.i: src/HandlerLocal.cpp.i
-.PHONY : src/HandlerLocal.i
-
-# target to preprocess a source file
-src/HandlerLocal.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HandlerLocal.cpp.i
-.PHONY : src/HandlerLocal.cpp.i
-
-src/HandlerLocal.s: src/HandlerLocal.cpp.s
-.PHONY : src/HandlerLocal.s
-
-# target to generate assembly for a file
-src/HandlerLocal.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HandlerLocal.cpp.s
-.PHONY : src/HandlerLocal.cpp.s
-
-src/PlayerLocal.o: src/PlayerLocal.cpp.o
-.PHONY : src/PlayerLocal.o
-
-# target to build an object file
-src/PlayerLocal.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/PlayerLocal.cpp.o
-.PHONY : src/PlayerLocal.cpp.o
-
-src/PlayerLocal.i: src/PlayerLocal.cpp.i
-.PHONY : src/PlayerLocal.i
-
-# target to preprocess a source file
-src/PlayerLocal.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/PlayerLocal.cpp.i
-.PHONY : src/PlayerLocal.cpp.i
-
-src/PlayerLocal.s: src/PlayerLocal.cpp.s
-.PHONY : src/PlayerLocal.s
-
-# target to generate assembly for a file
-src/PlayerLocal.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/PlayerLocal.cpp.s
-.PHONY : src/PlayerLocal.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -233,19 +174,11 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... local"
 	@echo "... main"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... src/HandLocal.o"
-	@echo "... src/HandLocal.i"
-	@echo "... src/HandLocal.s"
-	@echo "... src/HandlerLocal.o"
-	@echo "... src/HandlerLocal.i"
-	@echo "... src/HandlerLocal.s"
-	@echo "... src/PlayerLocal.o"
-	@echo "... src/PlayerLocal.i"
-	@echo "... src/PlayerLocal.s"
 .PHONY : help
 
 

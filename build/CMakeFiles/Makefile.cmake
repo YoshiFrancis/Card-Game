@@ -10,6 +10,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/Users/fozua/Desktop/Cards/CMakeLists.txt"
   "CMakeFiles/3.29.1/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.29.1/CMakeSystem.cmake"
+  "/Users/fozua/Desktop/Cards/src/CMakeLists.txt"
   "/opt/homebrew/Cellar/cmake/3.29.1/share/cmake/Modules/CMakeCXXInformation.cmake"
   "/opt/homebrew/Cellar/cmake/3.29.1/share/cmake/Modules/CMakeCommonLanguageInclude.cmake"
   "/opt/homebrew/Cellar/cmake/3.29.1/share/cmake/Modules/CMakeGenericSystem.cmake"
@@ -38,9 +39,11 @@ set(CMAKE_MAKEFILE_OUTPUTS
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
   "CMakeFiles/CMakeDirectoryInformation.cmake"
+  "src/CMakeFiles/CMakeDirectoryInformation.cmake"
   )
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/main.dir/DependInfo.cmake"
+  "src/CMakeFiles/local.dir/DependInfo.cmake"
   )

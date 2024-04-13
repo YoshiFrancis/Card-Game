@@ -1,3 +1,6 @@
 /Users/fozua/Desktop/Cards/build/CMakeFiles/main.dir
 /Users/fozua/Desktop/Cards/build/CMakeFiles/edit_cache.dir
 /Users/fozua/Desktop/Cards/build/CMakeFiles/rebuild_cache.dir
+/Users/fozua/Desktop/Cards/build/src/CMakeFiles/local.dir
+/Users/fozua/Desktop/Cards/build/src/CMakeFiles/edit_cache.dir
+/Users/fozua/Desktop/Cards/build/src/CMakeFiles/rebuild_cache.dir
