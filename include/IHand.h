@@ -17,7 +17,7 @@ public:
     virtual const void addCard(const ICard* card) = 0;
     virtual const int getCount() = 0;
     virtual const bool hasCard(std::string_view name) const = 0;
-    virtual ~IHand();
+    virtual ~IHand() {};
 
 };
 

@@ -1,4 +1,4 @@
-# Install script for directory: /Users/fozua/Desktop/Cards/src
+# Install script for directory: /Users/fozua/Desktop/Cards
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

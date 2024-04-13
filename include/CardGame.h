@@ -18,7 +18,6 @@ public:
     void endGame() override;
     int getId() override;
 
-
 private:
 
     void waitForPlayers();

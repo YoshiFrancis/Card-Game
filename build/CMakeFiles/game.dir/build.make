@@ -53,7 +53,7 @@ RM = /opt/homebrew/Cellar/cmake/3.29.1/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/fozua/Desktop/Cards/src
+CMAKE_SOURCE_DIR = /Users/fozua/Desktop/Cards
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /Users/fozua/Desktop/Cards/build
@@ -70,94 +70,30 @@ include CMakeFiles/game.dir/progress.make
 include CMakeFiles/game.dir/flags.make
 
 CMakeFiles/game.dir/main.cpp.o: CMakeFiles/game.dir/flags.make
-CMakeFiles/game.dir/main.cpp.o: /Users/fozua/Desktop/Cards/src/main.cpp
+CMakeFiles/game.dir/main.cpp.o: /Users/fozua/Desktop/Cards/main.cpp
 CMakeFiles/game.dir/main.cpp.o: CMakeFiles/game.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/game.dir/main.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/game.dir/main.cpp.o -MF CMakeFiles/game.dir/main.cpp.o.d -o CMakeFiles/game.dir/main.cpp.o -c /Users/fozua/Desktop/Cards/src/main.cpp
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/game.dir/main.cpp.o -MF CMakeFiles/game.dir/main.cpp.o.d -o CMakeFiles/game.dir/main.cpp.o -c /Users/fozua/Desktop/Cards/main.cpp
 
 CMakeFiles/game.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/game.dir/main.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/fozua/Desktop/Cards/src/main.cpp > CMakeFiles/game.dir/main.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/fozua/Desktop/Cards/main.cpp > CMakeFiles/game.dir/main.cpp.i
 
 CMakeFiles/game.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/game.dir/main.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/fozua/Desktop/Cards/src/main.cpp -o CMakeFiles/game.dir/main.cpp.s
-
-CMakeFiles/game.dir/HandlerLocal.cpp.o: CMakeFiles/game.dir/flags.make
-CMakeFiles/game.dir/HandlerLocal.cpp.o: /Users/fozua/Desktop/Cards/src/HandlerLocal.cpp
-CMakeFiles/game.dir/HandlerLocal.cpp.o: CMakeFiles/game.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/game.dir/HandlerLocal.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/game.dir/HandlerLocal.cpp.o -MF CMakeFiles/game.dir/HandlerLocal.cpp.o.d -o CMakeFiles/game.dir/HandlerLocal.cpp.o -c /Users/fozua/Desktop/Cards/src/HandlerLocal.cpp
-
-CMakeFiles/game.dir/HandlerLocal.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/game.dir/HandlerLocal.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/fozua/Desktop/Cards/src/HandlerLocal.cpp > CMakeFiles/game.dir/HandlerLocal.cpp.i
-
-CMakeFiles/game.dir/HandlerLocal.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/game.dir/HandlerLocal.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/fozua/Desktop/Cards/src/HandlerLocal.cpp -o CMakeFiles/game.dir/HandlerLocal.cpp.s
-
-CMakeFiles/game.dir/PlayerLocal.cpp.o: CMakeFiles/game.dir/flags.make
-CMakeFiles/game.dir/PlayerLocal.cpp.o: /Users/fozua/Desktop/Cards/src/PlayerLocal.cpp
-CMakeFiles/game.dir/PlayerLocal.cpp.o: CMakeFiles/game.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/game.dir/PlayerLocal.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/game.dir/PlayerLocal.cpp.o -MF CMakeFiles/game.dir/PlayerLocal.cpp.o.d -o CMakeFiles/game.dir/PlayerLocal.cpp.o -c /Users/fozua/Desktop/Cards/src/PlayerLocal.cpp
-
-CMakeFiles/game.dir/PlayerLocal.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/game.dir/PlayerLocal.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/fozua/Desktop/Cards/src/PlayerLocal.cpp > CMakeFiles/game.dir/PlayerLocal.cpp.i
-
-CMakeFiles/game.dir/PlayerLocal.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/game.dir/PlayerLocal.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/fozua/Desktop/Cards/src/PlayerLocal.cpp -o CMakeFiles/game.dir/PlayerLocal.cpp.s
-
-CMakeFiles/game.dir/HandLocal.cpp.o: CMakeFiles/game.dir/flags.make
-CMakeFiles/game.dir/HandLocal.cpp.o: /Users/fozua/Desktop/Cards/src/HandLocal.cpp
-CMakeFiles/game.dir/HandLocal.cpp.o: CMakeFiles/game.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/game.dir/HandLocal.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/game.dir/HandLocal.cpp.o -MF CMakeFiles/game.dir/HandLocal.cpp.o.d -o CMakeFiles/game.dir/HandLocal.cpp.o -c /Users/fozua/Desktop/Cards/src/HandLocal.cpp
-
-CMakeFiles/game.dir/HandLocal.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/game.dir/HandLocal.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/fozua/Desktop/Cards/src/HandLocal.cpp > CMakeFiles/game.dir/HandLocal.cpp.i
-
-CMakeFiles/game.dir/HandLocal.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/game.dir/HandLocal.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/fozua/Desktop/Cards/src/HandLocal.cpp -o CMakeFiles/game.dir/HandLocal.cpp.s
-
-CMakeFiles/game.dir/CardGame.cpp.o: CMakeFiles/game.dir/flags.make
-CMakeFiles/game.dir/CardGame.cpp.o: /Users/fozua/Desktop/Cards/src/CardGame.cpp
-CMakeFiles/game.dir/CardGame.cpp.o: CMakeFiles/game.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/game.dir/CardGame.cpp.o"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/game.dir/CardGame.cpp.o -MF CMakeFiles/game.dir/CardGame.cpp.o.d -o CMakeFiles/game.dir/CardGame.cpp.o -c /Users/fozua/Desktop/Cards/src/CardGame.cpp
-
-CMakeFiles/game.dir/CardGame.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/game.dir/CardGame.cpp.i"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/fozua/Desktop/Cards/src/CardGame.cpp > CMakeFiles/game.dir/CardGame.cpp.i
-
-CMakeFiles/game.dir/CardGame.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/game.dir/CardGame.cpp.s"
-	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/fozua/Desktop/Cards/src/CardGame.cpp -o CMakeFiles/game.dir/CardGame.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/fozua/Desktop/Cards/main.cpp -o CMakeFiles/game.dir/main.cpp.s
 
 # Object files for target game
 game_OBJECTS = \
-"CMakeFiles/game.dir/main.cpp.o" \
-"CMakeFiles/game.dir/HandlerLocal.cpp.o" \
-"CMakeFiles/game.dir/PlayerLocal.cpp.o" \
-"CMakeFiles/game.dir/HandLocal.cpp.o" \
-"CMakeFiles/game.dir/CardGame.cpp.o"
+"CMakeFiles/game.dir/main.cpp.o"
 
 # External object files for target game
 game_EXTERNAL_OBJECTS =
 
 game: CMakeFiles/game.dir/main.cpp.o
-game: CMakeFiles/game.dir/HandlerLocal.cpp.o
-game: CMakeFiles/game.dir/PlayerLocal.cpp.o
-game: CMakeFiles/game.dir/HandLocal.cpp.o
-game: CMakeFiles/game.dir/CardGame.cpp.o
 game: CMakeFiles/game.dir/build.make
 game: CMakeFiles/game.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable game"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable game"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/game.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -169,6 +105,6 @@ CMakeFiles/game.dir/clean:
 .PHONY : CMakeFiles/game.dir/clean
 
 CMakeFiles/game.dir/depend:
-	cd /Users/fozua/Desktop/Cards/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/fozua/Desktop/Cards/src /Users/fozua/Desktop/Cards/src /Users/fozua/Desktop/Cards/build /Users/fozua/Desktop/Cards/build /Users/fozua/Desktop/Cards/build/CMakeFiles/game.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /Users/fozua/Desktop/Cards/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/fozua/Desktop/Cards /Users/fozua/Desktop/Cards /Users/fozua/Desktop/Cards/build /Users/fozua/Desktop/Cards/build /Users/fozua/Desktop/Cards/build/CMakeFiles/game.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/game.dir/depend
 

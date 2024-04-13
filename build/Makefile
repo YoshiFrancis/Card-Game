@@ -57,7 +57,7 @@ RM = /opt/homebrew/Cellar/cmake/3.29.1/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/fozua/Desktop/Cards/src
+CMAKE_SOURCE_DIR = /Users/fozua/Desktop/Cards
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /Users/fozua/Desktop/Cards/build
@@ -117,120 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named game
+# Target rules for targets named main
 
 # Build rule for target.
-game: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 game
-.PHONY : game
+main: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
+.PHONY : main
 
 # fast build rule for target.
-game/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/build
-.PHONY : game/fast
-
-CardGame.o: CardGame.cpp.o
-.PHONY : CardGame.o
-
-# target to build an object file
-CardGame.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/CardGame.cpp.o
-.PHONY : CardGame.cpp.o
-
-CardGame.i: CardGame.cpp.i
-.PHONY : CardGame.i
-
-# target to preprocess a source file
-CardGame.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/CardGame.cpp.i
-.PHONY : CardGame.cpp.i
-
-CardGame.s: CardGame.cpp.s
-.PHONY : CardGame.s
-
-# target to generate assembly for a file
-CardGame.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/CardGame.cpp.s
-.PHONY : CardGame.cpp.s
-
-HandLocal.o: HandLocal.cpp.o
-.PHONY : HandLocal.o
-
-# target to build an object file
-HandLocal.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/HandLocal.cpp.o
-.PHONY : HandLocal.cpp.o
-
-HandLocal.i: HandLocal.cpp.i
-.PHONY : HandLocal.i
-
-# target to preprocess a source file
-HandLocal.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/HandLocal.cpp.i
-.PHONY : HandLocal.cpp.i
-
-HandLocal.s: HandLocal.cpp.s
-.PHONY : HandLocal.s
-
-# target to generate assembly for a file
-HandLocal.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/HandLocal.cpp.s
-.PHONY : HandLocal.cpp.s
-
-HandlerLocal.o: HandlerLocal.cpp.o
-.PHONY : HandlerLocal.o
-
-# target to build an object file
-HandlerLocal.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/HandlerLocal.cpp.o
-.PHONY : HandlerLocal.cpp.o
-
-HandlerLocal.i: HandlerLocal.cpp.i
-.PHONY : HandlerLocal.i
-
-# target to preprocess a source file
-HandlerLocal.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/HandlerLocal.cpp.i
-.PHONY : HandlerLocal.cpp.i
-
-HandlerLocal.s: HandlerLocal.cpp.s
-.PHONY : HandlerLocal.s
-
-# target to generate assembly for a file
-HandlerLocal.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/HandlerLocal.cpp.s
-.PHONY : HandlerLocal.cpp.s
-
-PlayerLocal.o: PlayerLocal.cpp.o
-.PHONY : PlayerLocal.o
-
-# target to build an object file
-PlayerLocal.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/PlayerLocal.cpp.o
-.PHONY : PlayerLocal.cpp.o
-
-PlayerLocal.i: PlayerLocal.cpp.i
-.PHONY : PlayerLocal.i
-
-# target to preprocess a source file
-PlayerLocal.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/PlayerLocal.cpp.i
-.PHONY : PlayerLocal.cpp.i
-
-PlayerLocal.s: PlayerLocal.cpp.s
-.PHONY : PlayerLocal.s
-
-# target to generate assembly for a file
-PlayerLocal.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/PlayerLocal.cpp.s
-.PHONY : PlayerLocal.cpp.s
+main/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
+.PHONY : main/fast
 
 main.o: main.cpp.o
 .PHONY : main.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -238,7 +142,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -246,8 +150,80 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/game.dir/build.make CMakeFiles/game.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
+
+src/HandLocal.o: src/HandLocal.cpp.o
+.PHONY : src/HandLocal.o
+
+# target to build an object file
+src/HandLocal.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HandLocal.cpp.o
+.PHONY : src/HandLocal.cpp.o
+
+src/HandLocal.i: src/HandLocal.cpp.i
+.PHONY : src/HandLocal.i
+
+# target to preprocess a source file
+src/HandLocal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HandLocal.cpp.i
+.PHONY : src/HandLocal.cpp.i
+
+src/HandLocal.s: src/HandLocal.cpp.s
+.PHONY : src/HandLocal.s
+
+# target to generate assembly for a file
+src/HandLocal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HandLocal.cpp.s
+.PHONY : src/HandLocal.cpp.s
+
+src/HandlerLocal.o: src/HandlerLocal.cpp.o
+.PHONY : src/HandlerLocal.o
+
+# target to build an object file
+src/HandlerLocal.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HandlerLocal.cpp.o
+.PHONY : src/HandlerLocal.cpp.o
+
+src/HandlerLocal.i: src/HandlerLocal.cpp.i
+.PHONY : src/HandlerLocal.i
+
+# target to preprocess a source file
+src/HandlerLocal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HandlerLocal.cpp.i
+.PHONY : src/HandlerLocal.cpp.i
+
+src/HandlerLocal.s: src/HandlerLocal.cpp.s
+.PHONY : src/HandlerLocal.s
+
+# target to generate assembly for a file
+src/HandlerLocal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/HandlerLocal.cpp.s
+.PHONY : src/HandlerLocal.cpp.s
+
+src/PlayerLocal.o: src/PlayerLocal.cpp.o
+.PHONY : src/PlayerLocal.o
+
+# target to build an object file
+src/PlayerLocal.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/PlayerLocal.cpp.o
+.PHONY : src/PlayerLocal.cpp.o
+
+src/PlayerLocal.i: src/PlayerLocal.cpp.i
+.PHONY : src/PlayerLocal.i
+
+# target to preprocess a source file
+src/PlayerLocal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/PlayerLocal.cpp.i
+.PHONY : src/PlayerLocal.cpp.i
+
+src/PlayerLocal.s: src/PlayerLocal.cpp.s
+.PHONY : src/PlayerLocal.s
+
+# target to generate assembly for a file
+src/PlayerLocal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/PlayerLocal.cpp.s
+.PHONY : src/PlayerLocal.cpp.s
 
 # Help Target
 help:
@@ -257,22 +233,19 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... game"
-	@echo "... CardGame.o"
-	@echo "... CardGame.i"
-	@echo "... CardGame.s"
-	@echo "... HandLocal.o"
-	@echo "... HandLocal.i"
-	@echo "... HandLocal.s"
-	@echo "... HandlerLocal.o"
-	@echo "... HandlerLocal.i"
-	@echo "... HandlerLocal.s"
-	@echo "... PlayerLocal.o"
-	@echo "... PlayerLocal.i"
-	@echo "... PlayerLocal.s"
+	@echo "... main"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/HandLocal.o"
+	@echo "... src/HandLocal.i"
+	@echo "... src/HandLocal.s"
+	@echo "... src/HandlerLocal.o"
+	@echo "... src/HandlerLocal.i"
+	@echo "... src/HandlerLocal.s"
+	@echo "... src/PlayerLocal.o"
+	@echo "... src/PlayerLocal.i"
+	@echo "... src/PlayerLocal.s"
 .PHONY : help
 
 
