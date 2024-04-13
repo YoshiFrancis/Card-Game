@@ -53,5 +53,5 @@ private:
 
     void splitStringName(std::string_view);
     void convertStringSymTypeToEnum();
-    std::string_view convertCardToString();
+    void convertCardToString();
 };
