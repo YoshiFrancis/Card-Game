@@ -29,9 +29,9 @@ public:
         SIX,
         SEVEN,
         EIGHT,
-        NINE
+        NINE,
         max_symbols
-    }
+    };
 
     UnoCard(std::string_view name) {
 
@@ -39,8 +39,8 @@ public:
     }
 
 
-    std::string_view getType() override;
-    std::string_view getName() override;
+    std::string_view getType() const override;
+    std::string_view getName() const override;
     
 private:
     std::vector<std::string_view> m_colorStrings = { "red", "blue", "green", "yellow", "all" };
@@ -48,7 +48,7 @@ private:
     std::string_view m_color_str;
     std::string_view m_symbol_str;
     COLOR m_color;
-    SYMBOl m_symbol;
+    SYMBOL m_symbol;
 
 
     void splitStringName(std::string_view);

@@ -1,17 +1,17 @@
 #include "UnoCard.h"
 #include <sstream>
 
-std::string_view UnoCard::getType() {
+std::string_view UnoCard::getType() const {
     return "Uno";
 }
 
-std::string_view UnoCard::getName() {
-    return UnoCard::m_color_string + " " + m_symbol_string;
+std::string_view UnoCard::getName() const {
+    return UnoCard::m_color_str + " " + UnoCard::m_symbol_str;
 
 }
 
 void UnoCard::splitStringName(std::string_view name) {
-    std::istreamstream iss(name);
+    std::istringstream iss(name);
     UnoCard::m_color_string << iss;
     UnoCard::m_symbol_string << iss;
 }
