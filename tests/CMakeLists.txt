@@ -6,7 +6,7 @@ FetchContent_Declare(Catch2
 )
 FetchContent_MakeAvailable(Catch2)
 
-add_executable(test_local test_UnoCard.cpp )
-target_include_directories(test_local PRIVATE ${PROJECT_SOURCE_DIR}/include)
+add_library(test_local test_UnoCard.cpp)
+target_include_directories(test_local PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_link_libraries(test_local PRIVATE Catch2::Catch2WithMain)
 

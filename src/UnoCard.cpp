@@ -1,6 +1,7 @@
 #include "UnoCard.h"
 #include <sstream>
 #include <string>
+#include <iostream>
 
 std::string_view UnoCard::getType() const {
     return "Uno";
@@ -16,6 +17,8 @@ void UnoCard::splitStringName(std::string_view name) {
     std::string symbol {};
     iss >> color;
     iss >> symbol;
+    std::cout << color << "\n";
+    std::cout << symbol << "\n";
     UnoCard::m_color_str = color;
     UnoCard::m_symbol_str = symbol;
 }
