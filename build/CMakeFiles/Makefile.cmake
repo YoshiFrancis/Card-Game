@@ -71,6 +71,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/main.dir/DependInfo.cmake"
   "CMakeFiles/test_local.dir/DependInfo.cmake"
+  "CMakeFiles/test_helper.dir/DependInfo.cmake"
+  "CMakeFiles/helper.dir/DependInfo.cmake"
   "src/CMakeFiles/local.dir/DependInfo.cmake"
   "_deps/catch2-build/src/CMakeFiles/Catch2.dir/DependInfo.cmake"
   "_deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/DependInfo.cmake"
