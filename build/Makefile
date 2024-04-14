@@ -140,6 +140,19 @@ main/fast:
 .PHONY : main/fast
 
 #=============================================================================
+# Target rules for targets named test_local
+
+# Build rule for target.
+test_local: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_local
+.PHONY : test_local
+
+# fast build rule for target.
+test_local/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_local.dir/build.make CMakeFiles/test_local.dir/build
+.PHONY : test_local/fast
+
+#=============================================================================
 # Target rules for targets named local
 
 # Build rule for target.
@@ -151,19 +164,6 @@ local: cmake_check_build_system
 local/fast:
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/local.dir/build.make src/CMakeFiles/local.dir/build
 .PHONY : local/fast
-
-#=============================================================================
-# Target rules for targets named test_local
-
-# Build rule for target.
-test_local: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_local
-.PHONY : test_local
-
-# fast build rule for target.
-test_local/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_local.dir/build.make tests/CMakeFiles/test_local.dir/build
-.PHONY : test_local/fast
 
 #=============================================================================
 # Target rules for targets named Catch2
@@ -215,6 +215,30 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+test_UnoCard.o: test_UnoCard.cpp.o
+.PHONY : test_UnoCard.o
+
+# target to build an object file
+test_UnoCard.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_local.dir/build.make CMakeFiles/test_local.dir/test_UnoCard.cpp.o
+.PHONY : test_UnoCard.cpp.o
+
+test_UnoCard.i: test_UnoCard.cpp.i
+.PHONY : test_UnoCard.i
+
+# target to preprocess a source file
+test_UnoCard.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_local.dir/build.make CMakeFiles/test_local.dir/test_UnoCard.cpp.i
+.PHONY : test_UnoCard.cpp.i
+
+test_UnoCard.s: test_UnoCard.cpp.s
+.PHONY : test_UnoCard.s
+
+# target to generate assembly for a file
+test_UnoCard.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_local.dir/build.make CMakeFiles/test_local.dir/test_UnoCard.cpp.s
+.PHONY : test_UnoCard.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -232,6 +256,9 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... test_UnoCard.o"
+	@echo "... test_UnoCard.i"
+	@echo "... test_UnoCard.s"
 .PHONY : help
 
 

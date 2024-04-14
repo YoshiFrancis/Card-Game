@@ -16,7 +16,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "_deps/catch2-src/src/CMakeLists.txt"
   "_deps/catch2-src/src/catch2/catch_user_config.hpp.in"
   "/Users/fozua/Desktop/Cards/src/CMakeLists.txt"
-  "/Users/fozua/Desktop/Cards/tests/CMakeLists.txt"
   "/opt/homebrew/Cellar/cmake/3.29.1/share/cmake/Modules/CMakeCXXInformation.cmake"
   "/opt/homebrew/Cellar/cmake/3.29.1/share/cmake/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
   "/opt/homebrew/Cellar/cmake/3.29.1/share/cmake/Modules/CMakeCommonLanguageInclude.cmake"
@@ -60,10 +59,9 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
+  "_deps/catch2-subbuild/CMakeLists.txt"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
   "src/CMakeFiles/CMakeDirectoryInformation.cmake"
-  "_deps/catch2-subbuild/CMakeLists.txt"
-  "tests/CMakeFiles/CMakeDirectoryInformation.cmake"
   "_deps/catch2-build/CMakeFiles/CMakeDirectoryInformation.cmake"
   "_deps/catch2-build/generated-includes/catch2/catch_user_config.hpp"
   "_deps/catch2-build/src/CMakeFiles/CMakeDirectoryInformation.cmake"
@@ -72,8 +70,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
   "CMakeFiles/main.dir/DependInfo.cmake"
+  "CMakeFiles/test_local.dir/DependInfo.cmake"
   "src/CMakeFiles/local.dir/DependInfo.cmake"
-  "tests/CMakeFiles/test_local.dir/DependInfo.cmake"
   "_deps/catch2-build/src/CMakeFiles/Catch2.dir/DependInfo.cmake"
   "_deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/DependInfo.cmake"
   )

@@ -7,12 +7,12 @@
 class UnoCard : public ICard {
 
 public:
-
+/*
     UnoCard(std::string_view name="RED ONE") {
         m_color_str = "red";
         m_symbol_str = "one";
     }
-
+*/
     ~UnoCard() = default;
     
     enum COLOR {
