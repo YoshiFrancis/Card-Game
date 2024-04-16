@@ -5,10 +5,13 @@ class Deck : public IDeck {
 
 public:
 
-	Deck() {}
+	Deck(std::string type = "Uno") 
+	{
+		createDeck(type);
+	}
 
     std::vector<const ICard*> drawCards(int count) override;
-    void createDeck() override;
+    void createDeck(const std::string& type) override;
     void randomizeDeck() override;
     void addCardToDeck(const ICard* card) override;
     const ICard* peek() const;

@@ -54,13 +54,13 @@ TEST_CASE ("Deck creation" , "[Deck]" ) {
 		UnoCard* card2 = new UnoCard{ "blue two" };
 		UnoCard* card3 = new UnoCard{ "green four" };
 		deck.addCardToDeck(card1);
-		REQUIRE(deck.getCount() == 1);
+		REQUIRE(deck.getCount() == 6);
 		deck.addCardToDeck(card2);
-		REQUIRE(deck.getCount() == 2);
+		REQUIRE(deck.getCount() == 7);
 		deck.addCardToDeck(card3);
-		REQUIRE(deck.getCount() == 3);
+		REQUIRE(deck.getCount() == 8);
 		
-		REQUIRE(deck.peek()->getName() == "red one");
+		REQUIRE(deck.peek()->getType() == "Uno");
 	}
 
 	SECTION (" drawing cards ") {
@@ -70,7 +70,7 @@ TEST_CASE ("Deck creation" , "[Deck]" ) {
 		deck.addCardToDeck(card1);
 		deck.addCardToDeck(card2);
 		deck.addCardToDeck(card3);
-		
+		deck.drawCards(5);
 		auto cards1 = deck.drawCards(1);
 		REQUIRE(cards1[0]->getName() == "red one");
 		auto cards2 = deck.drawCards(2);
@@ -80,15 +80,9 @@ TEST_CASE ("Deck creation" , "[Deck]" ) {
 	}
 
 
-
-
-
-
-/*	
-	SECTION( " stated amount of cards " ) {
-		Deck deck{5};
+	SECTION( " stated amount of cards: Uno" ) {
+		Deck deck{"Uno"};
 		REQUIRE(deck.getCount() == 5);
 		int count = deck.getCount();
 	}
-*/
 }

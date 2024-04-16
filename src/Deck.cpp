@@ -4,9 +4,14 @@
 #include <iostream>
 #include <string_view>
 
+constexpr int UNO_DECK_COUNT = 5;
 
-void Deck::createDeck() {
 
+void Deck::createDeck(const std::string& type) {
+	if (type == "Uno") {
+		m_cards = Deck::generateDeck(UNO_DECK_COUNT, type);
+		m_count = UNO_DECK_COUNT; 
+	}
 	// do something
 }
 
