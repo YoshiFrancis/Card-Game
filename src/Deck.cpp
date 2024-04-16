@@ -1,4 +1,7 @@
 #include "Deck.h"
+#include "UnoCard.h"
+#include "helper.h"
+
 
 void Deck::createDeck() {
 
@@ -30,7 +33,7 @@ void Deck::addCardToDeck(const ICard* card) {
     ++m_count;
 }
 
-ICard* Deck::peek() const {
+const ICard* Deck::peek() const {
    if (m_count == 0) 
         return nullptr;
    else 
@@ -47,8 +50,23 @@ int Deck::getCount() const {
 }
 
 std::vector<const ICard*> Deck::generateDeck(int count, const std::string type) const {
-	
 	if (type == "Uno") {
-		
-		
+		srand(time(NULL));
+		UnoCard card{};
+		auto colors = card.getAllColors();
+		auto symbols = card.getAllSymbols();
+		auto color_size = colors.size();
+		auto symbols_size = symbols.size();
+		for (int idx = 0; idx < count; ++idx) {
+			std::string symbol{};
+			if (color == "all") {
+				symbol = symbols[Helpeer::generateRandomNumber(0, 2)]; 
+			else {
+				symbol = symbol[Helper::generateRandomNumber(2, symbols_size)];
+			}
+			std::string name = color + " " + symbol;
+			cards.push_back(new UnoCard(name));
+		}
+	}
+	m_count = count;
 }

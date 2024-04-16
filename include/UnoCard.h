@@ -44,12 +44,12 @@ public:
   std::string_view getType() const override;
   std::string getName() const override;
   
-  inline std::vector<const std::string> getAllColors() { return m_colorStrings; }
-  inline std::vector const std::string> getAllSymbols() { return m_symbolStrings; }
+  inline const std::vector<std::string_view> getAllColors() { return m_colorStrings; }
+  inline const std::vector<std::string_view> getAllSymbols() { return m_symbolStrings; }
 
 private:
   std::vector<std::string_view> m_colorStrings = { "red", "blue", "green", "yellow", "all" };
-  std::vector<std::string_view> m_symbolStrings = { "skip", "reverse", "plus2", "plus4", "change", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+  std::vector<std::string_view> m_symbolStrings = { "plus4", "change", "skip", "reverse", "plus2", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
   std::string m_color_str;
   std::string m_symbol_str;
   COLOR m_color;

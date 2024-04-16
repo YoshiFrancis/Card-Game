@@ -2,6 +2,9 @@
 #include <string>
 #include <cctype>
 #include <algorithm>
+#include <stdlib.h>
+#include <time.h>
+
 
 std::string Helper::toLower(const std::string str) {
   std::string copy_str (str);
@@ -11,5 +14,5 @@ std::string Helper::toLower(const std::string str) {
 
 int Helper::generateRandomNumber(int min, int max) {
 	srand(time(NULL));
-	return rand % max + min;
+	return rand() % max + min;
 }
