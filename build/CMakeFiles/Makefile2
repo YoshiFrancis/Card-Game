@@ -154,7 +154,7 @@ tests/clean: _deps/catch2-build/clean
 CMakeFiles/helper.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/helper.dir/build.make CMakeFiles/helper.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/helper.dir/build.make CMakeFiles/helper.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=89,90 "Built target helper"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=88,89 "Built target helper"
 .PHONY : CMakeFiles/helper.dir/all
 
 # Build rule for subdir invocation for target.
@@ -186,7 +186,7 @@ CMakeFiles/main.dir/all: src/CMakeFiles/local.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 9
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 0
 .PHONY : CMakeFiles/main.dir/rule
@@ -207,12 +207,12 @@ CMakeFiles/main.dir/clean:
 src/CMakeFiles/local.dir/all: CMakeFiles/helper.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/local.dir/build.make src/CMakeFiles/local.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/local.dir/build.make src/CMakeFiles/local.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=91,92,93,94,95 "Built target local"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=90,91,92,93,94,95 "Built target local"
 .PHONY : src/CMakeFiles/local.dir/all
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/local.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 7
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/local.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/local.dir/rule
@@ -269,7 +269,7 @@ tests/CMakeFiles/test_helper.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2Wi
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test_helper.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 92
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 91
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_helper.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test_helper.dir/rule
@@ -290,12 +290,12 @@ tests/CMakeFiles/test_helper.dir/clean:
 _deps/catch2-build/src/CMakeFiles/Catch2.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86 "Built target Catch2"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85 "Built target Catch2"
 .PHONY : _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/catch2-build/src/CMakeFiles/Catch2.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 86
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 85
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 0
 .PHONY : _deps/catch2-build/src/CMakeFiles/Catch2.dir/rule
@@ -316,12 +316,12 @@ _deps/catch2-build/src/CMakeFiles/Catch2.dir/clean:
 _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=87,88 "Built target Catch2WithMain"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=86,87 "Built target Catch2WithMain"
 .PHONY : _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 88
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 87
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 0
 .PHONY : _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/rule

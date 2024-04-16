@@ -2,17 +2,18 @@
 #define IDECK_H
 
 
-#include <string_view>
+#include <vector>
 
 class ICard;
 
 class IDeck {
 
-    virtual ICard drawCards(int count) = 0;
+public:
+    virtual std::vector<const ICard*> drawCards(int count) = 0;
     virtual void createDeck() = 0;
     virtual void randomizeDeck() = 0;
-    virtual void addCard(ICard&& card) = 0;
-    virtual ~IDeck();
+    virtual void addCardToDeck(const ICard* card) = 0;
+    virtual ~IDeck() {}
 
 
     

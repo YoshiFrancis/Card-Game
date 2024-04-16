@@ -5,17 +5,19 @@ class Deck : public IDeck {
 
 public:
 
-    ICard drawCards(int count) override;
+	Deck() {}
+
+    std::vector<const ICard*> drawCards(int count) override;
     void createDeck() override;
     void randomizeDeck() override;
-    void addCardToDeck(ICard&& card) override;
-    const ICard* peek() const
+    void addCardToDeck(const ICard* card) override;
+    const ICard* peek() const;
 	bool isEmpty() const;
 	int getCount() const;
-    ~IDeck() {};
+    ~Deck() override {};
 
 private:
     std::vector<const ICard*> m_cards;
-	std::vector<const ICard*> generateDeck(int count) const;
+	std::vector<const ICard*> generateDeck(int count, const std::string type);
     int m_count {0};
 };

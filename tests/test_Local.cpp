@@ -1,5 +1,6 @@
 #include "UnoCard.h"
 #include "HandLocal.h"
+#include "Deck.h"
 #include <catch2/catch_test_macros.hpp>
 #include <string>
 #include <string_view>
@@ -21,8 +22,6 @@ TEST_CASE( "Can be default constructured", "[UnoCard]" ) {
 }
 
 TEST_CASE( "Hand Local", "[HandLocal]" ) {
-    
-
     HandLocal hand;
 
     SECTION( " able to add card " ) {
@@ -42,4 +41,54 @@ TEST_CASE( "Hand Local", "[HandLocal]" ) {
         REQUIRE(newCard->getName() == "green four");
         delete card;
     }
+}
+
+
+
+TEST_CASE ("Deck creation" , "[Deck]" ) {
+
+	Deck deck;
+
+	SECTION (" add card ") {
+		UnoCard* card1 = new UnoCard{ "red one" };
+		UnoCard* card2 = new UnoCard{ "blue two" };
+		UnoCard* card3 = new UnoCard{ "green four" };
+		deck.addCardToDeck(card1);
+		REQUIRE(deck.getCount() == 1);
+		deck.addCardToDeck(card2);
+		REQUIRE(deck.getCount() == 2);
+		deck.addCardToDeck(card3);
+		REQUIRE(deck.getCount() == 3);
+		
+		REQUIRE(deck.peek()->getName() == "red one");
+	}
+
+	SECTION (" drawing cards ") {
+		UnoCard* card1 = new UnoCard{ "red one" };
+		UnoCard* card2 = new UnoCard{ "blue two" };
+		UnoCard* card3 = new UnoCard{ "green four" };
+		deck.addCardToDeck(card1);
+		deck.addCardToDeck(card2);
+		deck.addCardToDeck(card3);
+		
+		auto cards1 = deck.drawCards(1);
+		REQUIRE(cards1[0]->getName() == "red one");
+		auto cards2 = deck.drawCards(2);
+		REQUIRE(cards2[1]->getName() == "blue two");
+		REQUIRE(cards2[2]->getName() == "green four");
+		REQUIRE(deck.getCount() == 0);
+	}
+
+
+
+
+
+
+/*	
+	SECTION( " stated amount of cards " ) {
+		Deck deck{5};
+		REQUIRE(deck.getCount() == 5);
+		int count = deck.getCount();
+	}
+*/
 }
