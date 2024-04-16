@@ -2,7 +2,7 @@ TO DO LIST
 
 1. Get Tests running with CMake and ctest -- DONE
 2. Test UnoCard.cpp -- DONE
-3. Create and test HandLocal.cpp
+3. Create and test HandLocal.cpp -- DONE
 4. Create and test PlayerLocal.cpp
 5. Create and test PlayerContainerLocal.cpp
 6. Create and test UnoDeck.cpp

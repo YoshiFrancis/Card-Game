@@ -43,6 +43,9 @@ public:
 
   std::string_view getType() const override;
   std::string getName() const override;
+  
+  inline std::vector<const std::string> getAllColors() { return m_colorStrings; }
+  inline std::vector const std::string> getAllSymbols() { return m_symbolStrings; }
 
 private:
   std::vector<std::string_view> m_colorStrings = { "red", "blue", "green", "yellow", "all" };
