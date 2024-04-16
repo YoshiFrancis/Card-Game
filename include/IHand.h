@@ -9,9 +9,7 @@
 class IHand {
 public:
 
-    IHand(std::vector<ICard*> cards) {
-    // do something
-    }
+    IHand() {}
 
     virtual const ICard* useCard(std::string_view name) = 0;
     virtual const void addCard(const ICard* card) = 0;

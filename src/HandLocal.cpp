@@ -2,7 +2,9 @@
 
 
 const ICard* HandLocal::useCard(std::string_view name) {
-    return findCard(name);
+    const ICard* card = findCard(name);
+    removeCard(name);
+    return card;
 }
 
 const void HandLocal::addCard(const ICard* card) {
@@ -22,14 +24,16 @@ const bool HandLocal::hasCard(std::string_view name) const {
 }
 
 const ICard* HandLocal::findCard(std::string_view name) const {
-    for (const auto* card : m_cards) {
-        if (card->getName() == name) 
-            return card;
-    }
-    return nullptr;
+    auto it = std::find_if(m_cards.begin(), m_cards.begin(), [&](const ICard* card) { return card->getName() == name; } );
+    if (it == m_cards.end()) 
+        return nullptr;
+    else
+        return *it;
 }
 
 void HandLocal::removeCard(std::string_view name) {
-    // need to implement findCard with find_if
+    auto it = std::find_if(m_cards.begin(), m_cards.begin(), [&](const ICard* card) { return card->getName() == name; } );
+    m_cards.erase(it);
+    --m_cardCount;
 }
 
