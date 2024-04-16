@@ -74,8 +74,8 @@ TEST_CASE ("Deck creation" , "[Deck]" ) {
 		auto cards1 = deck.drawCards(1);
 		REQUIRE(cards1[0]->getName() == "red one");
 		auto cards2 = deck.drawCards(2);
-		REQUIRE(cards2[1]->getName() == "blue two");
-		REQUIRE(cards2[2]->getName() == "green four");
+		REQUIRE(cards2[0]->getName() == "blue two");
+		REQUIRE(cards2[1]->getName() == "green four");
 		REQUIRE(deck.getCount() == 0);
 	}
 

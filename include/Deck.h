@@ -18,6 +18,6 @@ public:
 
 private:
     std::vector<const ICard*> m_cards;
-	std::vector<const ICard*> generateDeck(int count, const std::string type);
+	std::vector<const ICard*> generateDeck(int count, const std::string type) const;
     int m_count {0};
 };

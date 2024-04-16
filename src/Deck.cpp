@@ -53,7 +53,8 @@ int Deck::getCount() const {
 	return m_count;
 }
 
-std::vector<const ICard*> Deck::generateDeck(int count, const std::string type) {
+std::vector<const ICard*> Deck::generateDeck(int count, const std::string type) const {
+	std::vector<const ICard*> cards{};
 	if (type == "Uno") {
 		srand(time(NULL));
 		UnoCard card{};
@@ -70,8 +71,8 @@ std::vector<const ICard*> Deck::generateDeck(int count, const std::string type) 
 				symbol = symbol[Helper::generateRandomNumber(2, symbols_size)];
 			}
 			std::string name = color + " " + symbol;
-			m_cards.push_back(new UnoCard(name));
+			cards.push_back(new UnoCard(name));
 		}
 	}
-	m_count = count;
+	return cards;
 }
