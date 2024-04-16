@@ -1,5 +1,5 @@
 #include <catch2/catch_test_macros.hpp>
-#include "helper.cpp"
+#include "../helper.cpp"
 
 
 TEST_CASE (" to lower function ", "[toLower]" ) {

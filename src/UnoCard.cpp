@@ -1,4 +1,5 @@
 #include "UnoCard.h"
+#include "../helper.h"
 #include <sstream>
 #include <string>
 #include <iostream>
@@ -11,8 +12,8 @@ std::string UnoCard::getName() const {
     return std::string(UnoCard::m_color_str) + " " + std::string(UnoCard::m_symbol_str);
 }
 
-void UnoCard::splitStringName(std::string_view name) {
-    std::istringstream iss(std::string(name), std::ios_base::in);
+void UnoCard::splitStringName(const std::string& name) {
+    std::istringstream iss(Helper::toLower(name), std::ios_base::in);
     std::string color {};
     std::string symbol {};
     iss >> color;

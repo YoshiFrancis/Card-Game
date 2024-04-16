@@ -63,6 +63,7 @@ CMAKE_BINARY_DIR = /Users/fozua/Desktop/Cards/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
+all: CMakeFiles/helper.dir/all
 all: CMakeFiles/main.dir/all
 all: src/all
 all: tests/all
@@ -74,6 +75,7 @@ preinstall: tests/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
+clean: CMakeFiles/helper.dir/clean
 clean: CMakeFiles/main.dir/clean
 clean: src/clean
 clean: tests/clean
@@ -132,7 +134,6 @@ src/clean: src/CMakeFiles/local.dir/clean
 # Recursive "all" directory target.
 tests/all: tests/CMakeFiles/test_local.dir/all
 tests/all: tests/CMakeFiles/test_helper.dir/all
-tests/all: tests/CMakeFiles/helper.dir/all
 tests/all: _deps/catch2-build/all
 .PHONY : tests/all
 
@@ -143,14 +144,40 @@ tests/preinstall: _deps/catch2-build/preinstall
 # Recursive "clean" directory target.
 tests/clean: tests/CMakeFiles/test_local.dir/clean
 tests/clean: tests/CMakeFiles/test_helper.dir/clean
-tests/clean: tests/CMakeFiles/helper.dir/clean
 tests/clean: _deps/catch2-build/clean
 .PHONY : tests/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/helper.dir
+
+# All Build rule for target.
+CMakeFiles/helper.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/helper.dir/build.make CMakeFiles/helper.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/helper.dir/build.make CMakeFiles/helper.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=89,90 "Built target helper"
+.PHONY : CMakeFiles/helper.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/helper.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 2
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/helper.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 0
+.PHONY : CMakeFiles/helper.dir/rule
+
+# Convenience name for target.
+helper: CMakeFiles/helper.dir/rule
+.PHONY : helper
+
+# clean rule for target.
+CMakeFiles/helper.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/helper.dir/build.make CMakeFiles/helper.dir/clean
+.PHONY : CMakeFiles/helper.dir/clean
 
 #=============================================================================
 # Target rules for target CMakeFiles/main.dir
 
 # All Build rule for target.
+CMakeFiles/main.dir/all: CMakeFiles/helper.dir/all
 CMakeFiles/main.dir/all: src/CMakeFiles/local.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
@@ -159,7 +186,7 @@ CMakeFiles/main.dir/all: src/CMakeFiles/local.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/main.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 6
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/main.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 0
 .PHONY : CMakeFiles/main.dir/rule
@@ -177,7 +204,7 @@ CMakeFiles/main.dir/clean:
 # Target rules for target src/CMakeFiles/local.dir
 
 # All Build rule for target.
-src/CMakeFiles/local.dir/all:
+src/CMakeFiles/local.dir/all: CMakeFiles/helper.dir/all
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/local.dir/build.make src/CMakeFiles/local.dir/depend
 	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/local.dir/build.make src/CMakeFiles/local.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=91,92,93,94,95 "Built target local"
@@ -185,7 +212,7 @@ src/CMakeFiles/local.dir/all:
 
 # Build rule for subdir invocation for target.
 src/CMakeFiles/local.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 5
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 7
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/local.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 0
 .PHONY : src/CMakeFiles/local.dir/rule
@@ -203,6 +230,7 @@ src/CMakeFiles/local.dir/clean:
 # Target rules for target tests/CMakeFiles/test_local.dir
 
 # All Build rule for target.
+tests/CMakeFiles/test_local.dir/all: CMakeFiles/helper.dir/all
 tests/CMakeFiles/test_local.dir/all: src/CMakeFiles/local.dir/all
 tests/CMakeFiles/test_local.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 tests/CMakeFiles/test_local.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
@@ -213,7 +241,7 @@ tests/CMakeFiles/test_local.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2Wit
 
 # Build rule for subdir invocation for target.
 tests/CMakeFiles/test_local.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 95
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 97
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/test_local.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 0
 .PHONY : tests/CMakeFiles/test_local.dir/rule
@@ -231,7 +259,7 @@ tests/CMakeFiles/test_local.dir/clean:
 # Target rules for target tests/CMakeFiles/test_helper.dir
 
 # All Build rule for target.
-tests/CMakeFiles/test_helper.dir/all: tests/CMakeFiles/helper.dir/all
+tests/CMakeFiles/test_helper.dir/all: CMakeFiles/helper.dir/all
 tests/CMakeFiles/test_helper.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 tests/CMakeFiles/test_helper.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_helper.dir/build.make tests/CMakeFiles/test_helper.dir/depend
@@ -254,32 +282,6 @@ test_helper: tests/CMakeFiles/test_helper.dir/rule
 tests/CMakeFiles/test_helper.dir/clean:
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_helper.dir/build.make tests/CMakeFiles/test_helper.dir/clean
 .PHONY : tests/CMakeFiles/test_helper.dir/clean
-
-#=============================================================================
-# Target rules for target tests/CMakeFiles/helper.dir
-
-# All Build rule for target.
-tests/CMakeFiles/helper.dir/all:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/helper.dir/build.make tests/CMakeFiles/helper.dir/depend
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/helper.dir/build.make tests/CMakeFiles/helper.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=89,90 "Built target helper"
-.PHONY : tests/CMakeFiles/helper.dir/all
-
-# Build rule for subdir invocation for target.
-tests/CMakeFiles/helper.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 2
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tests/CMakeFiles/helper.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/fozua/Desktop/Cards/build/CMakeFiles 0
-.PHONY : tests/CMakeFiles/helper.dir/rule
-
-# Convenience name for target.
-helper: tests/CMakeFiles/helper.dir/rule
-.PHONY : helper
-
-# clean rule for target.
-tests/CMakeFiles/helper.dir/clean:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/helper.dir/build.make tests/CMakeFiles/helper.dir/clean
-.PHONY : tests/CMakeFiles/helper.dir/clean
 
 #=============================================================================
 # Target rules for target _deps/catch2-build/src/CMakeFiles/Catch2.dir

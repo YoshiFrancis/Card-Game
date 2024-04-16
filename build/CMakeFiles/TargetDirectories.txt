@@ -1,3 +1,4 @@
+/Users/fozua/Desktop/Cards/build/CMakeFiles/helper.dir
 /Users/fozua/Desktop/Cards/build/CMakeFiles/main.dir
 /Users/fozua/Desktop/Cards/build/CMakeFiles/test.dir
 /Users/fozua/Desktop/Cards/build/CMakeFiles/edit_cache.dir
@@ -8,7 +9,6 @@
 /Users/fozua/Desktop/Cards/build/src/CMakeFiles/rebuild_cache.dir
 /Users/fozua/Desktop/Cards/build/tests/CMakeFiles/test_local.dir
 /Users/fozua/Desktop/Cards/build/tests/CMakeFiles/test_helper.dir
-/Users/fozua/Desktop/Cards/build/tests/CMakeFiles/helper.dir
 /Users/fozua/Desktop/Cards/build/tests/CMakeFiles/test.dir
 /Users/fozua/Desktop/Cards/build/tests/CMakeFiles/edit_cache.dir
 /Users/fozua/Desktop/Cards/build/tests/CMakeFiles/rebuild_cache.dir

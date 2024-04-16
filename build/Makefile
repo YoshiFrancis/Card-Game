@@ -127,6 +127,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named helper
+
+# Build rule for target.
+helper: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 helper
+.PHONY : helper
+
+# fast build rule for target.
+helper/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/helper.dir/build.make CMakeFiles/helper.dir/build
+.PHONY : helper/fast
+
+#=============================================================================
 # Target rules for targets named main
 
 # Build rule for target.
@@ -179,19 +192,6 @@ test_helper/fast:
 .PHONY : test_helper/fast
 
 #=============================================================================
-# Target rules for targets named helper
-
-# Build rule for target.
-helper: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 helper
-.PHONY : helper
-
-# fast build rule for target.
-helper/fast:
-	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/helper.dir/build.make tests/CMakeFiles/helper.dir/build
-.PHONY : helper/fast
-
-#=============================================================================
 # Target rules for targets named Catch2
 
 # Build rule for target.
@@ -216,6 +216,30 @@ Catch2WithMain: cmake_check_build_system
 Catch2WithMain/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build
 .PHONY : Catch2WithMain/fast
+
+helper.o: helper.cpp.o
+.PHONY : helper.o
+
+# target to build an object file
+helper.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/helper.dir/build.make CMakeFiles/helper.dir/helper.cpp.o
+.PHONY : helper.cpp.o
+
+helper.i: helper.cpp.i
+.PHONY : helper.i
+
+# target to preprocess a source file
+helper.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/helper.dir/build.make CMakeFiles/helper.dir/helper.cpp.i
+.PHONY : helper.cpp.i
+
+helper.s: helper.cpp.s
+.PHONY : helper.s
+
+# target to generate assembly for a file
+helper.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/helper.dir/build.make CMakeFiles/helper.dir/helper.cpp.s
+.PHONY : helper.cpp.s
 
 main.o: main.cpp.o
 .PHONY : main.o
@@ -257,6 +281,9 @@ help:
 	@echo "... main"
 	@echo "... test_helper"
 	@echo "... test_local"
+	@echo "... helper.o"
+	@echo "... helper.i"
+	@echo "... helper.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

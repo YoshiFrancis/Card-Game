@@ -4,7 +4,7 @@
 #include <string_view>
 
 TEST_CASE( "Can be default constructured", "[UnoCard]" ) {
-    UnoCard card { "red one" };
+    UnoCard card { "RED ONE" };
 
     SECTION( " able to properly get name ") {
         std::string name = card.getName();

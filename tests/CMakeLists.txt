@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.29)
+
 # Fetching Catch2 for unit testing
 include(FetchContent)
 FetchContent_Declare(Catch2
@@ -7,9 +9,7 @@ FetchContent_Declare(Catch2
 FetchContent_MakeAvailable(Catch2)
 
 add_executable(test_local test_Local.cpp)
-target_include_directories(test_local PUBLIC ${PROJECT_SOURCE_DIR}/include)
 target_link_libraries(test_local PRIVATE Catch2::Catch2WithMain)
 
 add_executable(test_helper test_helper.cpp)
-add_library(helper STATIC helper.cpp)
-target_link_libraries(test_helper PRIVATE helper Catch2::Catch2WithMain)
+target_link_libraries(test_helper PRIVATE Catch2::Catch2WithMain)

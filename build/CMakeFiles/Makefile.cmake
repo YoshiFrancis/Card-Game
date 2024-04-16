@@ -71,11 +71,11 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
+  "CMakeFiles/helper.dir/DependInfo.cmake"
   "CMakeFiles/main.dir/DependInfo.cmake"
   "src/CMakeFiles/local.dir/DependInfo.cmake"
   "tests/CMakeFiles/test_local.dir/DependInfo.cmake"
   "tests/CMakeFiles/test_helper.dir/DependInfo.cmake"
-  "tests/CMakeFiles/helper.dir/DependInfo.cmake"
   "_deps/catch2-build/src/CMakeFiles/Catch2.dir/DependInfo.cmake"
   "_deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/DependInfo.cmake"
   )

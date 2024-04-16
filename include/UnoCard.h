@@ -8,7 +8,7 @@ class UnoCard : public ICard {
 
 public:
 
-  UnoCard(std::string_view name="RED ONE") {
+  UnoCard(std::string name="RED ONE") {
     splitStringName(name);
     convertStringSymTypeToEnum();
   }
@@ -53,7 +53,7 @@ private:
   SYMBOL m_symbol;
 
 
-  void splitStringName(std::string_view);
+  void splitStringName(const std::string& name);
   bool convertStringSymTypeToEnum();
   void convertCardToString();
 };
