@@ -11,6 +11,7 @@ set(CMAKE_BUILD_TYPE debug)
 
 add_executable(main main.cpp)
 add_subdirectory(src)
+add_subdirectory(tests)
 
 target_link_libraries(main PUBLIC local)
 
@@ -23,12 +24,11 @@ FetchContent_Declare(Catch2
 )
 FetchContent_MakeAvailable(Catch2)
 
-add_executable(test_local test_UnoCard.cpp)
-target_link_libraries(test_local PUBLIC local Catch2::Catch2WithMain)
+#add_executable(test_local test_UnoCard.cpp)
+target_link_libraries(test_local PUBLIC local)
 
-add_executable(test_helper test_helper.cpp)
-add_library(helper STATIC helper.cpp)
-target_link_libraries(test_helper PUBLIC helper Catch2::Catch2WithMain)
+#add_executable(test_helper test_helper.cpp)
+target_link_libraries(test_helper PUBLIC Catch2::Catch2WithMain)
 
 
 enable_testing()

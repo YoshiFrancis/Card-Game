@@ -140,6 +140,19 @@ main/fast:
 .PHONY : main/fast
 
 #=============================================================================
+# Target rules for targets named local
+
+# Build rule for target.
+local: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 local
+.PHONY : local
+
+# fast build rule for target.
+local/fast:
+	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/local.dir/build.make src/CMakeFiles/local.dir/build
+.PHONY : local/fast
+
+#=============================================================================
 # Target rules for targets named test_local
 
 # Build rule for target.
@@ -149,7 +162,7 @@ test_local: cmake_check_build_system
 
 # fast build rule for target.
 test_local/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_local.dir/build.make CMakeFiles/test_local.dir/build
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_local.dir/build.make tests/CMakeFiles/test_local.dir/build
 .PHONY : test_local/fast
 
 #=============================================================================
@@ -162,7 +175,7 @@ test_helper: cmake_check_build_system
 
 # fast build rule for target.
 test_helper/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_helper.dir/build.make CMakeFiles/test_helper.dir/build
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_helper.dir/build.make tests/CMakeFiles/test_helper.dir/build
 .PHONY : test_helper/fast
 
 #=============================================================================
@@ -175,21 +188,8 @@ helper: cmake_check_build_system
 
 # fast build rule for target.
 helper/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/helper.dir/build.make CMakeFiles/helper.dir/build
+	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/helper.dir/build.make tests/CMakeFiles/helper.dir/build
 .PHONY : helper/fast
-
-#=============================================================================
-# Target rules for targets named local
-
-# Build rule for target.
-local: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 local
-.PHONY : local
-
-# fast build rule for target.
-local/fast:
-	$(MAKE) $(MAKESILENT) -f src/CMakeFiles/local.dir/build.make src/CMakeFiles/local.dir/build
-.PHONY : local/fast
 
 #=============================================================================
 # Target rules for targets named Catch2
@@ -217,30 +217,6 @@ Catch2WithMain/fast:
 	$(MAKE) $(MAKESILENT) -f _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build.make _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/build
 .PHONY : Catch2WithMain/fast
 
-helper.o: helper.cpp.o
-.PHONY : helper.o
-
-# target to build an object file
-helper.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/helper.dir/build.make CMakeFiles/helper.dir/helper.cpp.o
-.PHONY : helper.cpp.o
-
-helper.i: helper.cpp.i
-.PHONY : helper.i
-
-# target to preprocess a source file
-helper.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/helper.dir/build.make CMakeFiles/helper.dir/helper.cpp.i
-.PHONY : helper.cpp.i
-
-helper.s: helper.cpp.s
-.PHONY : helper.s
-
-# target to generate assembly for a file
-helper.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/helper.dir/build.make CMakeFiles/helper.dir/helper.cpp.s
-.PHONY : helper.cpp.s
-
 main.o: main.cpp.o
 .PHONY : main.o
 
@@ -265,54 +241,6 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-test_UnoCard.o: test_UnoCard.cpp.o
-.PHONY : test_UnoCard.o
-
-# target to build an object file
-test_UnoCard.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_local.dir/build.make CMakeFiles/test_local.dir/test_UnoCard.cpp.o
-.PHONY : test_UnoCard.cpp.o
-
-test_UnoCard.i: test_UnoCard.cpp.i
-.PHONY : test_UnoCard.i
-
-# target to preprocess a source file
-test_UnoCard.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_local.dir/build.make CMakeFiles/test_local.dir/test_UnoCard.cpp.i
-.PHONY : test_UnoCard.cpp.i
-
-test_UnoCard.s: test_UnoCard.cpp.s
-.PHONY : test_UnoCard.s
-
-# target to generate assembly for a file
-test_UnoCard.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_local.dir/build.make CMakeFiles/test_local.dir/test_UnoCard.cpp.s
-.PHONY : test_UnoCard.cpp.s
-
-test_helper.o: test_helper.cpp.o
-.PHONY : test_helper.o
-
-# target to build an object file
-test_helper.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_helper.dir/build.make CMakeFiles/test_helper.dir/test_helper.cpp.o
-.PHONY : test_helper.cpp.o
-
-test_helper.i: test_helper.cpp.i
-.PHONY : test_helper.i
-
-# target to preprocess a source file
-test_helper.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_helper.dir/build.make CMakeFiles/test_helper.dir/test_helper.cpp.i
-.PHONY : test_helper.cpp.i
-
-test_helper.s: test_helper.cpp.s
-.PHONY : test_helper.s
-
-# target to generate assembly for a file
-test_helper.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_helper.dir/build.make CMakeFiles/test_helper.dir/test_helper.cpp.s
-.PHONY : test_helper.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -329,18 +257,9 @@ help:
 	@echo "... main"
 	@echo "... test_helper"
 	@echo "... test_local"
-	@echo "... helper.o"
-	@echo "... helper.i"
-	@echo "... helper.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... test_UnoCard.o"
-	@echo "... test_UnoCard.i"
-	@echo "... test_UnoCard.s"
-	@echo "... test_helper.o"
-	@echo "... test_helper.i"
-	@echo "... test_helper.s"
 .PHONY : help
 
 
