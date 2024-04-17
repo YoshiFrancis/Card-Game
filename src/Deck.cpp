@@ -14,7 +14,16 @@ void Deck::createDeck(const std::string& type) {
 		m_count = UNO_DECK_COUNT; 
 	}
 	// do something
+	std::cout << "Before randomization: " << "\n";
+	for (auto card : m_cards) {
+		std::cout << card->getName() << "\n";
+	}
 	Deck::randomizeDeck();
+
+	std::cout << "After randomization:\n";
+	for (auto card : m_cards) {
+		std::cout << card->getName() << "\n";
+	}
 }
 
 void Deck::randomizeDeck() {

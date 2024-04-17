@@ -85,4 +85,5 @@ TEST_CASE ("Deck creation" , "[Deck]" ) {
 		REQUIRE(deck.getCount() == 5);
 		int count = deck.getCount();
 	}
+
 }
