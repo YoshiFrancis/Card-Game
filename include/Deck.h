@@ -5,8 +5,8 @@ class Deck : public IDeck {
 
 public:
 
-	Deck(std::string type = "Uno") 
-	{
+	Deck(std::string type = "Uno") {
+
 		createDeck(type);
 	}
 

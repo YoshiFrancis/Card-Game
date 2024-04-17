@@ -3,6 +3,7 @@
 #include "../helper.h"
 #include <iostream>
 #include <string_view>
+#include <random>
 
 constexpr int UNO_DECK_COUNT = 5;
 
@@ -13,11 +14,13 @@ void Deck::createDeck(const std::string& type) {
 		m_count = UNO_DECK_COUNT; 
 	}
 	// do something
+	Deck::randomizeDeck();
 }
 
 void Deck::randomizeDeck() {
-	
-	// do something
+	std::random_device rd;
+	std::mt19937 g(rd());
+	std::shuffle(m_cards.begin(), m_cards.end(), g);
 }
 
 std::vector<const ICard*> Deck::drawCards(int count) {
@@ -63,17 +66,17 @@ std::vector<const ICard*> Deck::generateDeck(int count, const std::string type) 
 	if (type == "Uno") {
 		srand(time(NULL));
 		UnoCard card{};
-		auto colors = card.getAllColors();
-		auto symbols = card.getAllSymbols();
+		std::vector<std::string>& colors = card.getAllColors();
+		std::vector<std::string>& symbols = card.getAllSymbols();
 		auto color_size = colors.size();
 		auto symbols_size = symbols.size();
 		for (int idx = 0; idx < count; ++idx) {
-			std::string color = std::string(colors[Helper::generateRandomNumber(0, color_size)]);
+			std::string color = colors[Helper::generateRandomNumber(0, color_size-1)];
 			std::string symbol{};
 			if (color == "all") {
-				symbol = symbols[Helper::generateRandomNumber(0, 2)]; 
+				symbol = symbols[Helper::generateRandomNumber(0, 1)];
 			} else {
-				symbol = symbol[Helper::generateRandomNumber(2, symbols_size)];
+				symbol = symbols[Helper::generateRandomNumber(2, symbols_size - 1)];
 			}
 			std::string name = color + " " + symbol;
 			cards.push_back(new UnoCard(name));

@@ -18,8 +18,6 @@ void UnoCard::splitStringName(const std::string& name) {
     std::string symbol {};
     iss >> color;
     iss >> symbol;
-    std::cout << color << "\n";
-    std::cout << symbol << "\n";
     UnoCard::m_color_str = color;
     UnoCard::m_symbol_str = symbol;
 }

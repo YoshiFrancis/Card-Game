@@ -1,7 +1,8 @@
 #include "UnoCard.h"
+#include "Deck.h"
 #include <iostream>
 int main(int argc, char* argv[]) {
-    UnoCard card {"red one"};
-    std::cout << card.getName() << "\n";
+	
+	Deck deck{"Uno"};
     return 1;
 }

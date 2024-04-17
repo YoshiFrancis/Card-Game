@@ -3,8 +3,12 @@
 #include <cctype>
 #include <algorithm>
 #include <stdlib.h>
+#include <random>
 #include <time.h>
 
+
+std::random_device rd;
+std::mt19937 gen(rd());
 
 std::string Helper::toLower(const std::string str) {
   std::string copy_str (str);
@@ -13,6 +17,7 @@ std::string Helper::toLower(const std::string str) {
 }
 
 int Helper::generateRandomNumber(int min, int max) {
-	srand(time(NULL));
-	return rand() % max + min;
+	std::uniform_int_distribution<int> dis(min, max);
+	return dis(gen);
 }
+
