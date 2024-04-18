@@ -6,7 +6,6 @@ class Deck : public IDeck {
 public:
 
 	Deck(std::string type = "Uno") {
-
 		createDeck(type);
 	}
 
@@ -17,7 +16,7 @@ public:
     const ICard* peek() const;
 	bool isEmpty() const;
 	int getCount() const;
-    ~Deck() override {};
+    ~Deck() override;
 
 private:
     std::vector<const ICard*> m_cards;

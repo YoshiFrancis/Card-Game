@@ -6,7 +6,12 @@
 #include <random>
 
 constexpr int UNO_DECK_COUNT = 5;
+static const ICard* _generateUnoCard();
 
+
+Deck::~Deck() {
+	std::for_each(m_cards.begin(), m_cards.end(), [](const ICard* card) { free( (ICard*) card); });	
+}
 
 void Deck::createDeck(const std::string& type) {
 	if (type == "Uno") {
@@ -14,12 +19,12 @@ void Deck::createDeck(const std::string& type) {
 		m_count = UNO_DECK_COUNT; 
 	}
 	// do something
+	// not needed for implementation, but it is here for now to show that the randomization works
 	std::cout << "Before randomization: " << "\n";
 	for (auto card : m_cards) {
 		std::cout << card->getName() << "\n";
 	}
 	Deck::randomizeDeck();
-
 	std::cout << "After randomization:\n";
 	for (auto card : m_cards) {
 		std::cout << card->getName() << "\n";
@@ -71,25 +76,28 @@ int Deck::getCount() const {
 }
 
 std::vector<const ICard*> Deck::generateDeck(int count, const std::string type) const {
-	std::vector<const ICard*> cards{};
+	std::vector<const ICard*> cards(count);
 	if (type == "Uno") {
-		srand(time(NULL));
-		UnoCard card{};
-		std::vector<std::string>& colors = card.getAllColors();
-		std::vector<std::string>& symbols = card.getAllSymbols();
-		auto color_size = colors.size();
-		auto symbols_size = symbols.size();
-		for (int idx = 0; idx < count; ++idx) {
-			std::string color = colors[Helper::generateRandomNumber(0, color_size-1)];
-			std::string symbol{};
-			if (color == "all") {
-				symbol = symbols[Helper::generateRandomNumber(0, 1)];
-			} else {
-				symbol = symbols[Helper::generateRandomNumber(2, symbols_size - 1)];
-			}
-			std::string name = color + " " + symbol;
-			cards.push_back(new UnoCard(name));
-		}
+		std::generate(cards.begin(), cards.end(), _generateUnoCard);
 	}
 	return cards;
 }
+
+static const ICard* _generateUnoCard() {
+	UnoCard card{};
+	std::vector<std::string>& colors = card.getAllColors();
+	std::vector<std::string>& symbols = card.getAllSymbols();
+	auto color_size = colors.size();
+	auto symbols_size = symbols.size();
+	std::string color = colors[Helper::generateRandomNumber(0, color_size-1)];
+	std::string symbol{};
+	if (color == "all") {
+		symbol = symbols[Helper::generateRandomNumber(0, 1)];
+	} else {
+		symbol = symbols[Helper::generateRandomNumber(2, symbols_size - 1)];
+	}
+	std::string name = color + " " + symbol;
+	return new UnoCard(name);
+}
+
+	
