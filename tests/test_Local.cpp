@@ -43,8 +43,6 @@ TEST_CASE( "Hand Local", "[HandLocal]" ) {
     }
 }
 
-
-
 TEST_CASE ("Deck creation" , "[Deck]" ) {
 
 	Deck deck;

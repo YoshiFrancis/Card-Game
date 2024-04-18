@@ -7,9 +7,11 @@ class IPlayer;
 
 class IClient {
 
-    virtual bool sendMessage(const IHandler* handler, std::string_view message) = 0;
-    virtual void receiveMessage(std::string_view message) = 0;
-    virtual IPlayer* getPlayer() = 0;
+public: 
+
+    virtual bool sendMessage(std::string_view message) const = 0;
+    virtual bool receiveMessage(std::string_view message) const = 0;
+    virtual IPlayer* getPlayer() const = 0;
     virtual void endConnection() = 0;
 
 };

@@ -5,7 +5,7 @@
 #include <string_view>
 #include <random>
 
-constexpr int UNO_DECK_COUNT = 5;
+constexpr int UNO_DECK_COUNT = 25;
 static const ICard* _generateUnoCard();
 
 

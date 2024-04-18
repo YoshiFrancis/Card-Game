@@ -3,8 +3,6 @@
 
 
 TEST_CASE (" to lower function ", "[toLower]" ) {
-    
     CHECK( Helper::toLower("HELLO WORLD") == "hello world" );
     CHECK( Helper::toLower("yOsHi is ThE KiNg") == "yoshi is the king" );
-
 }
