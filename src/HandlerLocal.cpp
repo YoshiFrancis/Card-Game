@@ -12,12 +12,16 @@ void HandlerLocal::handleMessage(const IClient& client, std::string_view message
 		// user is joining the game
 		// will need to ask for username 
 		// bind client to a player class
+		client.setPlayer(Game.addPlayer(client));
+		
 	} else if (message[0] == 'P') {
 		// user is playing card/game
 		// access the client's player class to play game
+		client->getPlayer()->playCard();
 	} else if (message[0] == 'H') {
 		// user is asking for instructions on how to play
 		// send client a message of helpful text (probably read from a file)
+		sendMessage(client, "HELP");
 	} else if (message[0] == 'L') {
 		// client wants to leave, so end connection
 		endConnection(client);
@@ -36,7 +40,7 @@ void HandlerLocal::receiveMessage(const IClient& client, std::string_view messag
 
 void HandlerLocal::endConnection(const IClient& client) {
    // remove player from game
-   // end all connections with the player
+   // server will handle the connection with the player
 }
 
 void HandlerLocal::shutdown() {

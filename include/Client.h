@@ -16,11 +16,13 @@ public:
 	bool sendMessage(std::string_view message) override;
 	void receiveMessage(std::string_view message) override;
 	IPlayer* getPlayer() override;
-	void endConnection();
+	void setPlayer(IPlayer* player) override;
+	void removePlayer() override;
+	void endConnection() override;
 
 private:
 	IPlayer* m_player;
-	std::shared_ptrIHandler> m_handler;
+	std::shared_ptr<IHandler> m_handler;
 
 	
 };
