@@ -8,9 +8,9 @@ class IGame;
 
 class IServer {
 
-    virtual std::unique_ptr<IGame> findGame(std::string_view gameIdentifier) = 0;
+    virtual std::shared_ptr<IGame> findGame(std::string_view gameId) = 0;
     virtual void createGame() = 0;
-    virtual void removeGame(int gameId) = 0;
+    virtual void removeGame(std::string_view gameId) = 0;
 
 };
 

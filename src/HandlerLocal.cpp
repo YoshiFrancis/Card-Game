@@ -1,5 +1,6 @@
 #include "HandlerLocal.h"
 #include "IClient.h"
+#include "IGame.h"
 #include <iostream>
 
 bool HandlerLocal::sendMessage(const IClient& client, std::string_view message) {
@@ -12,12 +13,12 @@ void HandlerLocal::handleMessage(const IClient& client, std::string_view message
 		// user is joining the game
 		// will need to ask for username 
 		// bind client to a player class
-		client.setPlayer(Game.addPlayer(client));
+		client.setPlayer(m_game->addPlayer(client));
 		
 	} else if (message[0] == 'P') {
 		// user is playing card/game
 		// access the client's player class to play game
-		client->getPlayer()->playCard();
+		client.getPlayer()->playCard();
 	} else if (message[0] == 'H') {
 		// user is asking for instructions on how to play
 		// send client a message of helpful text (probably read from a file)
