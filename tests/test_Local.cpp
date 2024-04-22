@@ -70,8 +70,7 @@ TEST_CASE ("Deck creation" , "[Deck]" ) {
 		deck.addCardToDeck(std::move(card1));
 		deck.addCardToDeck(std::move(card2));
 		deck.addCardToDeck(std::move(card3));
-		deck.drawCards(5);
-		auto cards_ = deck.drawCards(deckCount);
+		deck.drawCards(deckCount);
 		auto cards1 = deck.drawCards(1);
 		REQUIRE(cards1[0]->getName() == "red one");
 		auto cards2 = deck.drawCards(2);

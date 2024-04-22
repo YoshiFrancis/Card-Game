@@ -5,6 +5,8 @@
 #include <string_view>
 #include <random>
 
+#define SHOW_RANDOMIZATION 0
+
 constexpr int UNO_DECK_COUNT = 25;
 static std::unique_ptr<ICard> _generateUnoCard();
 
@@ -20,15 +22,19 @@ void Deck::createDeck(const std::string& type) {
 	}
 	// do something
 	// not needed for implementation, but it is here for now to show that the randomization works
+	#if SHOW_RANDOMIZATION
 	std::cout << "Before randomization: " << "\n";
 	for (const auto& card : m_cards) {
 		std::cout << card->getName() << "\n";
 	}
+	#endif
 	Deck::randomizeDeck();
+	#if SHOW_RANDOMIZATION
 	std::cout << "After randomization:\n";
 	for (const auto& card : m_cards) {
 		std::cout << card->getName() << "\n";
 	}
+	#endif
 }
 
 void Deck::randomizeDeck() {
