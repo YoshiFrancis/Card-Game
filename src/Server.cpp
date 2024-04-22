@@ -17,6 +17,12 @@ void Server::removeGame(std::string_view gameId) override {
 	m_games.remove(Server::find_game(gameId));
 }
 
+void Server::listen() override {
+	// listen
+	// accept request
+	Server::handle(client, message);
+}
+
 void Server::handle(IClient& client, std::string_view message) {
 	m_handler->handle(client, message);
 }

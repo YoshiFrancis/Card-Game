@@ -72,3 +72,15 @@ Problems:
 
 Pros:
 1. Easy to separate the lower side (the IGame) from the higher level side (the networking aspects)
+
+
+
+
+NEW IMPLEMENTATION OF SERVER/CLIENT PIPELINE (April 21, 2024)
+
+Scenario gets a request for a creation of a game:
+1. Server gets set up and listens for request
+2. Client sets up connection and sends request to start up a game
+3. Server creates game (game creates own thread to run on)
+4. Server sends game id to client and client uses id to join the game
+5. all conncections requestion to join game with the game id are added totothe game

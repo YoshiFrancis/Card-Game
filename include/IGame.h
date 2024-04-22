@@ -13,7 +13,7 @@ class IGame {
     virtual void endGame() = 0;
 	virtual void addPlayer(IClient* client);
     virtual IServer* getServer() = 0;
-    virtual int getId();
+    virtual std::string_view getId();
     
 };
 

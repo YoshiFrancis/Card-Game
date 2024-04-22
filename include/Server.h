@@ -11,6 +11,7 @@ public:
 	std::shared_ptr<IGame> findGame(std::string_view gameId) override;
 	void createGame() override;
 	void removeGame(std::string_view gameId) override;
+	void listen() override;
 
 private:
 	std::vector<IGame*> m_games;
