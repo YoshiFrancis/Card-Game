@@ -6,11 +6,11 @@
 #include <random>
 
 constexpr int UNO_DECK_COUNT = 25;
-static const ICard* _generateUnoCard();
+static std::unique_ptr<ICard> _generateUnoCard();
 
 
 Deck::~Deck() {
-	std::for_each(m_cards.begin(), m_cards.end(), [](const ICard* card) { free( (ICard*) card); });	
+	std::cout << "Destroying deck\n";
 }
 
 void Deck::createDeck(const std::string& type) {
@@ -37,9 +37,9 @@ void Deck::randomizeDeck() {
 	std::shuffle(m_cards.begin(), m_cards.end(), g);
 }
 
-std::vector<const ICard*> Deck::drawCards(int count) {
+std::vector<std::unique_ptr<ICard>> Deck::drawCards(int count) {
     
-    std::vector<const ICard*> cards{};
+    std::vector<std::unique_ptr<ICard>> cards{};
     if (count > m_count) {
         std::cout << "Invalid number of cards\n";
         return {};
@@ -54,16 +54,16 @@ std::vector<const ICard*> Deck::drawCards(int count) {
 	return cards;
 }
 
-void Deck::addCardToDeck(const ICard* card) {
+void Deck::addCardToDeck(std::unique_ptr<ICard> card) {
     m_cards.push_back(card);
     ++m_count;
 }
 
-const ICard* Deck::peek() const {
+const std::string& Deck::peek() const {
    if (m_count == 0) 
-        return nullptr;
+        return "No card";
    else 
-        return m_cards[0];
+        return m_cards[0]->getName();
 }
 
 bool Deck::isEmpty() const {
@@ -75,15 +75,15 @@ int Deck::getCount() const {
 	return m_count;
 }
 
-std::vector<const ICard*> Deck::generateDeck(int count, const std::string type) const {
-	std::vector<const ICard*> cards(count);
+std::vector<std::unique_ptr<ICard>> Deck::generateDeck(int count, const std::string type) const {
+	std::vector<std::unique_ptr<ICard>> cards(count);
 	if (type == "Uno") {
 		std::generate(cards.begin(), cards.end(), _generateUnoCard);
 	}
 	return cards;
 }
 
-static const ICard* _generateUnoCard() {
+static std::unique_ptr<ICard>  _generateUnoCard() {
 	UnoCard card{};
 	std::vector<std::string>& colors = card.getAllColors();
 	std::vector<std::string>& symbols = card.getAllSymbols();

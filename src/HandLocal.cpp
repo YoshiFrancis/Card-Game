@@ -1,15 +1,18 @@
 #include "HandLocal.h"
+#include "ICard.h"
+#include <algorithm>
+#include <memory>
 
 
-const ICard* HandLocal::useCard(std::string_view name) {
-    const ICard* card = findCard(name);
+std::unique_ptr<ICard> HandLocal::useCard(std::string_view name) {
+   	auto card = findCard(name);
     removeCard(name);
     return card;
 }
 
-const void HandLocal::addCard(const ICard* card) {
+const void HandLocal::addCard(std::unique_ptr<ICard> card) {
     ++m_cardCount;
-    m_cards.push_back(card);
+    m_cards.push_back(std::move(card));
 }
 
 const int HandLocal::getCount() {
@@ -23,17 +26,23 @@ const bool HandLocal::hasCard(std::string_view name) const {
         return false;
 }
 
-const ICard* HandLocal::findCard(std::string_view name) const {
-    auto it = std::find_if(m_cards.begin(), m_cards.begin(), [&](const ICard* card) { return card->getName() == name; } );
+std::unique_ptr<ICard> HandLocal::findCard(std::string_view name) const {
+    auto it = std::find_if(m_cards.begin(), m_cards.end(), [&](const auto& card) { return card->getName() == name; } );
+	return nullptr;
+	/*
     if (it == m_cards.end()) 
         return nullptr;
     else
-        return *it;
+        return std::move(*it);
+	*/
 }
 
 void HandLocal::removeCard(std::string_view name) {
-    auto it = std::find_if(m_cards.begin(), m_cards.begin(), [&](const ICard* card) { return card->getName() == name; } );
+    auto it = std::find_if(m_cards.begin(), m_cards.begin(), [&](const auto& card) { return card->getName() == name; } );
     m_cards.erase(it);
     --m_cardCount;
 }
 
+void HandLocal::discardAll() {
+	m_cards.clear();
+}

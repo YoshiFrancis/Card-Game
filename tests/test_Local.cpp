@@ -41,6 +41,8 @@ TEST_CASE( "Hand Local", "[HandLocal]" ) {
         REQUIRE(newCard->getName() == "green four");
         delete card;
     }
+
+
 }
 
 TEST_CASE ("Deck creation" , "[Deck]" ) {
@@ -85,3 +87,14 @@ TEST_CASE ("Deck creation" , "[Deck]" ) {
 	}
 
 }
+
+TEST_CASE (" Player Creation ", "[Player]" ) {
+
+	PlayerLocal player {};
+
+	REQUIRE(player.getUsername() == "Yoshi");
+	REQUIRE(player.getClient() == nullptr);
+
+
+}
+

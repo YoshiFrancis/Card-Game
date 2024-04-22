@@ -11,7 +11,7 @@ class IGame {
     virtual void startGame() = 0;
     virtual void runGame() = 0;
     virtual void endGame() = 0;
-	virtual void addPlayer(IClient* client);
+	virtual void addPlayer(std::shared_ptr<IClient> client);
     virtual IServer* getServer() = 0;
     virtual std::string_view getId();
     

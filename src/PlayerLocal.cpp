@@ -1,23 +1,28 @@
 #include "PlayerLocal.h"
 #include <string>
+#include <memory>
 
 class ICard;
 
-ICard PlayerLocal::playCard(const std::string& name) {
-
+std::unique_ptr<ICard> PlayerLocal::playCard(const std::string& name) {
+	return m_hand->useCard(name);
 }
-void PlayerLocal::drawCard(ICard card) {
-
-}
-
-const IClient* PlayerLocal::getClient() {
-
+void PlayerLocal::drawCard(std::unique_ptr<ICard> card) {
+	m_hand->addCard(std::move(card));
 }
 
-const IHand* PlayerLocal::getHand() const {
+std::shared_ptr<IClient> PlayerLocal::getClient() {
+	return m_client;
+}
 
+void PlayerLocal::viewCards() {
+	m_hand->displayCards();
 }
 
 void PlayerLocal::discardHand() {
+	m_hand->discardAll();
+}
 
+const std::string& getUsername() {
+	return m_username;
 }

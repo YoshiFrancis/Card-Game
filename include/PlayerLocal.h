@@ -20,7 +20,8 @@ public:
     ICard playCard() override;
     void drawCard(ICard card) override; 
     const IClient* getClient() override;
-    const IHand* getHand() const;
+	void viewCards() override;
+	const std::string& getUsername() override;
     void discardHand();
  
     ~PlayerLocal() override { }

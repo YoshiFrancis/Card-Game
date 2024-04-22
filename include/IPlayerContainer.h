@@ -8,6 +8,7 @@ class IPlayer;
 
 class IPlayerContainer {
 
+public:
     virtual ~IPlayerContainer();
     virtual void addPlayer(IPlayer player) = 0;
     virtual void removePlayer(std::string_view name) = 0;

@@ -3,20 +3,22 @@
 
 #include "IHand.h"
 #include <string_view>
+#include <memory>
 
 class HandLocal : IHand {
 
 public:
-    const ICard* useCard(std::string_view name) override;
-    const void addCard(const ICard* card) override;
+    std::unique_ptr<ICard> useCard(std::string_view name) override;
+    const void addCard(std::unique_ptr<ICard> card) override;
     const int getCount() override;
     const bool hasCard(std::string_view) const override;
+	void discardAll() override;
 
 private:
-    std::vector<const ICard*> m_cards;
+    std::vector<std::unique_ptr<ICard>> m_cards;
     int m_cardCount { };
 
-    const ICard* findCard(std::string_view name) const;
+    std::unique_ptr<ICard> findCard(std::string_view name) const;
     void removeCard(std::string_view name);
     
 
