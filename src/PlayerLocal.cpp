@@ -23,6 +23,6 @@ void PlayerLocal::discardHand() {
 	m_hand->discardAll();
 }
 
-const std::string& getUsername() {
+std::string_view PlayerLocal::getUsername() {
 	return m_username;
 }
