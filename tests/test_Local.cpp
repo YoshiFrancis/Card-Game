@@ -98,6 +98,24 @@ TEST_CASE (" Player Creation ", "[Player]" ) {
 		REQUIRE(player.getCardCount() == 0);
 	}
 
+	SECTION( " Player able to draw " ) {
+		auto card = deck.drawCards(1);
+		player.drawCards(std::move(card));
+		REQUIRE(player.getCardCount() == 1);
+		auto cards = deck.drawCards(5);
+		player.drawCards(std::move(cards));
+		REQUIRE(player.getCardCount() == 6);
+		player.viewCards();
+	}
+
+	SECTION( "Player able to discard hand " ) {
+		auto cards = deck.drawCards(5);
+		player.drawCards(std::move(cards));
+		REQUIRE(player.getCardCount() == 5);
+		player.discardHand();
+		REQUIRE(player.getCardCount() == 0);
+	}
+
 
 }
 

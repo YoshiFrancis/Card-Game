@@ -2,12 +2,13 @@
 #include "ICard.h"
 #include <string>
 #include <memory>
+#include <vector>
 
 std::unique_ptr<ICard> PlayerLocal::playCard(const std::string& name) {
 	return m_hand.useCard(name);
 }
-void PlayerLocal::drawCard(std::unique_ptr<ICard> card) {
-	m_hand.addCard(std::move(card));
+void PlayerLocal::drawCards(std::vector<std::unique_ptr<ICard>> cards) {
+	std::for_each(cards.begin(), cards.end(), [&](auto& card) { m_hand.addCard(std::move(card)); });
 }
 
 /*

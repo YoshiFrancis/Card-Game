@@ -41,6 +41,7 @@ void HandLocal::removeCard(std::string_view name) {
 
 void HandLocal::discardAll() {
 	m_cards.clear();
+	m_cardCount = m_cards.size();
 }
 
 void HandLocal::displayCards() {

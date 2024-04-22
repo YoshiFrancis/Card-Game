@@ -8,6 +8,7 @@
 #include <string_view>
 #include <string>
 #include <memory>
+#include <vector>
 
 class PlayerLocal : public IPlayer {
 public:
@@ -17,7 +18,7 @@ public:
 	}
 
     std::unique_ptr<ICard> playCard(const std::string& name) override;
-    void drawCard(std::unique_ptr<ICard> card) override; 
+    void drawCards(std::vector<std::unique_ptr<ICard>> cards) override; 
     //std::shared_ptr<IClient> getClient() override;
 	void viewCards() override;
 	std::string_view getUsername() override;
