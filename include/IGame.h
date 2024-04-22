@@ -1,10 +1,10 @@
 #ifndef IGAME_H
 #define IGAME_H
 
+#include "IClient.h"
+#include "IServer.h"
+#include <memory>
 #include <string_view>
-
-class IServer;
-class IClient;
 
 class IGame {
 
@@ -12,8 +12,10 @@ class IGame {
     virtual void runGame() = 0;
     virtual void endGame() = 0;
 	virtual void addPlayer(std::shared_ptr<IClient> client);
-    virtual IServer* getServer() = 0;
+    virtual std::shared_ptr<IServer> getServer() = 0;
     virtual std::string_view getId();
+	virtual void receiveMessage(std::shared_ptr<IClient> client, std::string_view message) = 0;
+	virtual void sendMessage(std::shared_ptr<IClient> client, std::string_view message) = 0;
     
 };
 

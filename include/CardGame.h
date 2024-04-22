@@ -2,13 +2,13 @@
 #define CARDGAME_H
 
 #include "IGame.h"
-#include "IDeck.h"
-#include "IPlayerContainer.h"
+#include "IServer.h"
+#include "IClient.h"
 #include <memory>
 #include <string_view>
 
-class IDeck;
-class IPlayerContainer;
+class PlayerContainer;
+class Deck;
 
 class CardGame : public IGame {
 
@@ -30,15 +30,21 @@ public:
     void runGame() override;
     void endGame() override;
 	void addPlayer(std::shared_ptr<IClient> client) override;
+	std::shared_ptr<IServer> getServer() override;
     std::string_view getId() override;
+	void receiveMessage(std::shared_ptr<IClient> client, std::string_view message) override;
 
 private:
 
     void waitForPlayers();
+	void sendMessage(std::shared_ptr<IClient> client, std::string_view message) override;
 
-    std::unique_ptr<IDeck> m_deck{};
-    std::unique_ptr<IPlayerContainer> m_players{};
+    Deck m_deck{};
+    PlayerContainer m_players{};
+	std::shared_ptr<IServer> m_server{};
     std::string_view m_id{};
+
+
 
 
 };
