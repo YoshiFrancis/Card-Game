@@ -1,15 +1,15 @@
 ### Overview of interface design:
-IServer:				Listens for requests and handles them. Responsible for creating games, ending games, and adding players to games
-IClient:				The layer between clients and their players. The client represents the soul of the player. 
-IGame:					The game interface. Will create game on new thread when constructed. Will send messages to server to send out to clients. Will also receive messages from server
-						via its game id
-IPlayer:				The player class. Connected to a IClient class to receive inptus from the client. Will run locally on the server and will be responsible for playing and drawing
-						cards. Will receive all commands from user.
-IPlayerContainer:		Player container class. Will hold all of the players.
-IDeck:					The deck interface. Will abstract for all the different kinds of decks to make implementing new card games easier. Examples of games: Uno, Crazy Eight, Solitaire, etc.
-						Will be responsible for creating deck, randomizing deck, and drawing new cards
-IHand:					The hand of the player interface. Will hold all the cards a player currently has.
-ICard:					Card interface. Will interfacee for all the different kinds of cards.
+- IServer:					Listens for requests and handles them. Responsible for creating games, ending games, and adding players to games
+- IClient:					The layer between clients and their players. The client represents the soul of the player. 
+- IGame						The game interface. Will create game on new thread when constructed. Will send messages to server to send out to clients. Will also receive messages from server
+							via its game id
+- IPlayer:					The player class. Connected to a IClient class to receive inptus from the client. Will run locally on the server and will be responsible for playing and drawing
+							cards. Will receive all commands from user.
+- IPlayerContainer:			Player container class. Will hold all of the players.
+- IDeck:					The deck interface. Will abstract for all the different kinds of decks to make implementing new card games easier. Examples of games: Uno, Crazy Eight, Solitaire, etc.
+							Will be responsible for creating deck, randomizing deck, and drawing new cards
+- IHand:					The hand of the player interface. Will hold all the cards a player currently has.
+- ICard:					Card interface. Will interfacee for all the different kinds of cards.
 
 
 ### NEW IMPLEMENTATION OF SERVER/CLIENT PIPELINE (April 21, 2024)
