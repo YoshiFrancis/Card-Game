@@ -23,6 +23,7 @@ void Server::removeGame(std::string_view gameId) override {
 void Server::listen() override {
 	// listen
 	// accept request
+	// will need to research how to listen and accept request
 	Server::handle(client, message);
 }
 
@@ -53,14 +54,19 @@ void Server::handle(IClient& client, std::string_view message) {
 	else {
 		// user sent invalid message
 		// send error message to client
+		Server::sendMessage(client, "Invalid input");
 	}
 }
 
 void Server::sendMessage(const IClient& client, std::string_view message) {
 
+	// i do not know how sockets work on asio
+	// i shall ahve to do a little bit of reading ;)
 }
 
 void Server::endConnection(const IClient& client) {
+
+	// need to research how sockets and all that work on asio
 
 }
 

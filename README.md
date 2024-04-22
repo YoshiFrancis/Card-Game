@@ -1,82 +1,18 @@
-# Card-Game
-
-Each game will be ran by one ICommunicator
-Whenever a new game is started, create a new IGame class to host the new game
-IGame should contain the 
-1. ICommunicator to facilate communication between host and all clients (IServer and IClient)
-2. IPlayerContainer to hold all the players in the game
-3. IDeck to keep track of the deck (and also be the dealer)
-
-Each IPlayer in the IPlayerContainer will be associated to a client
-IGame will be responsible for running the game
-A card will be drawn and all operatioins will be done locally in the IGame class
-Then all operations that happened will be forwarded to all clients
-
-Lower Level (happens on the host):
-- Game runs
-- All card operations happen
-- Creation of new thread (IGame) to run game
-- Container holding all current running games
-
-Classes:
-IGame, IPlayer, IDeck, IPlayerContainer
-
-Needed Class:
-ICommunicatorStorage 
-    - will hold all IGame and their respective ICommunicator
-    - Will create new IGame thread whenever a request for a new game from client appears
-
-Higher Level (Networking Side):
-- Communication between client and host
-
-Classes:
-ICommunicator, IClient, IServer, IGame
-
-How players will join:
-Player will send request to join a game (using a given passcode or IP) via sending to ICommunicatorStorage
-ICommunicatorStorage will check all IGame ICommunicator's IServer looking for right room to send new client to
-IClient class will be allocated for new client if successful
-IPlayer class created with IClient as member variagle and pushed into the IPlayerContainer
-
-Highest Layer to Lowest layer
-ICommunicatorStorage (might as well be IGameStorage)
-    - IGame
-        - ICommunicator
-            - IServer
-        - IPlayerContainer
-            - IPlayer
-                - IClient
-        - IDeck
-            - ICard
-
-# Implemenetation #2
-
-Highest Layer - Lowest layer
-ICommunicatorStorage
-    -ICommunicator
-        - IServer
-        - IClient
-            - IPlayer
-        - IGame
-            - IPlayerContainer
-                - IPlayer
-            - IDeck
-                - ICard
-
-Problems:
-1. May be hard to get info from the server to the Igame due to the disconnection and IGame not having direct access to messages
-2. IGame and clients are disconnected - two separate entities to track over IPlayer
-3. IGame has to constantly wait for other classes to continue running which are not in its control
-4. Constant propogation upward
-4. Overall: I do not like the lack of control IGame has
-
-Pros:
-1. Easy to separate the lower side (the IGame) from the higher level side (the networking aspects)
+### Overview of interface design:
+IServer:				Listens for requests and handles them. Responsible for creating games, ending games, and adding players to games
+IClient:				The layer between clients and their players. The client represents the soul of the player. 
+IGame:					The game interface. Will create game on new thread when constructed. Will send messages to server to send out to clients. Will also receive messages from server
+						via its game id
+IPlayer:				The player class. Connected to a IClient class to receive inptus from the client. Will run locally on the server and will be responsible for playing and drawing
+						cards. Will receive all commands from user.
+IPlayerContainer:		Player container class. Will hold all of the players.
+IDeck:					The deck interface. Will abstract for all the different kinds of decks to make implementing new card games easier. Examples of games: Uno, Crazy Eight, Solitaire, etc.
+						Will be responsible for creating deck, randomizing deck, and drawing new cards
+IHand:					The hand of the player interface. Will hold all the cards a player currently has.
+ICard:					Card interface. Will interfacee for all the different kinds of cards.
 
 
-
-
-NEW IMPLEMENTATION OF SERVER/CLIENT PIPELINE (April 21, 2024)
+### NEW IMPLEMENTATION OF SERVER/CLIENT PIPELINE (April 21, 2024)
 
 Scenario gets a request for a creation of a game:
 1. Server gets set up and listens for request
@@ -84,3 +20,12 @@ Scenario gets a request for a creation of a game:
 3. Server creates game (game creates own thread to run on)
 4. Server sends game id to client and client uses id to join the game
 5. all conncections requestion to join game with the game id are added totothe game
+
+Game requests client to play a card or draw:
+1. Game sends message to server to send to a client
+2. Server receives message and sends to the client
+3. Client receives message and is asked to respond
+4. Client responds and sends message back to the server with their specific gameId to signify which game they are a part of
+5. Server receives message and sends to the game with the specified gameId
+6. Game checks for valid player and handles the message
+7. Game goes on to next player and repeats cycle
