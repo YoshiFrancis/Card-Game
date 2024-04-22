@@ -21,12 +21,12 @@ void Deck::createDeck(const std::string& type) {
 	// do something
 	// not needed for implementation, but it is here for now to show that the randomization works
 	std::cout << "Before randomization: " << "\n";
-	for (auto card : m_cards) {
+	for (const auto& card : m_cards) {
 		std::cout << card->getName() << "\n";
 	}
 	Deck::randomizeDeck();
 	std::cout << "After randomization:\n";
-	for (auto card : m_cards) {
+	for (const auto& card : m_cards) {
 		std::cout << card->getName() << "\n";
 	}
 }
@@ -46,7 +46,7 @@ std::vector<std::unique_ptr<ICard>> Deck::drawCards(int count) {
     }
 
     for (int idx {0}; idx < count; ++idx) 
-        cards.push_back(m_cards[idx]);
+        cards.push_back(std::move(m_cards[idx]));
 
     m_cards.erase(m_cards.begin(), m_cards.begin() + count);
 	m_count -= count;
@@ -55,11 +55,11 @@ std::vector<std::unique_ptr<ICard>> Deck::drawCards(int count) {
 }
 
 void Deck::addCardToDeck(std::unique_ptr<ICard> card) {
-    m_cards.push_back(card);
+    m_cards.push_back(std::move(card));
     ++m_count;
 }
 
-const std::string& Deck::peek() const {
+std::string Deck::peek() const {
    if (m_count == 0) 
         return "No card";
    else 
@@ -97,7 +97,7 @@ static std::unique_ptr<ICard>  _generateUnoCard() {
 		symbol = symbols[Helper::generateRandomNumber(2, symbols_size - 1)];
 	}
 	std::string name = color + " " + symbol;
-	return new UnoCard(name);
+	return std::unique_ptr<ICard>(new UnoCard(name));
 }
 
 	

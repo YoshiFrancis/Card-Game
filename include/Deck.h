@@ -15,7 +15,7 @@ public:
     void createDeck(const std::string& type) override;
     void randomizeDeck() override;
     void addCardToDeck(std::unique_ptr<ICard> card) override;
-    const std::string& peek() const;
+    std::string peek() const;
 	bool isEmpty() const;
 	int getCount() const;
     ~Deck() override;
