@@ -13,7 +13,7 @@ class PlayerLocal : public IPlayer {
 public:
 
     PlayerLocal() {}
-    PlayerLocal(IClient* client, std::string_view username) : m_client {client}, m_username { username }
+    PlayerLocal(std::shared_ptr<IClient> client, std::string_view username) : m_client {client}, m_username { username }
     {}
 
     std::unique_ptr<ICard> playCard(const std::string& name) override;

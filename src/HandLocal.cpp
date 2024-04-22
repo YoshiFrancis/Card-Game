@@ -2,6 +2,7 @@
 #include "ICard.h"
 #include <algorithm>
 #include <memory>
+#include <iostream>
 
 
 std::unique_ptr<ICard> HandLocal::useCard(std::string_view name) {
@@ -38,11 +39,15 @@ std::unique_ptr<ICard> HandLocal::findCard(std::string_view name) const {
 }
 
 void HandLocal::removeCard(std::string_view name) {
-    auto it = std::find_if(m_cards.begin(), m_cards.begin(), [&](const auto& card) { return card->getName() == name; } );
+    auto it = std::find_if(m_cards.begin(), m_cards.end(), [&](const auto& card) { return card->getName() == name; } );
     m_cards.erase(it);
     --m_cardCount;
 }
 
 void HandLocal::discardAll() {
 	m_cards.clear();
+}
+
+void HandLocal::displayCards() {
+	std::for_each(m_cards.begin(), m_cards.end(), [&](const auto& card) { std::cout << card->getName(); });
 }
