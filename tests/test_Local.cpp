@@ -87,14 +87,17 @@ TEST_CASE ("Deck creation" , "[Deck]" ) {
 	}
 
 }
-/*
+
 TEST_CASE (" Player Creation ", "[Player]" ) {
 
-	PlayerLocal player {};
+	PlayerLocal player {"Yoshi"};
+	Deck deck;
 
-	REQUIRE(player.getUsername() == "Yoshi");
-	REQUIRE(player.getClient() == nullptr);
+	SECTION( " correctly instantiated " ) {
+		REQUIRE(player.getUsername() == "Yoshi");
+		REQUIRE(player.getCardCount() == 0);
+	}
 
 
 }
-*/
+

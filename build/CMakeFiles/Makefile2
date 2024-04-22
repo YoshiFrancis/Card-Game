@@ -231,9 +231,9 @@ src/CMakeFiles/local.dir/clean:
 
 # All Build rule for target.
 tests/CMakeFiles/test_local.dir/all: CMakeFiles/helper.dir/all
-tests/CMakeFiles/test_local.dir/all: src/CMakeFiles/local.dir/all
 tests/CMakeFiles/test_local.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2.dir/all
 tests/CMakeFiles/test_local.dir/all: _deps/catch2-build/src/CMakeFiles/Catch2WithMain.dir/all
+tests/CMakeFiles/test_local.dir/all: src/CMakeFiles/local.dir/all
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_local.dir/build.make tests/CMakeFiles/test_local.dir/depend
 	$(MAKE) $(MAKESILENT) -f tests/CMakeFiles/test_local.dir/build.make tests/CMakeFiles/test_local.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=/Users/fozua/Desktop/Cards/build/CMakeFiles --progress-num=99,100 "Built target test_local"
