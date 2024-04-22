@@ -9,8 +9,11 @@ std::shared_ptr<IGame> Server::findGame(std::string_view gameId) override {
 	return std::find_if(m_games.being(), m_games.end(), [&](IGame* game) { return game->getId() == gameId; });
 }
 
-void Server::createGame(std::string_view type) override {
-	m_games.push_back(CardGame(type));
+std::string_view Server::createGame(std::string_view type) override {
+	
+	std::string_view gameId = Server::generateId();
+	m_games.push_back(CardGame(type, gameId));
+	return gameId;
 }
 
 void Server::removeGame(std::string_view gameId) override {
@@ -24,7 +27,49 @@ void Server::listen() override {
 }
 
 void Server::handle(IClient& client, std::string_view message) {
-	m_handler->handle(client, message);
+	if (message[0] == 'J') {
+		// user is joining the game
+		// will need to ask for username
+		// bind client to a player class
+		client.setPlayer(m_game->addPlayer(client));
+
+	} else if (message[0] == 'P') {
+		// user is playing card/game
+		// access the client's player class to play game
+		client.getPlayer()->playCard();
+	} else if (message[0] == 'H') {
+		// user is asking for instructions on how to play
+		// send client a message of helpful text (probably read from a file)
+		Server::sendMessage(client, "HELP");
+	} else if (message[0] == 'L') {
+		// client wants to leave, so end connection
+		Server::endConnection(client);
+	} else if (message[0] == 'C') {
+		// client is requestion to create a game
+		std::string gameId = Server::createGame("Uno");
+		auto game = Server::findGame(gameId);
+		game->addPlayer(client);
+	}
+	else {
+		// user sent invalid message
+		// send error message to client
+	}
+}
+
+void Server::sendMessage(const IClient& client, std::string_view message) {
+
+}
+
+void Server::endConnection(const IClient& client) {
+
+}
+
+void Server::endGame(IGame* game) {
+	game->endGame();
+}
+
+void Server::shutdown() override {
+	std::for_each(m_games.begin(), m_games.end(), Server::endGame);
 }
 
 std::string_view Server::generateId() {

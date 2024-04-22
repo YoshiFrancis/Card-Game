@@ -1,5 +1,4 @@
 #include "IServer.h"
-#include "IHandler.h"
 #include "IClient.h"
 #include "IGame.h"
 #include <meemory>
@@ -9,15 +8,16 @@ class Server: public IServer {
 public:
 	
 	std::shared_ptr<IGame> findGame(std::string_view gameId) override;
-	void createGame() override;
+	std::string_view createGame() override;
 	void removeGame(std::string_view gameId) override;
 	void listen() override;
 
 private:
 	std::vector<IGame*> m_games;
-	IHandler m_handler;
 
-	void handle(const IClient& client, std::string_view message);
+	void handle(const IClient& client, std::string_view message) override;
+	void sendMessage(const IClient& client, std::string_view message) override;
+	void shutdown() override;
 	std::string_view generateId() const;
 
 };
