@@ -1,7 +1,7 @@
 #include "UnoCard.h"
 #include "HandLocal.h"
 #include "Deck.h"
-#include "PlayerLocal.h"
+#include "Player.h"
 #include <catch2/catch_test_macros.hpp>
 #include <string>
 #include <string_view>
@@ -90,7 +90,7 @@ TEST_CASE ("Deck creation" , "[Deck]" ) {
 
 TEST_CASE (" Player Creation ", "[Player]" ) {
 
-	PlayerLocal player {"Yoshi"};
+	Player player {"Yoshi"};
 	Deck deck;
 
 	SECTION( " correctly instantiated " ) {

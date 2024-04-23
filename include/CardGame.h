@@ -4,11 +4,10 @@
 #include "IGame.h"
 #include "IServer.h"
 #include "IClient.h"
+#include "PlayerContainer.h"
+#include "Deck.h"
 #include <memory>
 #include <string_view>
-
-class PlayerContainer;
-class Deck;
 
 class CardGame : public IGame {
 

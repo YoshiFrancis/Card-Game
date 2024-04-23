@@ -10,10 +10,10 @@
 #include <memory>
 #include <vector>
 
-class PlayerLocal : public IPlayer {
+class Player : public IPlayer {
 public:
 
-    PlayerLocal(std::string_view username="Guest") : m_username { username }
+    Player(std::string_view username="Guest") : m_username { username }
     {
 	}
 
@@ -25,7 +25,7 @@ public:
     void discardHand();
 	int getCardCount();
  
-    ~PlayerLocal() override { }
+    ~Player() override { }
 
 private:
     // std::shared_ptr<IClient> m_client;

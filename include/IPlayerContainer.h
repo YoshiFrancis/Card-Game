@@ -1,19 +1,21 @@
 #ifndef IPLAYERCONTAINER_H
 #define IPLAYERCONTAINER_H
 
+#include "Player.h"
 #include <string_view>
 #include <vector>
 #include <iterator>
 
-class IPlayer;
+class Player;
 
 class IPlayerContainer {
 
 public:
     virtual ~IPlayerContainer();
-    virtual void addPlayer(IPlayer player) = 0;
-    virtual void removePlayer(std::string_view name) = 0;
-    virtual std::vector<IPlayer>::iterator findPlayer() = 0;
+    virtual bool addPlayer(Player player) = 0;
+    virtual bool removePlayer(std::string_view name) = 0;
+    virtual std::vector<Player>::iterator findPlayer(std::string_view name) = 0;
+	virtual std::vector<Player> getPlayers() = 0;
     
 };
 
