@@ -5,10 +5,10 @@
 #include <vector>
 
 std::unique_ptr<ICard> Player::playCard(const std::string& name) {
-	return m_hand.useCard(name);
+	return m_hand->useCard(name);
 }
 void Player::drawCards(std::vector<std::unique_ptr<ICard>> cards) {
-	std::for_each(cards.begin(), cards.end(), [&](auto& card) { m_hand.addCard(std::move(card)); });
+	std::for_each(cards.begin(), cards.end(), [&](auto& card) { m_hand->addCard(std::move(card)); });
 }
 
 /*
@@ -18,11 +18,11 @@ std::shared_ptr<IClient> Player::getClient() {
 */
 
 void Player::viewCards() {
-	m_hand.displayCards();
+	m_hand->displayCards();
 }
 
 void Player::discardHand() {
-	m_hand.discardAll();
+	m_hand->discardAll();
 }
 
 std::string_view Player::getUsername() {
@@ -30,5 +30,5 @@ std::string_view Player::getUsername() {
 }
 
 int Player::getCardCount() {
-	return m_hand.getCount();
+	return m_hand->getCount();
 }

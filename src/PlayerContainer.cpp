@@ -4,9 +4,10 @@
 #include <string_view>
 #include <iterator>
 #include <algorithm>
+#include <memory>
 
 
-bool PlayerContainer::addPlayer(Player player) override {
+bool PlayerContainer::addPlayer(Player player)  {
 	if (m_count >= m_maxCount)
 		return false;
 	m_players.push_back(std::move(player));
@@ -14,7 +15,7 @@ bool PlayerContainer::addPlayer(Player player) override {
 	return true;
 }
 
-bool PlayerContainer::removePlayer(std::string_view name) override {
+bool PlayerContainer::removePlayer(std::string_view name)  {
 	if (m_count == 0) 
 		return false;
 	auto playerIt = PlayerContainer::findPlayer(name);
@@ -25,13 +26,13 @@ bool PlayerContainer::removePlayer(std::string_view name) override {
 	return true;
 }
 
-std::vector<Player>::iterator PlayerContainer::findPlayer(std::string_view name) override {
-	return std::find_if(m_players.begin(), m_players.end(), [&](auto player) { 
-		return player.getName() == name;
-	}
+std::vector<Player>::iterator PlayerContainer::findPlayer(std::string_view name)  {
+	return std::find_if(m_players.begin(), m_players.end(), [&](auto& player) { 
+		return player.getUsername() == name;
+	});
 }
 
-std::vecctor<Player> getPlayers() override {
+std::vector<Player>& PlayerContainer::getPlayers()  {
 	return m_players;
 }
 

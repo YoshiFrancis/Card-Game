@@ -11,9 +11,11 @@ public:
 	bool addPlayer(Player player) override;
 	bool removePlayer(std::string_view name) override;
 	std::vector<Player>::iterator findPlayer(std::string_view name) override;
-	std::vector<Player> getPlayers() override;
+	std::vector<Player>& getPlayers() override;
 	int getPlayerCount();
 	int getMaxCount();
+
+	~PlayerContainer() {};
 
 private:
 	std::vector<Player> m_players {};

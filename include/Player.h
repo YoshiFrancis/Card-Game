@@ -13,8 +13,25 @@
 class Player : public IPlayer {
 public:
 
-    Player(std::string_view username="Guest") : m_username { username }
+    Player(std::string_view username="Guest") : m_username { username }, m_hand { std::make_unique<HandLocal>() }
     {
+	}
+
+	~Player() = default;
+
+	Player(const Player& other) = delete;
+
+	Player(Player&& other) noexcept
+	{
+		m_hand = std::move(other.m_hand);
+	}
+
+	Player& operator=(const Player& other) = delete;
+
+	Player& operator=(Player&& other) noexcept
+	{
+		m_hand = std::move(other.m_hand);
+		return *this;
 	}
 
     std::unique_ptr<ICard> playCard(const std::string& name) override;
@@ -25,12 +42,10 @@ public:
     void discardHand();
 	int getCardCount();
  
-    ~Player() override { }
-
 private:
     // std::shared_ptr<IClient> m_client;
-    HandLocal m_hand;
-    std::string_view m_username;
+    std::unique_ptr<HandLocal> m_hand {};
+    std::string_view m_username {};
   
 };
 

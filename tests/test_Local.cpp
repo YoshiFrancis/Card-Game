@@ -2,6 +2,7 @@
 #include "HandLocal.h"
 #include "Deck.h"
 #include "Player.h"
+#include "PlayerContainer.h"
 #include <catch2/catch_test_macros.hpp>
 #include <string>
 #include <string_view>
@@ -119,3 +120,50 @@ TEST_CASE (" Player Creation ", "[Player]" ) {
 
 }
 
+TEST_CASE (" PLayer Container ", "[PlayerContainer]" ) {
+
+	Player player1 {"Yoshi"};
+	Player player2 {"Mario"};
+	Player player3 {"Luigi"};
+	PlayerContainer container{};
+	/*
+	SECTION( "PlayerContainer correctly instantiated ") {
+		REQUIRE(container.getPlayerCount() == 0);
+		REQUIRE(container.getMaxCount() == 8);
+
+	}
+	
+	SECTION( "PlayerContainer add player" )  {
+		container.addPlayer(player1);
+		REQUIRE(container.getPlayerCount() == 1);
+		container.addPlayer(player2);
+		REQUIRE(container.getPlayerCount() == 2);
+		container.addPlayer(player3);
+		REQUIRE(container.getPlayerCount() == 3);
+	}
+
+	SECTION( "PlayerContainer remove player" ) {
+		container.addPlayer(player1);
+		container.addPlayer(player2);
+		container.addPlayer(player3);
+		container.removePlayer("Mario");
+		REQUIRE(container.getPlayerCount() == 2);
+		container.removePlayer("Luigi");
+		REQUIRE(container.getPlayerCount() == 1);
+		container.removePlayer("Yoshi");
+		REQUIRE(container.getPlayerCount() == 0);
+		REQUIRE(container.removePlayer("No one") == false);
+	}
+
+	SECTION( "PlayerContainer get players" ) {
+		container.addPlayer(player1);
+		container.addPlayer(player2);
+		container.addPlayer(player3);
+		auto players = container.getPlayers();
+		REQUIRE(players.size() == 3);
+		REQUIRE(players[0].getUsername() == "Yoshi");
+		REQUIRE(players[1].getUsername() == "Mario");
+		REQUIRE(players[2].getUsername() == "Luigi");
+	}
+*/
+}
