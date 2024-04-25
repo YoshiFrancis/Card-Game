@@ -9,6 +9,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include <iostream>
 
 class Player : public IPlayer {
 public:
@@ -23,6 +24,7 @@ public:
 
 	Player(Player&& other) noexcept
 	{
+		m_username = other.m_username;
 		m_hand = std::move(other.m_hand);
 	}
 
@@ -30,6 +32,7 @@ public:
 
 	Player& operator=(Player&& other) noexcept
 	{
+		m_username = other.m_username;
 		m_hand = std::move(other.m_hand);
 		return *this;
 	}

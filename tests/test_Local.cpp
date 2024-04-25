@@ -126,7 +126,7 @@ TEST_CASE (" PLayer Container ", "[PlayerContainer]" ) {
 	Player player2 {"Mario"};
 	Player player3 {"Luigi"};
 	PlayerContainer container{};
-	/*
+	
 	SECTION( "PlayerContainer correctly instantiated ") {
 		REQUIRE(container.getPlayerCount() == 0);
 		REQUIRE(container.getMaxCount() == 8);
@@ -134,18 +134,18 @@ TEST_CASE (" PLayer Container ", "[PlayerContainer]" ) {
 	}
 	
 	SECTION( "PlayerContainer add player" )  {
-		container.addPlayer(player1);
+		container.addPlayer(std::move(player1));
 		REQUIRE(container.getPlayerCount() == 1);
-		container.addPlayer(player2);
+		container.addPlayer(std::move(player2));
 		REQUIRE(container.getPlayerCount() == 2);
-		container.addPlayer(player3);
+		container.addPlayer(std::move(player3));
 		REQUIRE(container.getPlayerCount() == 3);
 	}
 
 	SECTION( "PlayerContainer remove player" ) {
-		container.addPlayer(player1);
-		container.addPlayer(player2);
-		container.addPlayer(player3);
+		container.addPlayer(std::move(player1));
+		container.addPlayer(std::move(player2));
+		container.addPlayer(std::move(player3));
 		container.removePlayer("Mario");
 		REQUIRE(container.getPlayerCount() == 2);
 		container.removePlayer("Luigi");
@@ -156,14 +156,13 @@ TEST_CASE (" PLayer Container ", "[PlayerContainer]" ) {
 	}
 
 	SECTION( "PlayerContainer get players" ) {
-		container.addPlayer(player1);
-		container.addPlayer(player2);
-		container.addPlayer(player3);
-		auto players = container.getPlayers();
+		container.addPlayer(std::move(player1));
+		container.addPlayer(std::move(player2));
+		container.addPlayer(std::move(player3));
+		auto& players = container.getPlayers();
 		REQUIRE(players.size() == 3);
 		REQUIRE(players[0].getUsername() == "Yoshi");
 		REQUIRE(players[1].getUsername() == "Mario");
 		REQUIRE(players[2].getUsername() == "Luigi");
 	}
-*/
 }

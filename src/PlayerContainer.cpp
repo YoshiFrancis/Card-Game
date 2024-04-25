@@ -39,3 +39,7 @@ std::vector<Player>& PlayerContainer::getPlayers()  {
 int PlayerContainer::getPlayerCount() {
 	return m_count;
 }
+
+int PlayerContainer::getMaxCount() {
+	return m_maxCount;
+}
