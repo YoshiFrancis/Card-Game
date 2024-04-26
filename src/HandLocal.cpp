@@ -45,5 +45,6 @@ void HandLocal::discardAll() {
 }
 
 void HandLocal::displayCards() {
-	std::for_each(m_cards.begin(), m_cards.end(), [&](auto& card) { std::cout << card->getName(); });
+	std::string_view cards {};
+	std::for_each(m_cards.begin(), m_cards.end(), [&](auto& card) { cards += card->getName() + " "; });
 }

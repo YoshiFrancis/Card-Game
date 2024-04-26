@@ -1,6 +1,7 @@
 #include "Player.h"
 #include "ICard.h"
 #include <string>
+#include <string_view>
 #include <memory>
 #include <vector>
 
@@ -17,8 +18,8 @@ std::shared_ptr<IClient> Player::getClient() {
 }
 */
 
-void Player::viewCards() {
-	m_hand->displayCards();
+std::string_view Player::getCards() {
+	return m_hand->getCards();
 }
 
 void Player::discardHand() {

@@ -8,6 +8,7 @@
 #include "Deck.h"
 #include <memory>
 #include <string_view>
+#include <deque>
 
 class CardGame : public IGame {
 
@@ -31,17 +32,19 @@ public:
 	void addPlayer(std::shared_ptr<IClient> client) override;
 	std::shared_ptr<IServer> getServer() override;
     std::string_view getId() override;
-	void receiveMessage(std::shared_ptr<IClient> client, std::string_view message) override;
+	void receiveMessage(Message message) override;
 
 private:
 
     void waitForPlayers();
-	void sendMessage(std::shared_ptr<IClient> client, std::string_view message) override;
+	void sendMessage(Message message) override;
+	void readBuffer();
 
     Deck m_deck{};
     PlayerContainer m_players{};
 	std::shared_ptr<IServer> m_server{};
     std::string_view m_id{};
+	std::deque<Message> m_buffer;
 
 
 

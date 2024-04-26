@@ -3,10 +3,18 @@
 
 #include "IClient.h"
 #include "IServer.h"
+#include "IPlayer.h"
 #include <memory>
 #include <string_view>
 
 class IGame {
+public:
+	struct {
+		std::string_view message;
+		std::string_view username;
+		char flag;
+		std::shared_ptr<IClient> client = nullptr;
+	} Message;
 
     virtual void startGame() = 0;
     virtual void runGame() = 0;
@@ -14,8 +22,8 @@ class IGame {
 	virtual void addPlayer(std::shared_ptr<IClient> client);
     virtual std::shared_ptr<IServer> getServer() = 0;
     virtual std::string_view getId();
-	virtual void receiveMessage(std::shared_ptr<IClient> client, std::string_view message) = 0;
-	virtual void sendMessage(std::shared_ptr<IClient> client, std::string_view message) = 0;
+	virtual void receiveMessage(Message message) = 0;
+	virtual void sendMessage(Message message) = 0;
     
 };
 

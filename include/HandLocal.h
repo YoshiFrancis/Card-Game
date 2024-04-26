@@ -15,7 +15,7 @@ public:
     const int getCount() override;
     const bool hasCard(std::string_view) override;
 	void discardAll() override;
-	void displayCards() override;
+	std::string_view getCards() override;
 
 private:
     std::vector<std::unique_ptr<ICard>> m_cards;
