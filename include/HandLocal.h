@@ -4,6 +4,7 @@
 #include "IHand.h"
 #include "ICard.h"
 #include <string_view>
+#include <string>
 #include <memory>
 #include <iterator>
 
@@ -15,7 +16,8 @@ public:
     const int getCount() override;
     const bool hasCard(std::string_view) override;
 	void discardAll() override;
-	std::string_view getCards() override;
+	std::string getCards() override;
+	void viewCards();
 
 private:
     std::vector<std::unique_ptr<ICard>> m_cards;

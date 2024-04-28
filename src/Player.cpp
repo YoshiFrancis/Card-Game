@@ -18,8 +18,8 @@ std::shared_ptr<IClient> Player::getClient() {
 }
 */
 
-std::string_view Player::getCards() {
-	return m_hand->getCards();
+std::string Player::getCards() {
+	return std::move(m_hand->getCards());
 }
 
 void Player::discardHand() {

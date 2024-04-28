@@ -6,6 +6,7 @@
 #include <catch2/catch_test_macros.hpp>
 #include <string>
 #include <string_view>
+#include <iostream>
 
 TEST_CASE( "Can be default constructured", "[UnoCard]" ) {
     UnoCard card { "RED ONE" };
@@ -106,7 +107,18 @@ TEST_CASE (" Player Creation ", "[Player]" ) {
 		auto cards = deck.drawCards(5);
 		player.drawCards(std::move(cards));
 		REQUIRE(player.getCardCount() == 6);
-		player.viewCards();
+	}
+
+	SECTION( " Player can view cards ") {
+        std::unique_ptr<ICard> card1 =  std::unique_ptr<ICard>(new UnoCard("blue two"));
+        auto card2 =  std::unique_ptr<ICard>(new UnoCard("green one"));
+        auto card3 =  std::unique_ptr<ICard>(new UnoCard("all change"));
+		std::vector<std::unique_ptr<ICard>> cards {};
+		cards.push_back(std::move(card1));
+		cards.push_back(std::move(card2));
+		cards.push_back(std::move(card3));
+		player.drawCards(std::move(cards));
+		REQUIRE(player.getCards() == "blue two green one all change ");
 	}
 
 	SECTION( "Player able to discard hand " ) {

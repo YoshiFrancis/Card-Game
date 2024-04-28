@@ -40,9 +40,10 @@ public:
     std::unique_ptr<ICard> playCard(const std::string& name) override;
     void drawCards(std::vector<std::unique_ptr<ICard>> cards) override; 
     //std::shared_ptr<IClient> getClient() override;
-	std::string_view getCards() override;
+	std::string getCards() override;
 	std::string_view getUsername() override;
     void discardHand();
+	inline void viewCards() { m_hand->viewCards(); };
 	int getCardCount();
  
 private:

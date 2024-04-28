@@ -16,7 +16,7 @@ public:
     virtual const int getCount() = 0;
     virtual const bool hasCard(std::string_view name) = 0;
 	virtual void discardAll() = 0;
-	virtual std::string_view getCards() = 0;
+	virtual std::string getCards() = 0;
     virtual ~IHand() {};
 
 };
