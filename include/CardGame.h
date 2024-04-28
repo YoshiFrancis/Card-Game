@@ -2,8 +2,7 @@
 #define CARDGAME_H
 
 #include "IGame.h"
-#include "IServer.h"
-#include "IClient.h"
+#include "IConnection.h"
 #include "PlayerContainer.h"
 #include "Deck.h"
 #include <memory>
@@ -29,8 +28,7 @@ public:
     void startGame() override;
     void runGame() override;
     void endGame() override;
-	void addPlayer(std::shared_ptr<IClient> client) override;
-	std::shared_ptr<IServer> getServer() override;
+	void addPlayer(std::shared_ptr<IConnection> client) override;
     std::string_view getId() override;
 	void receiveMessage(Message message) override;
 

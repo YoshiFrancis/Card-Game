@@ -1,5 +1,5 @@
 #include "IServer.h"
-#include "IClient.h"
+#include "IConnection.h"
 #include "IGame.h"
 #include <meemory>
 #include <std::string_view>
@@ -15,8 +15,8 @@ public:
 private:
 	std::vector<IGame*> m_games;
 
-	void handle(const IClient& client, std::string_view message) override;
-	void sendMessage(const IClient& client, std::string_view message) override;
+	void handle(const IConnection& client, std::string_view message) override;
+	void sendMessage(const IConnection& client, std::string_view message) override;
 	void shutdown() override;
 	std::string_view generateId() const;
 

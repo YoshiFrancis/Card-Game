@@ -4,7 +4,7 @@
 #include "IPlayer.h"
 #include "ICard.h"
 #include "HandLocal.h"
-// #include "IClient.h"
+// #include "IConnection.h"
 #include <string_view>
 #include <string>
 #include <memory>
@@ -39,7 +39,7 @@ public:
 
     std::unique_ptr<ICard> playCard(const std::string& name) override;
     void drawCards(std::vector<std::unique_ptr<ICard>> cards) override; 
-    //std::shared_ptr<IClient> getClient() override;
+    //std::shared_ptr<IConnection> getClient() override;
 	std::string getCards() override;
 	std::string_view getUsername() override;
     void discardHand();
@@ -47,7 +47,7 @@ public:
 	int getCardCount();
  
 private:
-    // std::shared_ptr<IClient> m_client;
+    // std::shared_ptr<IConnection> m_client;
     std::unique_ptr<HandLocal> m_hand {};
     std::string_view m_username {};
   

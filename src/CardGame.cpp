@@ -1,6 +1,6 @@
 #include "CardGame.h"
 #include "IPlayer.h"
-#include "IClient.h"
+#include "IConnection.h"
 #include "IServer.h"
 #include <string_view>
 #include <iostream>
@@ -62,7 +62,7 @@ void CardGame::handle(Message message) {
 	}
 }
 
-std::string_view CardGame::addPlayer(std::shared_ptr<IClient> client) {
+std::string_view CardGame::addPlayer(std::shared_ptr<IConnection> client) {
 	Player player { client };
 	std::string_view playerName = m_player.addPlayer(std::move(player);
 	return playerName;

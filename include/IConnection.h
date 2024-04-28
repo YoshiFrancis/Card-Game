@@ -1,11 +1,11 @@
-#ifndef ICLIENT_H
-#define ICLIENT_H
+#ifndef ICONNECTION_H
+#define ICONNECTION_H
 
 #include <string_view>
 
 class IPlayer;
 
-class IClient {
+class IConnection {
 
 public: 
 

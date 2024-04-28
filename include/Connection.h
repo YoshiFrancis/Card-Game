@@ -1,12 +1,12 @@
-#ifndef CLIENT_H
-#define CLIENT_H
+#ifndef CONNECTION_H
+#define CONNECTION_HH
 
-#include "IClient.h"
+#include "IConnection.h"
 #include "IPlayer.h"
 #include "IHandler.h"
 #include <memory>
 
-class Client : public IClient {
+class Client : public IConnection {
 
 public:
 	Client(std::shared_ptr<IHandler> handler) : m_handler { handler }

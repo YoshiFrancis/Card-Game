@@ -27,7 +27,7 @@ void Server::listen() override {
 	Server::handle(client, message);
 }
 
-void Server::handle(IClient& client, std::string_view message) {
+void Server::handle(IConnection& client, std::string_view message) {
 	if (message[0] == 'J') {
 		// user is joining the game
 		// will need to ask for username
@@ -58,13 +58,13 @@ void Server::handle(IClient& client, std::string_view message) {
 	}
 }
 
-void Server::sendMessage(const IClient& client, std::string_view message) {
+void Server::sendMessage(const IConnection& client, std::string_view message) {
 
 	// i do not know how sockets work on asio
 	// i shall ahve to do a little bit of reading ;)
 }
 
-void Server::endConnection(const IClient& client) {
+void Server::endConnection(const IConnection& client) {
 
 	// need to research how sockets and all that work on asio
 

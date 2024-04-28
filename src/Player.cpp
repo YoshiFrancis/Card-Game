@@ -13,7 +13,7 @@ void Player::drawCards(std::vector<std::unique_ptr<ICard>> cards) {
 }
 
 /*
-std::shared_ptr<IClient> Player::getClient() {
+std::shared_ptr<IConnection> Player::getClient() {
 	return m_client;
 }
 */
