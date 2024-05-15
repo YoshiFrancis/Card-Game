@@ -1,15 +1,14 @@
 #ifndef CARDGAME_H
 #define CARDGAME_H
 
-#include "IGame.h"
-#include "IConnection.h"
+#include "application.h"
+#include "ConnectionI.h"
 #include "PlayerContainer.h"
 #include "Deck.h"
-#include <memory>
 #include <string_view>
 #include <deque>
 
-class CardGame : public IGame {
+class CardGame : public Application {
 
 public:
 
@@ -25,28 +24,14 @@ public:
 		// end of the thread stuff
 	}
 
-    void startGame() override;
-    void runGame() override;
-    void endGame() override;
-	void addPlayer(std::shared_ptr<IConnection> client) override;
-    std::string_view getId() override;
-	void receiveMessage(Message message) override;
+	void start() override;
+	void end() override;
+	std::string_view getId() override;
 
 private:
-
-    void waitForPlayers();
-	void sendMessage(Message message) override;
-	void readBuffer();
-
-    Deck m_deck{};
-    PlayerContainer m_players{};
-	std::shared_ptr<IServer> m_server{};
-    std::string_view m_id{};
-	std::deque<Message> m_buffer;
-
-
-
-
+	Deck m_deck{};
+	PlayerContainer m_players{};
+	std::string_view m_id{};
 };
 
 #endif

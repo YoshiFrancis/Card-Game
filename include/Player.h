@@ -3,7 +3,7 @@
 
 #include "IPlayer.h"
 #include "ICard.h"
-#include "HandLocal.h"
+#include "Hand.h"
 #include <string_view>
 #include <string>
 #include <memory>
@@ -47,7 +47,7 @@ public:
  
 private:
 	conn_ptr m_conn;
-	HandLocal m_hand;
+	Hand m_hand;
 	std::string_view m_username;
 
 };
