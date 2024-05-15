@@ -4,7 +4,6 @@
 #include "IPlayer.h"
 #include "ICard.h"
 #include "HandLocal.h"
-// #include "IConnection.h"
 #include <string_view>
 #include <string>
 #include <memory>
@@ -14,8 +13,8 @@
 class Player : public IPlayer {
 public:
 
-    Player(std::string_view username="Guest") : m_username { username }, m_hand { std::make_unique<HandLocal>() }
-    {
+	Player(conn_ptr conn, std::string_view username="Guest") : m_conn { conn_ptr }, m_username { username }
+	{
 	}
 
 	~Player() = default;
@@ -37,20 +36,20 @@ public:
 		return *this;
 	}
 
-    std::unique_ptr<ICard> playCard(const std::string& name) override;
-    void drawCards(std::vector<std::unique_ptr<ICard>> cards) override; 
-    //std::shared_ptr<IConnection> getClient() override;
+	std::unique_ptr<ICard> playCard(const std::string& name) override;
+	void drawCards(std::vector<std::unique_ptr<ICard>> cards) override; 
+	conn_ptr getClient() override;
 	std::string getCards() override;
 	std::string_view getUsername() override;
-    void discardHand();
-	inline void viewCards() { m_hand->viewCards(); };
+	void discardHand();
+	inline void viewCards() { m_hand.viewCards(); };
 	int getCardCount();
  
 private:
-    // std::shared_ptr<IConnection> m_client;
-    std::unique_ptr<HandLocal> m_hand {};
-    std::string_view m_username {};
-  
+	conn_ptr m_conn;
+	HandLocal m_hand;
+	std::string_view m_username;
+
 };
 
 #endif
