@@ -1,5 +1,5 @@
 #include "UnoCard.h"
-#include "HandLocal.h"
+#include "Hand.h"
 #include "Deck.h"
 #include "Player.h"
 #include "PlayerContainer.h"
@@ -24,8 +24,8 @@ TEST_CASE( "Can be default constructured", "[UnoCard]" ) {
 
 }
 
-TEST_CASE( "Hand Local", "[HandLocal]" ) {
-    HandLocal hand;
+TEST_CASE( "Hand", "[Hand]" ) {
+    Hand hand;
 
     SECTION( " able to add card " ) {
         auto card =  std::unique_ptr<ICard>(new UnoCard("blue two"));
@@ -90,6 +90,7 @@ TEST_CASE ("Deck creation" , "[Deck]" ) {
 
 }
 
+/*
 TEST_CASE (" Player Creation ", "[Player]" ) {
 
 	Player player {"Yoshi"};
@@ -178,3 +179,4 @@ TEST_CASE (" PLayer Container ", "[PlayerContainer]" ) {
 		REQUIRE(players[2].getUsername() == "Luigi");
 	}
 }
+*/

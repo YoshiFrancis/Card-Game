@@ -1,12 +1,14 @@
 #ifndef IPLAYER_H
 #define IPLAYER_H
 
-#include "ConnectionI.h"
 #include "ICard.h"
 #include <string>
 #include <string_view>
 #include <memory>
 #include <vector>
+
+class ConnectionI;
+typedef std::shared_ptr<ConnectionI> conn_ptr;
 
 class IPlayer {
 public:

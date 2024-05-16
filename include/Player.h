@@ -4,6 +4,7 @@
 #include "IPlayer.h"
 #include "ICard.h"
 #include "Hand.h"
+#include "message.hpp"
 #include <string_view>
 #include <string>
 #include <memory>
@@ -13,7 +14,7 @@
 class Player : public IPlayer {
 public:
 
-	Player(conn_ptr conn, std::string_view username="Guest") : m_conn { conn_ptr }, m_username { username }
+	Player(conn_ptr conn, std::string_view username="Guest") : m_conn { conn }, m_username { username }
 	{
 	}
 
@@ -44,6 +45,7 @@ public:
 	void discardHand();
 	inline void viewCards() { m_hand.viewCards(); };
 	int getCardCount();
+	void handleMessage(message& message);
  
 private:
 	conn_ptr m_conn;

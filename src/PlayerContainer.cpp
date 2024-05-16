@@ -1,5 +1,6 @@
 #include "PlayerContainer.h"
 #include "Player.h"
+#include "ConnectionI.hpp"
 #include <vector>
 #include <string_view>
 #include <iterator>
@@ -13,6 +14,14 @@ bool PlayerContainer::addPlayer(Player player)  {
 	m_players.push_back(std::move(player));
 	++m_count;
 	return true;
+}
+
+void PlayerContainer::addClients(std::set<conn_ptr>& conns) {
+	std::for_each(conns.begin(), conns.end(), 
+		[&](conn_ptr conn)
+		{
+			m_players.emplace_back(conn, conn->getUsername());
+		});
 }
 
 bool PlayerContainer::removePlayer(std::string_view name)  {

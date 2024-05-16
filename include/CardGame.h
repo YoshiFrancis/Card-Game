@@ -12,8 +12,8 @@ class CardGame : public Application {
 
 public:
 
-	CardGame(std::string_view id = "1")
-	: m_id { id }
+	CardGame(std::set<conn_ptr>& connections)
+	: 
 	{
 		// create new thread to run the game in
 		
@@ -32,6 +32,9 @@ private:
 	Deck m_deck{};
 	PlayerContainer m_players{};
 	std::string_view m_id{};
+
+	void createPlayers();
+	void run();
 };
 
 #endif

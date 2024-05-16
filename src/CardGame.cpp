@@ -8,9 +8,8 @@
 
 bool isAccepting = true;
 
-void CardGame::startGame(IPlayer& player) {
-	auto player = CardGame::addPlayer(client);
-	CardGame::sendMessage(player, "What game would you like to play");
+void CardGame::start() {
+	m_players.addClients(connections);
 	std::string_view gameType{};
 	while (gameType != "Uno") {
 		CardGame::sendMessage(player, "What game would you like to play: Uno");
@@ -19,18 +18,18 @@ void CardGame::startGame(IPlayer& player) {
 	m_deck.createDeck(type);
 	// m_gamerunner = createRunner(type) --> for future to make the interfacing for runni =ng different card games easier
 	// would also potentially move the deck into the game runner as well
-    waitForPlayers();
 	CardGame::sendMessageAll("Now beginning the game...");
+	run();
 }
 
-void CardGame::runGame() {
+void CardGame::run() {
 	CardGame::sendMessageAll("Starting game...\n");
 	while (m_winner == "") {
 		std::for_each(m_players.begin(), m_players.end(), askPlayerForMove);
 	}
 }
 
-void CardGame::endGame() {
+void CardGame::end() {
 	if (m_winner != "") {
 		CardGame::sendMessageAll("The winner is " + m_winner "!\n");
 	} else {
@@ -62,40 +61,13 @@ void CardGame::handle(Message message) {
 	}
 }
 
-std::string_view CardGame::addPlayer(std::shared_ptr<IConnection> client) {
-	Player player { client };
-	std::string_view playerName = m_player.addPlayer(std::move(player);
-	return playerName;
-}
-
 std::string_view CardGame::getId() {
 	return m_id;
-}
-
-void CardGame::receiveMessage(Message message) override {
-	CardGame::handle(message.player.getClient(), message.message);
-}
-
-void CardGame::sendMessage(IPlayer& player, std::string_view message) override {
-	player.getClient().receiveMessage(message);
-}
-
-void CardGame::sendMessageAll(std::string_view message) {
-	std::for_each(m_players.getPlayers().begin(), m_players.getPlayers().end(), [&](auto player) { 
-		CardGame::sendMessage(player, messaage);
-	}
 }
 
 void askPlayerForMove(IPlayer& player) {
 	Message message = askPlayer(player, "What card will you player or would you like to draw a card?");
 	CardGame::handle(message);
-}
-
-void CardGame::waitForPlayers() {
-	while (isAccepting) {
-		CardGame::handle(CardGame::readBuffer());
-	}
-	CardGame::sendMessageAll("Closing the doors for new players...");
 }
 
 std::string_view askPlayer(IPlayer& player, std::string_view message) {
@@ -104,21 +76,3 @@ std::string_view askPlayer(IPlayer& player, std::string_view message) {
 	return response;
 }
 
-std::string_view CardGame::waitForMessage(IPlayer& player) {
-	while (true) {
-		Message message = CardGame::readBuffer();
-		if (message.username == player.getUsername()) 
-			return message.message;
-		else if (message.message != "")
-			CardGame::handle(message);
-	}
-}
-
-Message CardGame::readBuffer() {
-	Message message{};
-	if (m_buffer.size() > 0) {
-		message = m_buffer[0];
-		m_buffer.pop();
-	} 
-	return message;
-}
