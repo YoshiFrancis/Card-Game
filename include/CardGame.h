@@ -26,6 +26,7 @@ public:
 
 	void start() override;
 	void end() override;
+	void promptUser(std::string message, std::string prompt);
 	std::string_view getId() override;
 
 private:
@@ -33,6 +34,7 @@ private:
 	PlayerContainer m_players{};
 	std::string_view m_id{};
 
+	void handleMessage(message& msg, conn_ptr conn) override;
 	void createPlayers();
 	void run();
 };

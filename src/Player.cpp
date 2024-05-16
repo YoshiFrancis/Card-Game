@@ -13,7 +13,7 @@ void Player::drawCards(std::vector<std::unique_ptr<ICard>> cards) {
 	std::for_each(cards.begin(), cards.end(), [&](auto& card) { m_hand.addCard(std::move(card)); });
 }
 
-conn_ptr Player::getClient() {
+conn_ptr Player::getConn() {
 	return m_conn;
 }
 

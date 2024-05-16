@@ -39,6 +39,7 @@ public:
     SEVEN,
     EIGHT,
     NINE,
+		DRAW,
     max_symbols
   };
 
@@ -50,7 +51,7 @@ public:
 
 private:
   std::vector<std::string> m_colorStrings = { "red", "blue", "green", "yellow", "all" };
-  std::vector<std::string> m_symbolStrings = { "plus4", "change", "skip", "reverse", "plus2", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
+  std::vector<std::string> m_symbolStrings = { "plus4", "change", "skip", "reverse", "plus2", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "draw" };
   std::string m_color_str;
   std::string m_symbol_str;
   COLOR m_color;
