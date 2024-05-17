@@ -5,15 +5,14 @@
 #include <algorithm>
 
 static void askPlayerForMove(Player& player);
-void promptPlayer(std::string player_msg, std::string prompt, Player& player);
+static void promptPlayer(std::string player_msg, std::string prompt, Player& player);
 
 Application* CardGame::createApplication() {
 	return new CardGame();
 }
 
-void CardGame::start() {
-	std::cout << "card game starting\n";
-	m_players.addClients(connections_);
+void CardGame::start(std::set<conn_ptr>& conns) {
+	addConns(conns);
 	std::string_view type {"Uno"};
 	m_deck.createDeck("Uno");
 	// m_gamerunner = createRunner(type) --> for future to make the interfacing for runni =ng different card games easier
@@ -35,7 +34,12 @@ void CardGame::end() {
 	std::cout << "card game ending\n";
 }
 
+std::string CardGame::getDescription() {
+	return "Uno Game";
+}
+
 void CardGame::addConns(std::set<conn_ptr>& conns) {
+	connections_ = conns;
 	// create player for each connections)
 }
 
