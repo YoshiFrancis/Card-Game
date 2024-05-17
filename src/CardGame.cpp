@@ -4,20 +4,27 @@
 #include <iostream>
 #include <algorithm>
 
+static void askPlayerForMove(Player& player);
+void promptPlayer(std::string player_msg, std::string prompt, Player& player);
+
+Application* CardGame::createApplication() {
+	return new CardGame();
+}
+
 void CardGame::start() {
 	std::cout << "card game starting\n";
 	m_players.addClients(connections_);
 	std::string_view type {"Uno"};
-	m_deck.createDeck(type);
+	m_deck.createDeck("Uno");
 	// m_gamerunner = createRunner(type) --> for future to make the interfacing for runni =ng different card games easier
 	// would also potentially move the deck into the game runner as well
-	deliverAll("Now beginning the game...");
+	alert("Now beginning the game...");
 	run();
 }
 
 void CardGame::run() {
 	std::cout << "card game running\n";
-	std::for_each(m_players.begin(), m_players.end(), askPlayerForMove);
+	std::for_each(m_players.getPlayers().begin(), m_players.getPlayers().end(), askPlayerForMove);
 	/*
 	while (m_winner == "") {
 	}
@@ -28,17 +35,17 @@ void CardGame::end() {
 	std::cout << "card game ending\n";
 }
 
-std::string_view CardGame::getId() {
-	return m_id;
+void CardGame::addConns(std::set<conn_ptr>& conns) {
+	// create player for each connections)
 }
 
-void handleMessage(message& msg, conn_ptr conn) {
+void CardGame::handleMessage(message& msg, conn_ptr conn) {
 	std::cout << msg.body() << "\n";
 }
 
-void promptPlayer(std::string message, std::string prompt, Player& player) {
+void promptPlayer(std::string player_msg, std::string prompt, Player& player) {
 	player.getConn()->setPrompt(prompt);
-	message msg { message, 'Q' };
+	message msg { player_msg, 'Q' };
 	msg.encode_header();
 	player.getConn()->deliver(msg);
 }
