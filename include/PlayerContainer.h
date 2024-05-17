@@ -12,7 +12,7 @@ class PlayerContainer : public IPlayerContainer {
 public:
 
 	bool addPlayer(Player player) override;
-	void addClients(std::set<conn_ptr>& conns);
+	void addConns(std::set<conn_ptr>& conns);
 	bool removePlayer(std::string_view name) override;
 	std::vector<Player>::iterator findPlayer(std::string_view name) override;
 	std::vector<Player>& getPlayers() override;

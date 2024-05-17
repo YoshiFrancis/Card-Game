@@ -16,7 +16,7 @@ bool PlayerContainer::addPlayer(Player player)  {
 	return true;
 }
 
-void PlayerContainer::addClients(std::set<conn_ptr>& conns) {
+void PlayerContainer::addConns(std::set<conn_ptr>& conns) {
 	std::for_each(conns.begin(), conns.end(), 
 		[&](conn_ptr conn)
 		{

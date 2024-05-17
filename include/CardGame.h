@@ -22,6 +22,8 @@ public:
 private:
 	Deck m_deck{};
 	PlayerContainer m_players{};
+	bool isPlaying = true;
+	void askPlayerForMove(Player& player);
 
 	void addConns(std::set<conn_ptr>& conns);
 	void handleMessage(message& msg, conn_ptr conn) override;

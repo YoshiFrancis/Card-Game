@@ -4,8 +4,7 @@
 #include <iostream>
 #include <algorithm>
 
-static void askPlayerForMove(Player& player);
-static void promptPlayer(std::string player_msg, std::string prompt, Player& player);
+void promptPlayer(std::string player_msg, std::string prompt, Player& player);
 
 Application* CardGame::createApplication() {
 	return new CardGame();
@@ -23,7 +22,13 @@ void CardGame::start(std::set<conn_ptr>& conns) {
 
 void CardGame::run() {
 	std::cout << "card game running\n";
-	std::for_each(m_players.getPlayers().begin(), m_players.getPlayers().end(), askPlayerForMove);
+	std::for_each(m_players.getPlayers().begin(), m_players.getPlayers().end(), 
+		[this](Player& player) 
+		{
+		// start thread
+			askPlayerForMove(player); // is blocking so must put it inside a thread
+		// join thread
+		});
 	/*
 	while (m_winner == "") {
 	}
@@ -40,11 +45,15 @@ std::string CardGame::getDescription() {
 
 void CardGame::addConns(std::set<conn_ptr>& conns) {
 	connections_ = conns;
+	m_players.addConns(conns);
 	// create player for each connections)
 }
 
 void CardGame::handleMessage(message& msg, conn_ptr conn) {
-	std::cout << msg.body() << "\n";
+	if (conn->isPrompt("Turn")) {
+		alert(conn->getUsername() + " played the card " + msg.body());
+		isPlaying = false;
+	}
 }
 
 void promptPlayer(std::string player_msg, std::string prompt, Player& player) {
@@ -54,8 +63,12 @@ void promptPlayer(std::string player_msg, std::string prompt, Player& player) {
 	player.getConn()->deliver(msg);
 }
 
-void askPlayerForMove(Player& player) {
+void CardGame::askPlayerForMove(Player& player) {
+	while (isPlaying) {} // to make sure two players dont move at the same time
+/*
 	promptPlayer("Your turn!", "Turn", player);
+	isPlaying = true;
+*/
 }
 	
 	
