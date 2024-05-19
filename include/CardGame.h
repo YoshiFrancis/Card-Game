@@ -13,11 +13,16 @@ class CardGame : public Application {
 
 public:
 
+	CardGame(Room* lobby) 
+		: Application(lobby)
+	{
+	}
+
 	void start(std::set<conn_ptr>& conns) override;
 	void end() override;
 	void promptUser(std::string message, std::string prompt);
 	std::string getDescription() override;
-	Application* createApplication() override;
+	Application* createApplication(Room* lobby) override;
 
 private:
 	Deck m_deck{};
@@ -26,7 +31,8 @@ private:
 	void askPlayerForMove(Player& player);
 	int curr_player_idx = 0;
 
-	void addConns(std::set<conn_ptr>& conns);
+	void promptPlayer(std::string player_msg, std::string prompt, Player& player);
+	void addConns(std::set<conn_ptr>& connections);
 	void handleMessage(message& msg, conn_ptr conn) override;
 	void createPlayers();
 	void run();
