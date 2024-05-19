@@ -3,6 +3,7 @@
 #include <string_view>
 #include <iostream>
 #include <algorithm>
+#include <thread>
 
 void promptPlayer(std::string player_msg, std::string prompt, Player& player);
 
@@ -14,25 +15,12 @@ void CardGame::start(std::set<conn_ptr>& conns) {
 	addConns(conns);
 	std::string_view type {"Uno"};
 	m_deck.createDeck("Uno");
-	// m_gamerunner = createRunner(type) --> for future to make the interfacing for runni =ng different card games easier
-	// would also potentially move the deck into the game runner as well
-	alert("Now beginning the game...");
+	std::cout << m_players.getPlayers().size() << " current players\n";
 	run();
 }
 
 void CardGame::run() {
-	std::cout << "card game running\n";
-	std::for_each(m_players.getPlayers().begin(), m_players.getPlayers().end(), 
-		[this](Player& player) 
-		{
-		// start thread
-			askPlayerForMove(player); // is blocking so must put it inside a thread
-		// join thread
-		});
-	/*
-	while (m_winner == "") {
-	}
-	*/
+	askPlayerForMove(m_players.getPlayers()[curr_player_idx]);
 }
 
 void CardGame::end() {
@@ -46,13 +34,17 @@ std::string CardGame::getDescription() {
 void CardGame::addConns(std::set<conn_ptr>& conns) {
 	connections_ = conns;
 	m_players.addConns(conns);
-	// create player for each connections)
 }
 
 void CardGame::handleMessage(message& msg, conn_ptr conn) {
 	if (conn->isPrompt("Turn")) {
 		alert(conn->getUsername() + " played the card " + msg.body());
-		isPlaying = false;
+		conn->setPrompt("None");
+		if (curr_player_idx == m_players.getPlayerCount())
+		{
+			curr_player_idx = 0;
+		}
+		askPlayerForMove(m_players.getPlayers()[curr_player_idx++]);
 	}
 }
 
@@ -60,15 +52,12 @@ void promptPlayer(std::string player_msg, std::string prompt, Player& player) {
 	player.getConn()->setPrompt(prompt);
 	message msg { player_msg, 'Q' };
 	msg.encode_header();
+	std::cout << "Asking " << player.getUsername() << " for move!\n";
 	player.getConn()->deliver(msg);
 }
 
 void CardGame::askPlayerForMove(Player& player) {
-	while (isPlaying) {} // to make sure two players dont move at the same time
-/*
 	promptPlayer("Your turn!", "Turn", player);
-	isPlaying = true;
-*/
 }
 	
 	

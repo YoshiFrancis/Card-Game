@@ -16,7 +16,7 @@ public:
 	virtual void drawCards(std::vector<std::unique_ptr<ICard>> cards) = 0;
 	virtual std::string getCards() = 0;
 	virtual conn_ptr getConn() = 0;
-	virtual std::string_view getUsername() = 0; 
+	virtual std::string getUsername() = 0; 
 
 	virtual ~IPlayer() {};
 

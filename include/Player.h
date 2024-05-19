@@ -14,8 +14,9 @@
 class Player : public IPlayer {
 public:
 
-	Player(conn_ptr conn, std::string_view username="Guest") : m_conn { conn }, m_username { username }
+	Player(conn_ptr conn, std::string username="Guest") : m_conn { conn }, m_username { username }
 	{
+		std::cout << m_username << " player has been created!\n";
 	}
 
 	~Player() = default;
@@ -24,6 +25,7 @@ public:
 
 	Player(Player&& other) noexcept
 	{
+		m_conn = other.m_conn;
 		m_username = other.m_username;
 		m_hand = std::move(other.m_hand);
 	}
@@ -41,7 +43,7 @@ public:
 	void drawCards(std::vector<std::unique_ptr<ICard>> cards) override; 
 	conn_ptr getConn() override;
 	std::string getCards() override;
-	std::string_view getUsername() override;
+	std::string getUsername() override;
 	void discardHand();
 	inline void viewCards() { m_hand.viewCards(); };
 	int getCardCount();
@@ -50,7 +52,7 @@ public:
 private:
 	conn_ptr m_conn;
 	Hand m_hand;
-	std::string_view m_username;
+	std::string m_username;
 
 };
 

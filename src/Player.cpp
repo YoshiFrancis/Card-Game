@@ -25,7 +25,7 @@ void Player::discardHand() {
 	m_hand.discardAll();
 }
 
-std::string_view Player::getUsername() {
+std::string Player::getUsername() {
 	return m_username;
 }
 
