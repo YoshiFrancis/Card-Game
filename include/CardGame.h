@@ -32,7 +32,7 @@ private:
 	int curr_player_idx = 0;
 
 	void promptPlayer(std::string player_msg, std::string prompt, Player& player);
-	void addConns(std::set<conn_ptr>& connections);
+	void addConns(std::set<conn_ptr> connections);
 	void handleMessage(message& msg, conn_ptr conn) override;
 	void createPlayers();
 	void run();
