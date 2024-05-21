@@ -21,6 +21,7 @@ void PlayerContainer::addConns(std::set<conn_ptr>& conns) {
 		[&](conn_ptr conn)
 		{
 			m_players.emplace_back(conn, conn->getUsername());
+			++m_count;
 		});
 }
 

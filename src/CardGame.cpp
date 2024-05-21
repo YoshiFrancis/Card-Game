@@ -18,7 +18,7 @@ void CardGame::start(std::set<conn_ptr>& connections) {
 }
 
 void CardGame::run() {
-	askPlayerForMove(m_players.getPlayers()[curr_player_idx]);
+	askPlayerForMove(m_players.getPlayers()[curr_player_idx++]);
 }
 
 void CardGame::end() {
@@ -92,7 +92,7 @@ void CardGame::handleCommand(message& msg, conn_ptr conn) {
 std::string CardGame::getRoomInfo() {
 	std::string info_string {"CardGame: "};
 	info_string += "\nGame: Uno";
-	info_string += "\nTotal players: " + std::to_string(m_players.getPlayers().size());
+	info_string += "\nTotal players: " + std::to_string(m_players.getPlayerCount());
 	info_string += "\nPlayers: ";
 	std::for_each(m_players.getPlayers().begin(), m_players.getPlayers().end(),
 		[&info_string](auto& player)
