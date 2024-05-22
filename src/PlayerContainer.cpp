@@ -2,7 +2,7 @@
 #include "Player.h"
 #include "ConnectionI.hpp"
 #include <vector>
-#include <string_view>
+#include <string>
 #include <iterator>
 #include <algorithm>
 #include <memory>
@@ -25,7 +25,7 @@ void PlayerContainer::addConns(std::set<conn_ptr>& conns) {
 		});
 }
 
-bool PlayerContainer::removePlayer(std::string_view name)  {
+bool PlayerContainer::removePlayer(std::string name)  {
 	if (m_count == 0) 
 		return false;
 	auto playerIt = PlayerContainer::findPlayer(name);
@@ -36,7 +36,7 @@ bool PlayerContainer::removePlayer(std::string_view name)  {
 	return true;
 }
 
-std::vector<Player>::iterator PlayerContainer::findPlayer(std::string_view name)  {
+std::vector<Player>::iterator PlayerContainer::findPlayer(std::string name)  {
 	return std::find_if(m_players.begin(), m_players.end(), [&](auto& player) { 
 		return player.getUsername() == name;
 	});

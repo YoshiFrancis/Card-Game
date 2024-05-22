@@ -1,7 +1,7 @@
 #include "IPlayerContainer.h"
 #include "Player.h"
 #include <vector>
-#include <string_view>
+#include <string>
 #include <iterator>
 #include <set>
 
@@ -13,8 +13,8 @@ public:
 
 	bool addPlayer(Player player) override;
 	void addConns(std::set<conn_ptr>& conns);
-	bool removePlayer(std::string_view name) override;
-	std::vector<Player>::iterator findPlayer(std::string_view name) override;
+	bool removePlayer(std::string name) override;
+	std::vector<Player>::iterator findPlayer(std::string name) override;
 	std::vector<Player>& getPlayers() override;
 	int getPlayerCount();
 	int getMaxCount();

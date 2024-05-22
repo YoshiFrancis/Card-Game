@@ -17,6 +17,20 @@ void CardGame::start(std::set<conn_ptr>& connections) {
 	run();
 }
 
+void CardGame::leave(conn_ptr conn) {
+	alert(conn->getUsername() + " is leaving!");
+	if (conn->isPrompt("Turn")) {
+		askPlayerForMove(m_players.getPlayers()[curr_player_idx++]);
+	}
+	m_players.removePlayer(conn->getUsername());
+	Room::leave(conn);
+	conn->setPrompt("None");
+	std::cout << "HELLO\n";
+	for (auto& player : m_players.getPlayers()) {
+		std::cout << player.getUsername() << " ";
+	}
+}
+
 void CardGame::run() {
 	askPlayerForMove(m_players.getPlayers()[curr_player_idx++]);
 }
@@ -84,8 +98,7 @@ void CardGame::handleCommand(message& msg, conn_ptr conn) {
 		conn->deliver(commands_msg);
 	}
 	else if (msg.body().substr(0, 6) == "/leave") {
-		leave(conn);
-		return_room_->join(conn);
+		conn->changeRoom(return_room_);
 	}
 }
 

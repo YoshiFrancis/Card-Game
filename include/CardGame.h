@@ -21,6 +21,7 @@ public:
 	void start(std::set<conn_ptr>& conns) override;
 	void end() override;
 	void promptUser(std::string message, std::string prompt);
+	void leave(conn_ptr) override;
 	std::string getDescription() override;
 	Application* createApplication(Room* lobby) override;
 
