@@ -36,6 +36,7 @@ public:
 	{
 		m_username = other.m_username;
 		m_hand = std::move(other.m_hand);
+		m_conn = other.m_conn;
 		return *this;
 	}
 

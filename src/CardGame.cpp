@@ -18,18 +18,14 @@ void CardGame::start(std::set<conn_ptr>& connections) {
 }
 
 void CardGame::leave(conn_ptr conn) {
-	bool ask_next = false;
 	alert(conn->getUsername() + " is leaving!");
 	if (conn->isPrompt("Turn")) {
+		advancePlayerTurn();
 		conn->setPrompt("None");
-		ask_next = true;
 	}
 	m_players.removePlayer(conn->getUsername());
 	Room::leave(conn);
-	if (ask_next) {
-		advancePlayerTurn();
-		askPlayerForMove(*m_curr_player_iter);
-	}
+	askPlayerForMove(*m_curr_player_iter);
 }
 
 void CardGame::run() {
@@ -126,7 +122,6 @@ std::string CardGame::getCommands() {
 }
 
 void CardGame::promptPlayer(std::string player_msg, std::string prompt, Player& player) {
-	std::cout << "in prompt: " << player.getUsername() << "\n";
 	player.getConn()->setPrompt(prompt);
 	message msg { player_msg, 'Q' };
 	msg.encode_header();
@@ -138,7 +133,7 @@ void CardGame::askPlayerForMove(Player& player) {
 }
 
 void CardGame::advancePlayerTurn() {
-	std::next(m_curr_player_iter);
+	m_curr_player_iter = std::next(m_curr_player_iter, 1);
 	if (m_curr_player_iter == m_players.end()) {
 		m_curr_player_iter = m_players.begin();
 	}
