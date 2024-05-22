@@ -1,7 +1,7 @@
 #include "PlayerContainer.h"
 #include "Player.h"
 #include "ConnectionI.hpp"
-#include <list>
+#include <vector>
 #include <string>
 #include <iterator>
 #include <algorithm>
@@ -25,21 +25,19 @@ void PlayerContainer::addConns(std::set<conn_ptr>& conns) {
 		});
 }
 
-void PlayerContainer::removePlayer(std::string name)  {
+bool PlayerContainer::removePlayer(std::string name)  {
+	if (m_count == 0) 
+		return false;
 	auto playerIt = PlayerContainer::findPlayer(name);
+	if (playerIt == m_players.end())
+		return false;
 	m_players.erase(playerIt);
 	--m_count;
+	std::cout << "New m_players size: " << m_players.size() << "\n";
+	return true;
 }
 
-player_iter PlayerContainer::end() {
-	return m_players.end();
-}
-
-player_iter PlayerContainer::begin() {
-	return m_players.begin();
-}
-
-player_iter PlayerContainer::findPlayer(std::string name)  {
+std::list<Player>::iterator PlayerContainer::findPlayer(std::string name)  {
 	return std::find_if(m_players.begin(), m_players.end(), [&](auto& player) { 
 		return player.getUsername() == name;
 	});
@@ -47,7 +45,6 @@ player_iter PlayerContainer::findPlayer(std::string name)  {
 
 Player& PlayerContainer::getPlayer(std::string name) {
 	return *findPlayer(name);
-}
 
 int PlayerContainer::getPlayerCount() {
 	return m_count;

@@ -30,12 +30,13 @@ private:
 	PlayerContainer m_players{};
 	bool isPlaying = true;
 	void askPlayerForMove(Player& player);
-	int curr_player_idx = 0;
+	player_iter m_curr_player_iter;
 
 	void promptPlayer(std::string player_msg, std::string prompt, Player& player);
 	void addConns(std::set<conn_ptr> connections);
 	void handleMessage(message& msg, conn_ptr conn) override;
 	void handleCommand(message& msg, conn_ptr conn) override;
+	void advancePlayerTurn();
 	std::string getRoomInfo() override;
 	std::string getCommands() override;
 	void createPlayers();

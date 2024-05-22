@@ -3,19 +3,20 @@
 
 #include "Player.h"
 #include <string>
-#include <vector>
+#include <list>
 #include <iterator>
 
 class Player;
+
+typedef std::list<Player>::iterator player_iter;
 
 class IPlayerContainer {
 
 public:
 	virtual ~IPlayerContainer() {}
 	virtual bool addPlayer(Player player) = 0;
-	virtual bool removePlayer(std::string name) = 0;
-	virtual std::vector<Player>::iterator findPlayer(std::string name) = 0;
-	virtual std::vector<Player>& getPlayers() = 0;
+	virtual void removePlayer(std::string name) = 0;
+	virtual player_iter findPlayer(std::string name) = 0;
     
 };
 

@@ -18,21 +18,22 @@ void CardGame::start(std::set<conn_ptr>& connections) {
 }
 
 void CardGame::leave(conn_ptr conn) {
+	bool ask_next = false;
 	alert(conn->getUsername() + " is leaving!");
 	if (conn->isPrompt("Turn")) {
-		askPlayerForMove(m_players.getPlayers()[curr_player_idx++]);
+		conn->setPrompt("None");
+		ask_next = true;
 	}
 	m_players.removePlayer(conn->getUsername());
 	Room::leave(conn);
-	conn->setPrompt("None");
-	std::cout << "HELLO\n";
-	for (auto& player : m_players.getPlayers()) {
-		std::cout << player.getUsername() << " ";
+	if (ask_next) {
+		advancePlayerTurn();
+		askPlayerForMove(*m_curr_player_iter);
 	}
 }
 
 void CardGame::run() {
-	askPlayerForMove(m_players.getPlayers()[curr_player_idx++]);
+	askPlayerForMove(*m_curr_player_iter);
 }
 
 void CardGame::end() {
@@ -51,20 +52,19 @@ void CardGame::addConns(std::set<conn_ptr> connections) {
 		{
 			conn->changeRoom(this);
 		});
+	m_curr_player_iter = m_players.begin();
 }
 
 void CardGame::handleMessage(message& msg, conn_ptr conn) {
+	std::cout << "Prompt: " << conn->getPrompt() << "\n";
 	if (msg.getFlag() == 'C') {
 		handleCommand(msg, conn);
 	}
 	else if (conn->isPrompt("Turn")) {
-		alert(conn->getUsername() + " played the card " + msg.body());
 		conn->setPrompt("None");
-		if (curr_player_idx >= m_players.getPlayerCount())
-		{
-			curr_player_idx = 0;
-		}
-		askPlayerForMove(m_players.getPlayers()[curr_player_idx++]);
+		alert(conn->getUsername() + " played the card " + msg.body());
+		advancePlayerTurn();
+		askPlayerForMove(*m_curr_player_iter);
 	}
 	else {
 		Room::handleMessage(msg, conn);
@@ -79,15 +79,15 @@ void CardGame::handleCommand(message& msg, conn_ptr conn) {
 		conn->deliver(info_msg);
 	}
 	else if (msg.body().substr(0, 5) == "/hand") {
-		auto player = m_players.findPlayer(conn->getUsername());
-		message hand_info_msg { "Your cards -\n" + player->getCards(), 'M' };
+		Player& player = m_players.getPlayer(conn->getUsername());
+		message hand_info_msg { "Your cards -\n" + player.getCards(), 'M' };
 		hand_info_msg.encode_header();
 		conn->deliver(hand_info_msg);
 	}
 	else if (msg.body().substr(0, 5) == "/draw") {
-		auto player = m_players.findPlayer(conn->getUsername());
+		Player& player = m_players.getPlayer(conn->getUsername());
 		auto drawn_card = m_deck.drawCards(1);
-		player->drawCards(std::move(drawn_card));
+		player.drawCards(std::move(drawn_card));
 		message drawn_cards_msg { "You received: " + drawn_card[0]->getName(), 'M'};
 		conn->deliver(drawn_cards_msg);
 	}
@@ -107,8 +107,8 @@ std::string CardGame::getRoomInfo() {
 	info_string += "\nGame: Uno";
 	info_string += "\nTotal players: " + std::to_string(m_players.getPlayerCount());
 	info_string += "\nPlayers: ";
-	std::for_each(m_players.getPlayers().begin(), m_players.getPlayers().end(),
-		[&info_string](auto& player)
+	std::for_each(m_players.begin(), m_players.end(),
+		[&info_string](Player& player)
 		{
 			info_string += " " + player.getUsername();
 		});
@@ -126,6 +126,7 @@ std::string CardGame::getCommands() {
 }
 
 void CardGame::promptPlayer(std::string player_msg, std::string prompt, Player& player) {
+	std::cout << "in prompt: " << player.getUsername() << "\n";
 	player.getConn()->setPrompt(prompt);
 	message msg { player_msg, 'Q' };
 	msg.encode_header();
@@ -135,5 +136,10 @@ void CardGame::promptPlayer(std::string player_msg, std::string prompt, Player& 
 void CardGame::askPlayerForMove(Player& player) {
 	promptPlayer("Your turn!", "Turn", player);
 }
-	
-	
+
+void CardGame::advancePlayerTurn() {
+	std::next(m_curr_player_iter);
+	if (m_curr_player_iter == m_players.end()) {
+		m_curr_player_iter = m_players.begin();
+	}
+}

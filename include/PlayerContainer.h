@@ -13,16 +13,18 @@ public:
 
 	bool addPlayer(Player player) override;
 	void addConns(std::set<conn_ptr>& conns);
-	bool removePlayer(std::string name) override;
-	std::vector<Player>::iterator findPlayer(std::string name) override;
-	std::vector<Player>& getPlayers() override;
+	void removePlayer(std::string name) override;
+	player_iter findPlayer(std::string name) override;
+	Player& getPlayer(std::string name);
+	player_iter end();
+	player_iter begin();
 	int getPlayerCount();
 	int getMaxCount();
 
 	~PlayerContainer() {};
 
 private:
-	std::vector<Player> m_players {};
+	std::list<Player> m_players {};
 	int m_count = 0;
 	int m_maxCount = 8;
 };
