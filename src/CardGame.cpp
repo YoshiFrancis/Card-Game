@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <set>
+#include <iterator>
 #include <cassert>
 
 #define STARTING_AMOUNT 5
@@ -67,6 +68,9 @@ void CardGame::handleMessage(message& msg, conn_ptr conn) {
 	else if (conn->isPrompt("Turn")) {
 		handleMove(msg, conn);
 	}
+	else if (conn->isPrompt("ChangeColor")) {
+		handleColorChange(msg, conn);
+	}
 	else {
 		Room::handleMessage(msg, conn);
 	}
@@ -129,12 +133,58 @@ void CardGame::handleMove(message& msg, conn_ptr conn) {
 	}
 	else {
 		std::cout << "4\n";
-		alert(conn->getUsername() + " played the card " + msg.body());
-		conn->setPrompt("None");
-		advancePlayerTurn();
-		askPlayerForMove(*m_curr_player_iter);
+		handleCard(msg, conn);
 	}
 }
+
+void CardGame::handleCard(message& msg, conn_ptr conn) {
+	alert(conn->getUsername() + " played the card " + msg.body());
+	std::string symbol = m_top_card->getSymbol();
+	conn->setPrompt("None");
+	std::string card_msg = "";
+	if (symbol == "plus4") {
+		promptPlayer("What color would you like to change to?", "ColorChange", *m_curr_player_it);
+		advancePlayerIt(1);
+		auto drawn_cards = m_deck.drawCards(4);
+		m_curr_player_it->drawCards(std::move(drawn_cards));
+		card_msg = m_curr_player_it->getUsername() + " draws 4 and has been skipped due to " + conn->getUsername();
+	} else if (symbol == "change") {
+		promptPlayer("What color would you like to change to?", "ColorChange", *m_curr_player_it);
+	} else if (symbol == "skip") {
+		advancePlayerIt(1);
+		card_msg = m_curr_player_it->getUsername() + " has been skipped by " + conn->getUsername();
+	} else if (symbol == "reverse") {
+		isReversed = !isReversed;
+		card_msg = "Order has been reversed!";
+	} else if (symbol == "plus2") {
+		advancePlayerIt(1);
+		auto drawn_cards = m_deck.drawCards(2);
+		m_curr_player_it->drawCards(std::move(drawn_cards));
+		card_msg = m_curr_player_it->getUsername() + " draws 2 and has been skipped due to " + conn->getUsername();
+	} 
+	advancePlayerIt(1);
+	if (conn->isPrompt("None")) {
+		askPlayerForMove(*m_curr_player_iter);
+	}
+	if (card_msg != "") {
+		message card_alert_msg { card_msg, 'M' };
+		alert(card_alert_msg);
+	}
+}
+	
+void CardGame::handleColorChange(message& msg, conn_ptr conn) {
+	if (UnoCard::getAllColors().count(msg.body()) == 1 && msg.body() != "all") {
+		m_top_card.setColor(msg.body());
+		message color_change_msg = { "Color has been changed to " + msg.body() + " by " + conn->getUsername(), 'M' };
+		alert(color_change_msg);
+		conn->setPrompt("None");
+		askPlayerForMove(*m_curr_plauer_iter);
+	} else {
+		message error_msg { "Invalid color has been entered. Please enter one of the following: yellow, blue, red, green", 'M' };
+		error_msg.encode_header();
+		conn->deliver(error_msg);
+	}
+}		
 
 std::string CardGame::getRoomInfo() {
 	std::string info_string {"CardGame: "};
@@ -170,9 +220,16 @@ void CardGame::askPlayerForMove(Player& player) {
 	promptPlayer("Your turn!", "Turn", player);
 }
 
-void CardGame::advancePlayerTurn() {
-	m_curr_player_iter = std::next(m_curr_player_iter, 1);
-	if (m_curr_player_iter == m_players.end()) {
-		m_curr_player_iter = m_players.begin();
+void CardGame::advancePlayerIt(int n) {
+	for (int counter = 0; counter < n; ++counter) {
+		int step = 1;
+		if (isReversed) {
+			step = -1;
+		}
+		std::advance(m_curr_player_iter, step);
+		auto end = isReversed ? std::prev(m_players.begin()) : m_players.end();
+		if (m_curr_player_iter == end) {
+			m_curr_player_iter = isReversed ? std::prev(m_players.end()) : m_players.begin();
+		}
 	}
 }

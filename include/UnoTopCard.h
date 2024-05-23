@@ -14,6 +14,7 @@ public:
 	}
 
 	bool replace(std::unique_ptr<ICard>& new_card) override;
+	void setColor(const std::string& color);
 
 private:
 	bool isValid(std::unique_ptr<ICard>& new_card) override;

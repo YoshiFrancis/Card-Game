@@ -39,6 +39,8 @@ private:
 	void handleMessage(message& msg, conn_ptr conn) override;
 	void handleCommand(message& msg, conn_ptr conn) override;
 	void handleMove(message& msg, conn_ptr conn);
+	void handleCard(message& msg, conn_ptr conn);
+	handleColorChange(message& msg, conn_ptr conn);
 	void advancePlayerTurn();
 	std::string getRoomInfo() override;
 	std::string getCommands() override;

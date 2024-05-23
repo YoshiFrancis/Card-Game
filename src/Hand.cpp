@@ -37,9 +37,7 @@ const bool Hand::hasCard(const std::string& name) {
 }
 
 std::list<std::unique_ptr<ICard>>::iterator Hand::findCard(const std::string& name) {
-	std::cout << "finding card operation done in Hand::findCard...\n";
 	auto it = std::find_if(m_cards.begin(), m_cards.end(), [&](auto& card) { return card->getName() == name; } );
-	std::cout << "finding card operation done in Hand::findCard...\n";
 	return it;
 }
 

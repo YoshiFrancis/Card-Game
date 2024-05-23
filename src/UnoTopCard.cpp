@@ -11,7 +11,7 @@ bool UnoTopCard::isValid(std::unique_ptr<ICard>& new_card) {
   if (m_top_card == nullptr 
 		|| m_color == color
 		|| m_symbol == symbol 
-		|| symbol == "all"
+		|| color == "all"
 	) {
     return true;
   } else {
@@ -22,11 +22,17 @@ bool UnoTopCard::isValid(std::unique_ptr<ICard>& new_card) {
 bool UnoTopCard::replace(std::unique_ptr<ICard>& new_card) {
   if (isValid(new_card)) {
 		std::tie(m_color, m_symbol) = _splitStringName(new_card->getName());
+		if (m_color == "all")
+			m_color = "blue";
     m_top_card = std::move(new_card);
     return true;
   } else {
     return false;
   }
+}
+
+void UnoTopCard::setColor(const std::string& color) {
+	m_color = color;
 }
 
 static std::tuple<std::string, std::string> _splitStringName(const std::string& name) {
@@ -37,3 +43,5 @@ static std::tuple<std::string, std::string> _splitStringName(const std::string& 
 	iss >> symbol;
 	return std::make_tuple(color, symbol);
 }
+
+
