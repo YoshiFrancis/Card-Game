@@ -1,5 +1,6 @@
+#ifndef UNOCARD_H
+#define UNOCARD_H
 #include "ICard.h"
-#include <string_view>
 #include <string>
 #include <vector>
 #include <sstream>
@@ -10,8 +11,7 @@ class UnoCard : public ICard {
 public:
 
   UnoCard(std::string name="RED ONE") {
-    splitStringName(name);
-    convertStringSymTypeToEnum();
+    splitStringName(name); convertStringSymTypeToEnum();
   }
 
   ~UnoCard() = default;
@@ -21,6 +21,7 @@ public:
     BLUE,
     GREEN,
     YELLOW,
+		ALL,
     max_colors
   };
 
@@ -54,11 +55,13 @@ private:
   std::vector<std::string> m_symbolStrings = { "plus4", "change", "skip", "reverse", "plus2", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "draw" };
   std::string m_color_str;
   std::string m_symbol_str;
-  COLOR m_color;
-  SYMBOL m_symbol;
+	COLOR m_color;
+	SYMBOL m_symbol;
 
 
   void splitStringName(const std::string& name);
   bool convertStringSymTypeToEnum();
   void convertCardToString();
 };
+
+#endif

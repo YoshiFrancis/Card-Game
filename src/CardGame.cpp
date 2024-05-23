@@ -6,6 +6,8 @@
 #include <set>
 #include <cassert>
 
+#define STARTING_AMOUNT 5
+
 Application* CardGame::createApplication(Room* lobby) {
 	return new CardGame(lobby);
 }
@@ -14,6 +16,12 @@ void CardGame::start(std::set<conn_ptr>& connections) {
 	addConns(connections);
 	std::string_view type {"Uno"};
 	m_deck.createDeck("Uno");
+	std::for_each(m_players.begin(), m_players.end(),
+		[&](auto& player)
+		{
+			auto cards = m_deck.drawCards(STARTING_AMOUNT); 
+			player.drawCards(std::move(cards));
+		});
 	run();
 }
 
@@ -82,14 +90,14 @@ void CardGame::handleCommand(message& msg, conn_ptr conn) {
 	}
 	else if (msg.body().substr(0, 5) == "/draw") {
 		Player& player = m_players.getPlayer(conn->getUsername());
-		std::cout << "1\n";
+
 		auto drawn_card = m_deck.drawCards(1);
-		std::cout << "2\n";
-		//message drawn_cards_msg { "You received: " + drawn_card[0]->getName(), 'M'};
-		std::cout << "3: " << drawn_card[0]->getName() << "\n";
+		message drawn_cards_msg { "Card drawn: " + drawn_card[0]->getName(), 'M' };
+
 		player.drawCards(std::move(drawn_card));
-		std::cout << "4\n";
-		//conn->deliver(drawn_cards_msg);
+
+		drawn_cards_msg.encode_header();
+		conn->deliver(drawn_cards_msg);
 	}
 	else if (msg.body().substr(0,5) == "/help") {
 		std::string commands_string = getCommands();
@@ -99,6 +107,31 @@ void CardGame::handleCommand(message& msg, conn_ptr conn) {
 	}
 	else if (msg.body().substr(0, 6) == "/leave") {
 		conn->changeRoom(return_room_);
+	}
+}
+
+void CardGame::handleMove(message& msg, conn_ptr conn) {
+	auto played_card = m_curr_player_iter->playCard(msg.body());
+	if (played_card != nullptr) {
+		message error_msg { "You do not own that card! Do /hand to view current cards or /draw if you do not have any valid cards", 'M' };
+		error_msg.encode_header();
+		conn->deliver(error_msg);
+	}
+	else if (!m_top_card.replace(played_card)) {
+		message error_msg { "You can't place that card!", 'M' };
+		error_msg.encode_header();
+		conn->deliver(error_msg);
+	}
+	/*
+		if(!m_top_card.replace(played_card)) {
+			m_curr_player_iter->drawCards({ std::move(played_card) });
+			askPlayerForMove(*m_curr_player_iter);
+		}
+		*/
+	else {
+		message error_msg { "You played an invalid card! Do /hand to view your current cards or /draw if you do not have any valid cards", 'M' };
+		error_msg.encode_header();
+		conn->deliver(error_msg);
 	}
 }
 
