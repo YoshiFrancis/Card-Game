@@ -7,9 +7,17 @@
 
 
 std::unique_ptr<ICard> Hand::useCard(const std::string& name) {
-   	auto card = findCard(name);
-    removeCard(name);
-    return std::move(*card);
+		std::cout << "in hand::useCard\n";
+   	auto cardIt = findCard(name);
+		if (cardIt == m_cards.end()) {
+			std::cout << "no card found\n";
+			return nullptr;
+		}
+		std::cout << "found card: " << name << "\n";
+		auto card = std::move(*cardIt);
+		m_cards.erase(cardIt);
+		--m_cardCount;
+    return std::move(card);
 }
 
 const void Hand::addCard(std::unique_ptr<ICard> card) {
@@ -28,13 +36,15 @@ const bool Hand::hasCard(const std::string& name) {
         return false;
 }
 
-std::vector<std::unique_ptr<ICard>>::iterator Hand::findCard(const std::string& name) {
-    auto it = std::find_if(m_cards.begin(), m_cards.end(), [&](auto& card) { return (*card).getName() == name; } );
+std::list<std::unique_ptr<ICard>>::iterator Hand::findCard(const std::string& name) {
+	std::cout << "finding card operation done in Hand::findCard...\n";
+	auto it = std::find_if(m_cards.begin(), m_cards.end(), [&](auto& card) { return card->getName() == name; } );
+	std::cout << "finding card operation done in Hand::findCard...\n";
 	return it;
 }
 
 void Hand::removeCard(const std::string& name) {
-    auto it = std::find_if(m_cards.begin(), m_cards.end(), [&](auto& card) { return (*card).getName() == name; } );
+    auto it = std::find_if(m_cards.begin(), m_cards.end(), [&](auto& card) { return card->getName() == name; } );
     m_cards.erase(it);
     --m_cardCount;
 }

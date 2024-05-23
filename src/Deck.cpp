@@ -7,7 +7,7 @@
 
 #define SHOW_RANDOMIZATION 0
 
-constexpr int UNO_DECK_COUNT = 25;
+constexpr int UNO_DECK_COUNT = 10;
 static std::unique_ptr<ICard> _generateUnoCard();
 
 
@@ -45,16 +45,18 @@ void Deck::randomizeDeck() {
 
 std::vector<std::unique_ptr<ICard>> Deck::drawCards(int count) {
     
-    std::vector<std::unique_ptr<ICard>> cards{};
-    if (count > m_count) {
-        std::cout << "Invalid number of cards\n";
-        return {};
-    }
+	std::vector<std::unique_ptr<ICard>> cards{};
+	if (count > m_count) {
+		count -= m_count;
+		cards = drawCards(m_count);
+		m_cards = generateDeck(UNO_DECK_COUNT, "Uno");
+		m_count = UNO_DECK_COUNT;
+	}
 
-    for (int idx {0}; idx < count; ++idx) 
-        cards.push_back(std::move(m_cards[idx]));
+	for (int idx {0}; idx < count; ++idx) 
+		cards.push_back(std::move(m_cards[idx]));
 
-    m_cards.erase(m_cards.begin(), m_cards.begin() + count);
+	m_cards.erase(m_cards.begin(), m_cards.begin() + count);
 	m_count -= count;
 
 	return cards;

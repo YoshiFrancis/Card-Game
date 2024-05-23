@@ -16,6 +16,31 @@ public:
 
   ~UnoCard() = default;
 
+	UnoCard& operator=(UnoCard& other) = delete;
+
+	UnoCard& operator=(UnoCard&& other) {
+		if (this == &other) {
+			return *this;
+		}
+	
+		m_color_str = other.m_color_str;
+		m_symbol_str = other.m_symbol_str;
+		m_color = other.m_color;
+		m_symbol = other.m_symbol;
+
+		return *this;
+	}
+
+	UnoCard(UnoCard&& other) {
+		m_color_str = other.m_color_str;
+		m_symbol_str = other.m_symbol_str;
+		m_color = other.m_color;
+		m_symbol = other.m_symbol;
+	}
+	
+
+
+
   enum COLOR {
     RED,
     BLUE,

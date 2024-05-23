@@ -42,6 +42,7 @@ public:
 
 	std::unique_ptr<ICard> playCard(const std::string& name) override;
 	void drawCards(std::vector<std::unique_ptr<ICard>> cards) override; 
+	void drawCards(std::unique_ptr<ICard> card) override;
 	conn_ptr getConn() override;
 	std::string getCards() override;
 	std::string getUsername() override;

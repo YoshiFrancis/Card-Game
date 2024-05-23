@@ -61,14 +61,11 @@ void CardGame::addConns(std::set<conn_ptr> connections) {
 
 void CardGame::handleMessage(message& msg, conn_ptr conn) {
 	std::cout << "Prompt: " << conn->getPrompt() << "\n";
-	if (msg.getFlag() == 'C') {
+	if (msg.getFlag() == 'C' || msg.body()[0] == '/') {
 		handleCommand(msg, conn);
 	}
 	else if (conn->isPrompt("Turn")) {
-		conn->setPrompt("None");
-		alert(conn->getUsername() + " played the card " + msg.body());
-		advancePlayerTurn();
-		askPlayerForMove(*m_curr_player_iter);
+		handleMove(msg, conn);
 	}
 	else {
 		Room::handleMessage(msg, conn);
@@ -105,6 +102,11 @@ void CardGame::handleCommand(message& msg, conn_ptr conn) {
 		commands_msg.encode_header();
 		conn->deliver(commands_msg);
 	}
+	else if (msg.body().substr(0,5) == "/peek") {
+		message top_card_msg { "Top Card: " + m_top_card.peek(), 'M' };
+		top_card_msg.encode_header();
+		conn->deliver(top_card_msg);
+	}
 	else if (msg.body().substr(0, 6) == "/leave") {
 		conn->changeRoom(return_room_);
 	}
@@ -112,26 +114,25 @@ void CardGame::handleCommand(message& msg, conn_ptr conn) {
 
 void CardGame::handleMove(message& msg, conn_ptr conn) {
 	auto played_card = m_curr_player_iter->playCard(msg.body());
-	if (played_card != nullptr) {
+	if (played_card == nullptr) {
+		std::cout << "2\n";
 		message error_msg { "You do not own that card! Do /hand to view current cards or /draw if you do not have any valid cards", 'M' };
 		error_msg.encode_header();
 		conn->deliver(error_msg);
 	}
 	else if (!m_top_card.replace(played_card)) {
+		std::cout << "3\n";
 		message error_msg { "You can't place that card!", 'M' };
+		m_curr_player_iter->drawCards( std::move(played_card) );
 		error_msg.encode_header();
 		conn->deliver(error_msg);
 	}
-	/*
-		if(!m_top_card.replace(played_card)) {
-			m_curr_player_iter->drawCards({ std::move(played_card) });
-			askPlayerForMove(*m_curr_player_iter);
-		}
-		*/
 	else {
-		message error_msg { "You played an invalid card! Do /hand to view your current cards or /draw if you do not have any valid cards", 'M' };
-		error_msg.encode_header();
-		conn->deliver(error_msg);
+		std::cout << "4\n";
+		alert(conn->getUsername() + " played the card " + msg.body());
+		conn->setPrompt("None");
+		advancePlayerTurn();
+		askPlayerForMove(*m_curr_player_iter);
 	}
 }
 

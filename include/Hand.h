@@ -6,6 +6,7 @@
 #include <string>
 #include <memory>
 #include <iterator>
+#include <list>
 
 class Hand : IHand {
 
@@ -19,10 +20,10 @@ public:
 	void viewCards();
 
 private:
-	std::vector<std::unique_ptr<ICard>> m_cards;
+	std::list<std::unique_ptr<ICard>> m_cards;
 	int m_cardCount { };
 
-	std::vector<std::unique_ptr<ICard>>::iterator findCard(const std::string& name);
+	std::list<std::unique_ptr<ICard>>::iterator findCard(const std::string& name);
 	void removeCard(const std::string& name);
 };
 
