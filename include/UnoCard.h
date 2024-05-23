@@ -43,7 +43,7 @@ public:
     max_symbols
   };
 
-  std::string_view getType() const override;
+  std::string getType() const override;
   std::string getName() const override;
   
   inline std::vector<std::string>& getAllColors() { return m_colorStrings; }

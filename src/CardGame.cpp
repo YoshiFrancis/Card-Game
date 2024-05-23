@@ -82,10 +82,14 @@ void CardGame::handleCommand(message& msg, conn_ptr conn) {
 	}
 	else if (msg.body().substr(0, 5) == "/draw") {
 		Player& player = m_players.getPlayer(conn->getUsername());
+		std::cout << "1\n";
 		auto drawn_card = m_deck.drawCards(1);
+		std::cout << "2\n";
+		//message drawn_cards_msg { "You received: " + drawn_card[0]->getName(), 'M'};
+		std::cout << "3: " << drawn_card[0]->getName() << "\n";
 		player.drawCards(std::move(drawn_card));
-		message drawn_cards_msg { "You received: " + drawn_card[0]->getName(), 'M'};
-		conn->deliver(drawn_cards_msg);
+		std::cout << "4\n";
+		//conn->deliver(drawn_cards_msg);
 	}
 	else if (msg.body().substr(0,5) == "/help") {
 		std::string commands_string = getCommands();

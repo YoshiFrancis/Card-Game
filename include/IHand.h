@@ -2,7 +2,7 @@
 #define IHAND_H
 
 #include <vector>
-#include <string_view>
+#include <string>
 
 #include "ICard.h"
 
@@ -11,13 +11,13 @@ public:
 
     IHand() {}
 
-    virtual std::unique_ptr<ICard> useCard(std::string_view name) = 0;
-    virtual const void addCard(std::unique_ptr<ICard> card) = 0;
-    virtual const int getCount() = 0;
-    virtual const bool hasCard(std::string_view name) = 0;
-	virtual void discardAll() = 0;
-	virtual std::string getCards() = 0;
-    virtual ~IHand() {};
+		virtual std::unique_ptr<ICard> useCard(const std::string& name) = 0;
+		virtual const void addCard(std::unique_ptr<ICard> card) = 0;
+		virtual const int getCount() = 0;
+		virtual const bool hasCard(const std::string& name) = 0;
+		virtual void discardAll() = 0;
+		virtual std::string getCards() = 0;
+		virtual ~IHand() {};
 
 };
 

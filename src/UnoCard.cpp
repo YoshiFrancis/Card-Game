@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 
-std::string_view UnoCard::getType() const {
+std::string UnoCard::getType() const {
     return "Uno";
 }
 

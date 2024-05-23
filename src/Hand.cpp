@@ -6,7 +6,7 @@
 #include <iostream>
 
 
-std::unique_ptr<ICard> Hand::useCard(std::string_view name) {
+std::unique_ptr<ICard> Hand::useCard(const std::string& name) {
    	auto card = findCard(name);
     removeCard(name);
     return std::move(*card);
@@ -21,19 +21,19 @@ const int Hand::getCount() {
     return m_cardCount;
 }
 
-const bool Hand::hasCard(std::string_view name) {
+const bool Hand::hasCard(const std::string& name) {
     if (findCard(name) != m_cards.end())
         return true;
     else 
         return false;
 }
 
-std::vector<std::unique_ptr<ICard>>::iterator Hand::findCard(std::string_view name) {
+std::vector<std::unique_ptr<ICard>>::iterator Hand::findCard(const std::string& name) {
     auto it = std::find_if(m_cards.begin(), m_cards.end(), [&](auto& card) { return (*card).getName() == name; } );
 	return it;
 }
 
-void Hand::removeCard(std::string_view name) {
+void Hand::removeCard(const std::string& name) {
     auto it = std::find_if(m_cards.begin(), m_cards.end(), [&](auto& card) { return (*card).getName() == name; } );
     m_cards.erase(it);
     --m_cardCount;
