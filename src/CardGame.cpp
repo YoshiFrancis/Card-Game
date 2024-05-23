@@ -29,7 +29,7 @@ void CardGame::start(std::set<conn_ptr>& connections) {
 void CardGame::leave(conn_ptr conn) {
 	alert(conn->getUsername() + " is leaving!");
 	if (conn->isPrompt("Turn")) {
-		advancePlayerTurn();
+		advancePlayerIt(1);
 		conn->setPrompt("None");
 	}
 	m_players.removePlayer(conn->getUsername());
@@ -139,46 +139,50 @@ void CardGame::handleMove(message& msg, conn_ptr conn) {
 
 void CardGame::handleCard(message& msg, conn_ptr conn) {
 	alert(conn->getUsername() + " played the card " + msg.body());
-	std::string symbol = m_top_card->getSymbol();
+	std::string symbol = m_top_card.getSymbol();
 	conn->setPrompt("None");
 	std::string card_msg = "";
 	if (symbol == "plus4") {
-		promptPlayer("What color would you like to change to?", "ColorChange", *m_curr_player_it);
+		promptPlayer("What color would you like to change to?", "ColorChange", *m_curr_player_iter);
 		advancePlayerIt(1);
 		auto drawn_cards = m_deck.drawCards(4);
-		m_curr_player_it->drawCards(std::move(drawn_cards));
-		card_msg = m_curr_player_it->getUsername() + " draws 4 and has been skipped due to " + conn->getUsername();
+		m_curr_player_iter->drawCards(std::move(drawn_cards));
+		card_msg = m_curr_player_iter->getUsername() + " draws 4 and has been skipped due to " + conn->getUsername();
 	} else if (symbol == "change") {
-		promptPlayer("What color would you like to change to?", "ColorChange", *m_curr_player_it);
+		promptPlayer("What color would you like to change to?", "ColorChange", *m_curr_player_iter);
 	} else if (symbol == "skip") {
 		advancePlayerIt(1);
-		card_msg = m_curr_player_it->getUsername() + " has been skipped by " + conn->getUsername();
+		card_msg = m_curr_player_iter->getUsername() + " has been skipped by " + conn->getUsername();
 	} else if (symbol == "reverse") {
 		isReversed = !isReversed;
 		card_msg = "Order has been reversed!";
 	} else if (symbol == "plus2") {
 		advancePlayerIt(1);
 		auto drawn_cards = m_deck.drawCards(2);
-		m_curr_player_it->drawCards(std::move(drawn_cards));
-		card_msg = m_curr_player_it->getUsername() + " draws 2 and has been skipped due to " + conn->getUsername();
+		m_curr_player_iter->drawCards(std::move(drawn_cards));
+		card_msg = m_curr_player_iter->getUsername() + " draws 2 and has been skipped due to " + conn->getUsername();
 	} 
 	advancePlayerIt(1);
 	if (conn->isPrompt("None")) {
 		askPlayerForMove(*m_curr_player_iter);
 	}
 	if (card_msg != "") {
-		message card_alert_msg { card_msg, 'M' };
-		alert(card_alert_msg);
+		alert(card_msg);
 	}
 }
 	
 void CardGame::handleColorChange(message& msg, conn_ptr conn) {
-	if (UnoCard::getAllColors().count(msg.body()) == 1 && msg.body() != "all") {
+	auto& colorsVec = UnoCard::getAllColors();
+	auto colorIt = std::find_if(colorsVec.begin(), colorsVec.end(), 
+		[msg] (const std::string& color) 
+		{
+			return color == msg.body();
+		});
+	if (colorIt != colorsVec.end() && *colorIt != "all") {
 		m_top_card.setColor(msg.body());
-		message color_change_msg = { "Color has been changed to " + msg.body() + " by " + conn->getUsername(), 'M' };
-		alert(color_change_msg);
+		alert("Color has been changed to " + msg.body() + " by " + conn->getUsername());
 		conn->setPrompt("None");
-		askPlayerForMove(*m_curr_plauer_iter);
+		askPlayerForMove(*m_curr_player_iter);
 	} else {
 		message error_msg { "Invalid color has been entered. Please enter one of the following: yellow, blue, red, green", 'M' };
 		error_msg.encode_header();

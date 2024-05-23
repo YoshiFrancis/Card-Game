@@ -35,6 +35,14 @@ void UnoTopCard::setColor(const std::string& color) {
 	m_color = color;
 }
 
+const std::string& UnoTopCard::getSymbol() {
+	return m_symbol;
+}
+
+const std::string& UnoTopCard::getColor() {
+	return m_symbol;
+}
+
 static std::tuple<std::string, std::string> _splitStringName(const std::string& name) {
 	std::istringstream iss(Helper::toLower(name), std::ios_base::in);
 	std::string color {};

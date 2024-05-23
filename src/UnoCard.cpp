@@ -23,23 +23,21 @@ void UnoCard::splitStringName(const std::string& name) {
 }
 
 bool UnoCard::convertStringSymTypeToEnum() {
-    int idx = 0;
-    for (idx = 0; idx < m_colorStrings.size(); ++idx) {
-        if (m_colorStrings[idx] == m_color_str)
-            UnoCard::m_color = static_cast<UnoCard::COLOR>(idx);
-    }
-    if (UnoCard::m_color == UnoCard::COLOR::max_colors)
-        return false;
+	int idx = 0;
+	for (idx = 0; idx < m_colorStrings.size(); ++idx) {
+		if (m_colorStrings[idx] == m_color_str)
+			UnoCard::m_color = static_cast<UnoCard::COLOR>(idx);
+	}
+	if (UnoCard::m_color == UnoCard::COLOR::max_colors)
+		return false;
 
-    for (idx = 0; idx < m_symbolStrings.size(); ++idx) {
-        if (m_symbolStrings[idx] == m_symbol_str) 
-            UnoCard::m_symbol = static_cast<UnoCard::SYMBOL>(idx);
-    if (UnoCard::m_symbol == UnoCard::SYMBOL::max_symbols) 
-        return false;
-    }
-
-
-    return true; // indicating strings are valid
+	for (idx = 0; idx < m_symbolStrings.size(); ++idx) {
+		if (m_symbolStrings[idx] == m_symbol_str) 
+			UnoCard::m_symbol = static_cast<UnoCard::SYMBOL>(idx);
+	}
+	if (UnoCard::m_symbol == UnoCard::SYMBOL::max_symbols) 
+		return false;
+	return true; // indicating strings are valid
 
 }
 

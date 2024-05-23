@@ -7,6 +7,9 @@
 #include <sstream>
 #include <iostream>
 
+static const std::vector<std::string> m_colorStrings = { "red", "blue", "green", "yellow", "all" };
+static const std::vector<std::string> m_symbolStrings = { "plus4", "change", "skip", "reverse", "plus2", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "draw" };
+
 class UnoCard : public ICard {
 
 public:
@@ -73,12 +76,10 @@ public:
   std::string getType() const override;
   std::string getName() const override;
   
-  static inline std::set<std::string>& getAllColors() { return m_colorStrings; }
-  static inline std::set<std::string>& getAllSymbols() { return m_symbolStrings; }
+  static inline const std::vector<std::string>& getAllColors() { return m_colorStrings; }
+  static inline const std::vector<std::string>& getAllSymbols() { return m_symbolStrings; }
 
 private:
-  static std::set<std::string> m_colorStrings = { "red", "blue", "green", "yellow", "all" };
-  static std::set<std::string> m_symbolStrings = { "plus4", "change", "skip", "reverse", "plus2", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "draw" };
   std::string m_color_str;
   std::string m_symbol_str;
 	COLOR m_color;

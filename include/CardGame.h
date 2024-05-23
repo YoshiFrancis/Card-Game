@@ -31,6 +31,7 @@ private:
 	PlayerContainer m_players{};
 	UnoTopCard m_top_card{};
 	bool isPlaying = true;
+	bool isReversed = false;
 	void askPlayerForMove(Player& player);
 	player_iter m_curr_player_iter;
 
@@ -40,8 +41,8 @@ private:
 	void handleCommand(message& msg, conn_ptr conn) override;
 	void handleMove(message& msg, conn_ptr conn);
 	void handleCard(message& msg, conn_ptr conn);
-	handleColorChange(message& msg, conn_ptr conn);
-	void advancePlayerTurn();
+	void handleColorChange(message& msg, conn_ptr conn);
+	void advancePlayerIt(int n);
 	std::string getRoomInfo() override;
 	std::string getCommands() override;
 	void createPlayers();
