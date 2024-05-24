@@ -55,8 +55,8 @@ void CardGame::end() {
 	if (hasWinner) {
 		alert(m_winner->getUsername() + " has won the game!");
 	}
-	
-	std::for_each(connections_.rbegin(), connections_.rend(), 
+	std::vector<conn_ptr> connectionsVec (connections_.begin(), connections_.end());
+	std::for_each(connectionsVec.begin(), connectionsVec.end(), 
 		[&](conn_ptr conn)
 		{
 			std::cout << "in ending...: " << conn->getUsername() << "\n";
