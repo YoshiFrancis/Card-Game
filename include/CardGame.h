@@ -32,8 +32,10 @@ private:
 	UnoTopCard m_top_card{};
 	bool isPlaying = true;
 	bool isReversed = false;
+	bool hasWinner = false;
 	void askPlayerForMove(Player& player);
 	player_iter m_curr_player_iter;
+	player_iter m_winner;
 
 	void promptPlayer(std::string player_msg, std::string prompt, Player& player);
 	void addConns(std::set<conn_ptr> connections);

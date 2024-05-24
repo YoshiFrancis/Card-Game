@@ -7,7 +7,7 @@
 #include <iterator>
 #include <cassert>
 
-#define STARTING_AMOUNT 5
+#define STARTING_AMOUNT 1
 
 Application* CardGame::createApplication(Room* lobby) {
 	return new CardGame(lobby);
@@ -23,7 +23,12 @@ void CardGame::start(std::set<conn_ptr>& connections) {
 			auto cards = m_deck.drawCards(STARTING_AMOUNT); 
 			player.drawCards(std::move(cards));
 		});
-	run();
+	if (m_players.getPlayerCount() <= 1) {
+		alert("not enough players...");
+		end();
+	} else {
+		run();
+	}
 }
 
 void CardGame::leave(conn_ptr conn) {
@@ -34,7 +39,11 @@ void CardGame::leave(conn_ptr conn) {
 	}
 	m_players.removePlayer(conn->getUsername());
 	Room::leave(conn);
-	askPlayerForMove(*m_curr_player_iter);
+	if (m_players.getPlayerCount() <= 1 && !hasWinner) {
+		end();
+	} else if (!hasWinner) {
+		askPlayerForMove(*m_curr_player_iter);
+	}
 }
 
 void CardGame::run() {
@@ -43,6 +52,17 @@ void CardGame::run() {
 
 void CardGame::end() {
 	std::cout << "card game ending\n";
+	if (hasWinner) {
+		alert(m_winner->getUsername() + " has won the game!");
+	}
+	
+	std::for_each(connections_.rbegin(), connections_.rend(), 
+		[&](conn_ptr conn)
+		{
+			std::cout << "in ending...: " << conn->getUsername() << "\n";
+			conn->changeRoom(return_room_);
+		});
+	//(*connections_.begin())->changeRoom(return_room_);
 }
 
 std::string CardGame::getDescription() {
@@ -141,6 +161,13 @@ void CardGame::handleCard(message& msg, conn_ptr conn) {
 	alert(conn->getUsername() + " played the card " + msg.body());
 	std::string symbol = m_top_card.getSymbol();
 	conn->setPrompt("None");
+	if (m_curr_player_iter->getCardCount() == 0) {
+		std::cout << m_curr_player_iter->getUsername() << " has won\n";
+		hasWinner = true;
+		m_winner = m_curr_player_iter;
+		end();
+		return;
+	}
 	std::string card_msg = "";
 	if (symbol == "plus4") {
 		promptPlayer("What color would you like to change to?", "ColorChange", *m_curr_player_iter);
