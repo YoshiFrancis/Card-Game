@@ -68,7 +68,7 @@ void CardGame::handleMessage(message& msg, conn_ptr conn) {
 	else if (conn->isPrompt("Turn")) {
 		handleMove(msg, conn);
 	}
-	else if (conn->isPrompt("ChangeColor")) {
+	else if (conn->isPrompt("ColorChange")) {
 		handleColorChange(msg, conn);
 	}
 	else {
@@ -180,8 +180,8 @@ void CardGame::handleColorChange(message& msg, conn_ptr conn) {
 		});
 	if (colorIt != colorsVec.end() && *colorIt != "all") {
 		m_top_card.setColor(msg.body());
-		alert("Color has been changed to " + msg.body() + " by " + conn->getUsername());
 		conn->setPrompt("None");
+		alert("Color has been changed to " + msg.body() + " by " + conn->getUsername());
 		askPlayerForMove(*m_curr_player_iter);
 	} else {
 		message error_msg { "Invalid color has been entered. Please enter one of the following: yellow, blue, red, green", 'M' };
