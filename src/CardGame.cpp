@@ -31,6 +31,10 @@ void CardGame::start(std::set<conn_ptr>& connections) {
 	}
 }
 
+void CardGame::reset() {
+	m_top_card.reset();
+}
+
 void CardGame::leave(conn_ptr conn) {
 	alert(conn->getUsername() + " is leaving!");
 	if (conn->isPrompt("Turn")) {
@@ -62,7 +66,7 @@ void CardGame::end() {
 			std::cout << "in ending...: " << conn->getUsername() << "\n";
 			conn->changeRoom(return_room_);
 		});
-	//(*connections_.begin())->changeRoom(return_room_);
+	return_room_->signalRoomTermination();
 }
 
 std::string CardGame::getDescription() {

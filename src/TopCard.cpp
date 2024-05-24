@@ -12,3 +12,7 @@ std::string TopCard::peek() {
 		return m_top_card->getName();
 	}
 }
+
+void TopCard::reset() {
+	m_top_card = nullptr;
+}
