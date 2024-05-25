@@ -7,7 +7,7 @@
 
 #define SHOW_RANDOMIZATION 0
 
-constexpr int UNO_DECK_COUNT = 10;
+constexpr int UNO_DECK_COUNT = 50;
 static std::unique_ptr<ICard> _generateUnoCard();
 
 
@@ -92,9 +92,8 @@ std::vector<std::unique_ptr<ICard>> Deck::generateDeck(int count, const std::str
 }
 
 static std::unique_ptr<ICard>  _generateUnoCard() {
-	UnoCard card{};
-	const std::vector<std::string>& colors = card.getAllColors();
-	const std::vector<std::string>& symbols = card.getAllSymbols();
+	const std::vector<std::string>& colors = UnoCard::.getAllColors();
+	const std::vector<std::string>& symbols = UnoCard::getAllSymbols();
 	auto color_size = colors.size();
 	auto symbols_size = symbols.size();
 	std::string color = colors[Helper::generateRandomNumber(0, color_size-1)];

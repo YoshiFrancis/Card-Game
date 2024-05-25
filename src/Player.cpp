@@ -37,7 +37,3 @@ std::string Player::getUsername() {
 int Player::getCardCount() {
 	return m_hand.getCount();
 }
-
-void Player::handleMessage(message& message) {
-
-}

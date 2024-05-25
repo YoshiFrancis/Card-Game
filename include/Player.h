@@ -46,10 +46,8 @@ public:
 	conn_ptr getConn() override;
 	std::string getCards() override;
 	std::string getUsername() override;
-	void discardHand();
-	inline void viewCards() { m_hand.viewCards(); };
-	int getCardCount();
-	void handleMessage(message& message);
+	void discardHand() override;
+	int getCardCount() override;
  
 private:
 	conn_ptr m_conn;

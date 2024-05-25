@@ -8,7 +8,7 @@
 #include <iostream>
 
 static const std::vector<std::string> m_colorStrings = { "red", "blue", "green", "yellow", "all" };
-static const std::vector<std::string> m_symbolStrings = { "plus4", "change", "skip", "reverse", "plus2", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "draw" };
+static const std::vector<std::string> m_symbolStrings = { "plus4", "change", "skip", "reverse", "plus2", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
 
 class UnoCard : public ICard {
 

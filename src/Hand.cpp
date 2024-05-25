@@ -3,17 +3,13 @@
 #include <algorithm>
 #include <memory>
 #include <iterator>
-#include <iostream>
 
 
 std::unique_ptr<ICard> Hand::useCard(const std::string& name) {
-		std::cout << "in hand::useCard\n";
    	auto cardIt = findCard(name);
 		if (cardIt == m_cards.end()) {
-			std::cout << "no card found\n";
 			return nullptr;
 		}
-		std::cout << "found card: " << name << "\n";
 		auto card = std::move(*cardIt);
 		m_cards.erase(cardIt);
 		--m_cardCount;
@@ -25,11 +21,11 @@ const void Hand::addCard(std::unique_ptr<ICard> card) {
     m_cards.push_back(std::move(card));
 }
 
-const int Hand::getCount() {
+int Hand::getCount() {
     return m_cardCount;
 }
 
-const bool Hand::hasCard(const std::string& name) {
+bool Hand::hasCard(const std::string& name) {
     if (findCard(name) != m_cards.end())
         return true;
     else 
@@ -56,8 +52,4 @@ std::string Hand::getCards() {
 	std::string cards {};
 	std::for_each(m_cards.begin(), m_cards.end(), [&](auto& card) { cards += card->getName() + " "; });
 	return std::move(cards);
-}
-
-void Hand::viewCards() {
-	std::for_each(m_cards.begin(), m_cards.end(), [](auto& card) { std:: cout << card->getName() << "\n"; });
 }

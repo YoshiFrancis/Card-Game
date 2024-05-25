@@ -29,7 +29,6 @@ public:
 	void reset();
 protected:
 	std::unique_ptr<ICard> m_top_card = nullptr;
-
 	virtual bool isValid(std::unique_ptr<ICard>& new_card) = 0;
 	
 

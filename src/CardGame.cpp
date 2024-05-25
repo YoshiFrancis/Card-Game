@@ -1,13 +1,9 @@
 #include "CardGame.h"
-#include "IPlayer.h"
-#include <string_view>
-#include <iostream>
 #include <algorithm>
 #include <set>
 #include <iterator>
-#include <cassert>
 
-#define STARTING_AMOUNT 1
+#define STARTING_AMOUNT 50
 
 Application* CardGame::createApplication(Room* lobby) {
 	return new CardGame(lobby);
@@ -15,7 +11,6 @@ Application* CardGame::createApplication(Room* lobby) {
 
 void CardGame::start(std::set<conn_ptr>& connections) {
 	addConns(connections);
-	std::string_view type {"Uno"};
 	m_deck.createDeck("Uno");
 	std::for_each(m_players.begin(), m_players.end(),
 		[&](auto& player)
@@ -55,7 +50,6 @@ void CardGame::run() {
 }
 
 void CardGame::end() {
-	std::cout << "card game ending\n";
 	if (hasWinner) {
 		alert(m_winner->getUsername() + " has won the game!");
 	}
@@ -63,7 +57,6 @@ void CardGame::end() {
 	std::for_each(connectionsVec.begin(), connectionsVec.end(), 
 		[&](conn_ptr conn)
 		{
-			std::cout << "in ending...: " << conn->getUsername() << "\n";
 			conn->changeRoom(return_room_);
 		});
 	return_room_->signalRoomTermination();
@@ -85,7 +78,6 @@ void CardGame::addConns(std::set<conn_ptr> connections) {
 }
 
 void CardGame::handleMessage(message& msg, conn_ptr conn) {
-	std::cout << "Prompt: " << conn->getPrompt() << "\n";
 	if (msg.getFlag() == 'C' || msg.body()[0] == '/') {
 		handleCommand(msg, conn);
 	}
@@ -143,20 +135,17 @@ void CardGame::handleCommand(message& msg, conn_ptr conn) {
 void CardGame::handleMove(message& msg, conn_ptr conn) {
 	auto played_card = m_curr_player_iter->playCard(msg.body());
 	if (played_card == nullptr) {
-		std::cout << "2\n";
 		message error_msg { "You do not own that card! Do /hand to view current cards or /draw if you do not have any valid cards", 'M' };
 		error_msg.encode_header();
 		conn->deliver(error_msg);
 	}
 	else if (!m_top_card.replace(played_card)) {
-		std::cout << "3\n";
 		message error_msg { "You can't place that card!", 'M' };
 		m_curr_player_iter->drawCards( std::move(played_card) );
 		error_msg.encode_header();
 		conn->deliver(error_msg);
 	}
 	else {
-		std::cout << "4\n";
 		handleCard(msg, conn);
 	}
 }
@@ -166,7 +155,6 @@ void CardGame::handleCard(message& msg, conn_ptr conn) {
 	std::string symbol = m_top_card.getSymbol();
 	conn->setPrompt("None");
 	if (m_curr_player_iter->getCardCount() == 0) {
-		std::cout << m_curr_player_iter->getUsername() << " has won\n";
 		hasWinner = true;
 		m_winner = m_curr_player_iter;
 		end();

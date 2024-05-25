@@ -1,23 +1,21 @@
 #ifndef HANDLOCAL_H
 #define HANDLOCAL_H
 
-#include "IHand.h"
 #include "ICard.h"
 #include <string>
 #include <memory>
 #include <iterator>
 #include <list>
 
-class Hand : IHand {
+class Hand {
 
 public:
-	std::unique_ptr<ICard> useCard(const std::string& name) override;
-	const void addCard(std::unique_ptr<ICard> card) override;
-	const int getCount() override;
-	const bool hasCard(const std::string&) override;
-	void discardAll() override;
-	std::string getCards() override;
-	void viewCards();
+	std::unique_ptr<ICard> useCard(const std::string& name);
+	const void addCard(std::unique_ptr<ICard> card);
+	int getCount();
+	bool hasCard(const std::string&);
+	void discardAll();
+	std::string getCards();
 
 private:
 	std::list<std::unique_ptr<ICard>> m_cards;

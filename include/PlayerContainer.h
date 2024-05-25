@@ -1,4 +1,3 @@
-#include "IPlayerContainer.h"
 #include "Player.h"
 #include <vector>
 #include <string>
@@ -7,14 +6,13 @@
 
 class ConnectionI;
 
-class PlayerContainer : public IPlayerContainer {
+class PlayerContainer {
 
 public:
 
-	bool addPlayer(Player player) override;
 	void addConns(std::set<conn_ptr>& conns);
-	void removePlayer(std::string name) override;
-	player_iter findPlayer(std::string name) override;
+	void removePlayer(std::string name);
+	player_iter findPlayer(std::string name);
 	Player& getPlayer(std::string name);
 	player_iter end();
 	player_iter begin();
@@ -24,6 +22,7 @@ public:
 	~PlayerContainer() {};
 
 private:
+	bool addPlayer(Player player);
 	std::list<Player> m_players {};
 	int m_count = 0;
 	int m_maxCount = 8;

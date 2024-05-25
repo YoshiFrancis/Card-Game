@@ -2,7 +2,6 @@
 #include "../helper.h"
 #include <sstream>
 #include <string>
-#include <iostream>
 
 std::string UnoCard::getType() const {
     return "Uno";
