@@ -92,7 +92,7 @@ std::vector<std::unique_ptr<ICard>> Deck::generateDeck(int count, const std::str
 }
 
 static std::unique_ptr<ICard>  _generateUnoCard() {
-	const std::vector<std::string>& colors = UnoCard::.getAllColors();
+	const std::vector<std::string>& colors = UnoCard::getAllColors();
 	const std::vector<std::string>& symbols = UnoCard::getAllSymbols();
 	auto color_size = colors.size();
 	auto symbols_size = symbols.size();

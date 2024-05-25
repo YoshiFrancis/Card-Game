@@ -6,6 +6,8 @@
 
 class ConnectionI;
 
+typedef std::list<Player>::iterator player_iter;
+
 class PlayerContainer {
 
 public:
@@ -27,3 +29,4 @@ private:
 	int m_count = 0;
 	int m_maxCount = 8;
 };
+
